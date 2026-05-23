@@ -1,6 +1,6 @@
 # Deckseer Exporter Mod Design
 
-Deckseer Exporter is a proposed Slay the Spire 2 companion mod that writes the current visible decision state to local JSON for Deckseer to inspect. This document defines the first design target only; exporter code, watch mode, schemas, and CLI integration are not implemented yet.
+Deckseer Exporter is a proposed Slay the Spire 2 companion mod that writes the current visible decision state to local JSON for Deckseer to inspect. Deckseer can inspect and recommend from this proposed JSON contract, but in-game exporter code, watch mode, and schema enforcement are not implemented yet.
 
 ## Goals
 
@@ -16,7 +16,7 @@ Deckseer Exporter is a proposed Slay the Spire 2 companion mod that writes the c
 - No mouse input, keyboard input, controller input, or UI driving.
 - No packet inspection, memory reading outside normal mod-accessible game state, process injection, stealth, evasion, or anti-cheat bypass.
 - No OCR, screenshot capture, image recognition, or vision fallback.
-- No new Deckseer CLI commands, watch mode, scoring rules, card priors, roles, tags, or recommendation APIs in the design packet.
+- No watch mode, scoring rules, card priors, roles, tags, or recommendation API changes.
 - No automatic calibration from exported state.
 
 ## Modding Surface Research Questions
@@ -116,7 +116,7 @@ The first useful export target is `screen_type: "card_reward"` because it maps d
 
 ## Mapping to Deckseer
 
-Deckseer should continue to score the same advisor-ready card reward payload it already accepts. A future exporter adapter can:
+Deckseer should continue to score the same advisor-ready card reward payload it already accepts. The exporter adapter:
 
 1. Read `latest_state.json`.
 2. Check `game` and `screen_type`.

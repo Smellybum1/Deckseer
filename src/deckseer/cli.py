@@ -28,6 +28,7 @@ from deckseer.empirical_triage import build_empirical_triage_report
 from deckseer.empirical_worksheet import build_empirical_worksheet_fill_report, build_empirical_worksheet_report
 from deckseer.models import DeckseerError
 from deckseer.audit.card_priors import audit_card_priors, load_empirical_card_stats
+from deckseer.importers.exporter_state import load_exporter_state
 from deckseer.importers.sts2_save import load_sts2_run
 from deckseer.normalization import normalize_run_file, write_normalized_payload
 from deckseer.qa import (
@@ -341,6 +342,10 @@ def main(argv: list[str] | None = None) -> int:
             imported = load_sts2_run(Path(args.save_json), player_index=args.player_index)
             print(json.dumps(imported.to_summary_dict(), indent=2))
             return 0
+        if args.command == "inspect-export":
+            exported = load_exporter_state(Path(args.export_json))
+            print(json.dumps(exported.to_summary_dict(), indent=2))
+            return 0
         if args.command == "import-run":
             imported = load_sts2_run(Path(args.save_json), player_index=args.player_index)
             payload = imported.to_recommendation_input(
@@ -365,6 +370,14 @@ def main(argv: list[str] | None = None) -> int:
                 act=args.act,
                 floor=args.floor,
             ).to_run_state()
+            data = DeckseerData.load(Path(args.data_dir))
+            result = recommend_card_reward(run, data)
+            diagnosis = diagnose_run_state(run, data) if args.include_diagnosis else None
+            print(render_recommendation(result, args.format, diagnosis=diagnosis))
+            return 0
+        if args.command == "recommend-export":
+            exported = load_exporter_state(Path(args.export_json))
+            run = exported.current_state.to_run_state()
             data = DeckseerData.load(Path(args.data_dir))
             result = recommend_card_reward(run, data)
             diagnosis = diagnose_run_state(run, data) if args.include_diagnosis else None
@@ -614,6 +627,9 @@ def _build_parser() -> argparse.ArgumentParser:
     inspect_save.add_argument("save_json", help="Path to a Slay the Spire 2 .run JSON file.")
     inspect_save.add_argument("--player-index", type=int, default=0, help="Player index for multi-player run files. Defaults to 0.")
 
+    inspect_export = subparsers.add_parser("inspect-export", help="Summarize a Deckseer Exporter JSON state file.")
+    inspect_export.add_argument("export_json", help="Path to a Deckseer Exporter latest_state.json file.")
+
     import_run = subparsers.add_parser("import-run", help="Create a Deckseer recommendation JSON draft from a run-history save.")
     import_run.add_argument("save_json", help="Path to a Slay the Spire 2 .run JSON file.")
     import_run.add_argument("--player-index", type=int, default=0, help="Player index for multi-player run files. Defaults to 0.")
@@ -635,6 +651,12 @@ def _build_parser() -> argparse.ArgumentParser:
     recommend_save.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
     recommend_save.add_argument("--format", choices=("json", "text", "markdown"), default="json", help="Output format. Defaults to json.")
     recommend_save.add_argument("--include-diagnosis", action="store_true", help="Include deck profile and prioritized run needs with the recommendation.")
+
+    recommend_export = subparsers.add_parser("recommend-export", help="Rank card rewards from a Deckseer Exporter JSON state file.")
+    recommend_export.add_argument("export_json", help="Path to a Deckseer Exporter latest_state.json file.")
+    recommend_export.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
+    recommend_export.add_argument("--format", choices=("json", "text", "markdown"), default="json", help="Output format. Defaults to json.")
+    recommend_export.add_argument("--include-diagnosis", action="store_true", help="Include deck profile and prioritized run needs with the recommendation.")
     return parser
 
 

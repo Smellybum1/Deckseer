@@ -7,8 +7,9 @@ Deckseer is currently a local, manual JSON-first decision-support coach for Slay
 - Manual run-state JSON input for card reward advice.
 - Deterministic card reward scoring with ranked choices, scores, reasoning, confidence, and risks.
 - Run diagnosis helpers for deck shape, prioritized needs, HP pressure, act/floor phase, and region/path context.
-- CLI commands for `recommend-card`, `diagnose-run`, `check-run-data`, `check-runs`, `normalize-run`, `list-cards`, `data-summary`, `data-review`, `data-health`, `qa`, `qa-baseline`, `accuracy-report`, `audit-card-priors`, `empirical-coverage`, `empirical-intake`, `empirical-triage-report`, `empirical-current-patch-review`, `empirical-capture-guide`, `empirical-capture-packet`, `empirical-cross-class-capture-packet`, `empirical-cross-class-apply-packet`, `empirical-cross-class-readiness`, `empirical-cross-class-promotion-preview`, `empirical-worksheet-check`, `empirical-worksheet-fill`, `empirical-worksheet-apply-packet`, `empirical-draft-check`, `empirical-promote-draft`, `inspect-save`, `import-run`, and `recommend-save`.
+- CLI commands for `recommend-card`, `diagnose-run`, `check-run-data`, `check-runs`, `normalize-run`, `list-cards`, `data-summary`, `data-review`, `data-health`, `qa`, `qa-baseline`, `accuracy-report`, `audit-card-priors`, `empirical-coverage`, `empirical-intake`, `empirical-triage-report`, `empirical-current-patch-review`, `empirical-capture-guide`, `empirical-capture-packet`, `empirical-cross-class-capture-packet`, `empirical-cross-class-apply-packet`, `empirical-cross-class-readiness`, `empirical-cross-class-promotion-preview`, `empirical-worksheet-check`, `empirical-worksheet-fill`, `empirical-worksheet-apply-packet`, `empirical-draft-check`, `empirical-promote-draft`, `inspect-save`, `import-run`, `recommend-save`, `inspect-export`, and `recommend-export`.
 - Read-only import from plain JSON Slay the Spire 2 run-history files, with manual live-state fields supplied by the user.
+- Read-only import from proposed Deckseer Exporter JSON files, with exporter metadata and caveats kept outside scoring.
 - JSON, text, and Markdown recommendation output.
 - Strategy backlog for reviewed creator claims, tier-list sources, and empirical data ideas.
 - Accuracy scenario manifest and report workflow for reviewed recommendation drift checks.
@@ -54,7 +55,7 @@ Relic and potion data exist as sparse seed files. Empirical data support is inte
 
 ## Recommended Next Milestones
 
-1. Deckseer Exporter Mod implementation readiness: `docs/EXPORTER_MOD_DESIGN.md` now documents the read-only/export-only boundary and proposed card reward JSON contract, but no exporter code or watch mode has been implemented.
+1. Deckseer Exporter Mod implementation readiness: Deckseer can now inspect and recommend from proposed exporter JSON files, but the in-game exporter mod and watch mode have not been implemented.
 2. Vision State Extractor design remains a future fallback/complement for screenshot-based visible state extraction.
 3. Broader advice modules: relic choice, potion choice, pathing, combat planning, and run-history learning.
 4. Data QA maintenance: keep `data-health` passing as new card metadata, roles, and effects are added.
@@ -111,6 +112,8 @@ deckseer empirical-promote-draft tests/fixtures/empirical/valid_traceable_draft.
 deckseer empirical-promote-draft data/empirical/drafts/necrobinder_sts2fun_all_patches_reviewed.json --output data/empirical/necrobinder_sts2fun_all_patches_reviewed.json --allow-review-flags
 deckseer audit-card-priors tests/fixtures/empirical/legacy_multi_class_card_stats_sample.json --format text
 deckseer audit-card-priors tests/fixtures/empirical/multi_class_conflict_stats.json --format text
+deckseer inspect-export tests/fixtures/exporter_card_reward_state.json
+deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --format text
 deckseer recommend-card examples/card_reward_basic.json
 deckseer recommend-card examples/card_reward_basic.json --format text
 deckseer recommend-card examples/card_reward_basic.json --format markdown

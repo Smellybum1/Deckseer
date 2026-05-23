@@ -246,6 +246,20 @@ Use `check-run-data` when adding new examples or imported runs. Missing reward-c
 
 Use `check-runs` to batch-audit a directory like `examples/` or a list of run-state JSON files. Coverage reports include suggestions when a missing card looks like a known card with different spacing, punctuation, or casing.
 
+Inspect a proposed Deckseer Exporter JSON file:
+
+```bash
+deckseer inspect-export tests/fixtures/exporter_card_reward_state.json
+```
+
+Recommend from a proposed Deckseer Exporter JSON file:
+
+```bash
+deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --format text
+```
+
+Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. The Slay the Spire 2 companion mod itself is still not implemented.
+
 ## State Sources
 
 Deckseer keeps one advisor-ready card reward shape and lets different sources adapt into it:
@@ -263,10 +277,11 @@ Implemented sources:
 
 - **Manual JSON**: primary v0 workflow, loaded directly from a user-authored run-state file.
 - **Run-history import**: read-only `.run` history parsing that can draft a recommendation input after you manually provide current HP, act, floor, and visible card reward.
+- **Exporter JSON import**: read-only proposed `latest_state.json` contract parsing through `inspect-export` and `recommend-export`. This consumes local files only; the game mod that would write them is not implemented yet.
 
 Planned sources:
 
-- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The initial design contract lives in `docs/EXPORTER_MOD_DESIGN.md`; exporter code is not implemented yet.
+- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The initial design contract lives in `docs/EXPORTER_MOD_DESIGN.md`; the in-game exporter mod is not implemented yet.
 - **Vision State Extractor**: screenshot/OCR fallback or complement when an exporter mod is unavailable, unwanted, or unreliable.
 
 Source metadata and caveats stay outside the scorer. The recommendation engine receives the same validated card reward payload regardless of where the state came from.

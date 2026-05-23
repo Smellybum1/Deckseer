@@ -1,0 +1,71 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "card_reward",
+  "character": "ironclad",
+  "act": 1,
+  "floor": 7,
+  "ascension": 0,
+  "gold": 123,
+  "hp": {
+    "current": 52,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 2
+    },
+    {
+      "id": "bash",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [
+    "burning_blood"
+  ],
+  "potions": [],
+  "card_reward": [
+    "pommel_strike",
+    "shrug_it_off",
+    "anger"
+  ],
+  "run_context": {
+    "recent_damage": 12,
+    "next_node_type": "unknown",
+    "act_region": "underdocks",
+    "upcoming_elites": [
+      "skulking_colony",
+      "terror_eel"
+    ],
+    "fought_elites": [],
+    "next_nodes": [
+      "combat",
+      "fire",
+      "elite"
+    ],
+    "fire_before_elite": true,
+    "shop_before_elite": false,
+    "path_pressure": "elite_soon",
+    "boss": null,
+    "notes": []
+  },
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.1.0",
+    "game_build": null,
+    "game_patch": "main_v0.103_current",
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": true,
+    "confidence": "medium",
+    "caveats": [
+      "User should confirm visible card reward before using this state."
+    ]
+  }
+}
