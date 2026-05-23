@@ -1,0 +1,25 @@
+{
+  "baseline_type": "recommendation_smoke_baseline",
+  "entries": [
+    {
+      "path": "examples/card_reward_basic.json",
+      "top_choice": "shrug_it_off"
+    },
+    {
+      "path": "examples/defect_card_reward_basic.json",
+      "top_choice": "cold_snap"
+    },
+    {
+      "path": "examples/necrobinder_card_reward_basic.json",
+      "top_choice": "unleash"
+    },
+    {
+      "path": "examples/regent_card_reward_basic.json",
+      "top_choice": "astral_pulse"
+    },
+    {
+      "path": "examples/silent_card_reward_basic.json",
+      "top_choice": "dagger_throw"
+    }
+  ]
+}

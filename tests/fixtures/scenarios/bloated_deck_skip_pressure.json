@@ -1,0 +1,49 @@
+{
+  "game": "slay_the_spire_2",
+  "character": "ironclad",
+  "act": 2,
+  "floor": 26,
+  "ascension": 8,
+  "gold": 176,
+  "hp": {
+    "current": 63,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 13
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 12
+    },
+    {
+      "id": "bash",
+      "upgraded": false,
+      "count": 2
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "card_reward": [
+    "anger",
+    "clothesline",
+    "inflame"
+  ],
+  "run_context": {
+    "recent_damage": 0,
+    "next_node_type": "unknown",
+    "act_region": null,
+    "upcoming_elites": [],
+    "fought_elites": [],
+    "next_nodes": [],
+    "fire_before_elite": null,
+    "shop_before_elite": null,
+    "path_pressure": "safe",
+    "boss": null,
+    "notes": []
+  }
+}

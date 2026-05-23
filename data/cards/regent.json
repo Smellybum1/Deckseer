@@ -1,0 +1,922 @@
+[
+  {
+    "id": "astral_pulse",
+    "name": "Astral Pulse",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["damage", "stellar"],
+    "roles": ["frontload", "burst"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "elite_prep"],
+    "source_patch": "main_v0.103_current",
+    "source_notes": [
+      "Regent local tier list: Completely overstatted.",
+      "Current-patch STS2.fun review: 6,822 offers, 26% pick rate, 33% win rate, -13% impact.",
+      "Prior lowered from S-tier seed after current-patch empirical review; keep roles as frontload/burst utility."
+    ],
+    "upgrades_to": "astral_pulse_plus",
+    "effects": {
+      "damage": 14,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "big_bang",
+    "name": "Big Bang",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["damage", "aoe", "stellar"],
+    "roles": ["frontload", "burst", "aoe"],
+    "quality_prior": 5.0,
+    "pick_context": ["frontload", "aoe", "boss_damage"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Completely overstatted."],
+    "upgrades_to": "big_bang_plus",
+    "effects": {
+      "damage": 22,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "reflect",
+    "name": "Reflect",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "damage_return"],
+    "roles": ["block", "frontload", "defense"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "frontload", "elite_prep"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Completely overstatted."],
+    "upgrades_to": "reflect_plus",
+    "effects": {
+      "damage": 5,
+      "block": 9,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "bulwark",
+    "name": "Bulwark",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense", "elite_prep"],
+    "quality_prior": 2.0,
+    "pick_context": ["defense", "elite_prep"],
+    "source_patch": "main_v0.103_current",
+    "source_notes": [
+      "Regent local tier list: Completely overstatted.",
+      "Current-patch STS2.fun review: 2,406 offers, 58% pick rate, 45% win rate, -4% impact.",
+      "Prior lowered from S-tier seed after current-patch empirical review; keep roles as block/defense/elite-prep utility."
+    ],
+    "upgrades_to": "bulwark_plus",
+    "effects": {
+      "damage": 0,
+      "block": 15,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "crash_landing",
+    "name": "Crash Landing",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["damage", "block"],
+    "roles": ["frontload", "block", "burst"],
+    "quality_prior": 5.0,
+    "pick_context": ["early", "frontload", "defense"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Completely overstatted."],
+    "upgrades_to": "crash_landing_plus",
+    "effects": {
+      "damage": 16,
+      "block": 8,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "guards",
+    "name": "GUARDS!!!",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["block", "summon"],
+    "roles": ["block", "defense", "scaling"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "scaling", "elite_prep"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Completely overstatted."],
+    "upgrades_to": "guards_plus",
+    "effects": {
+      "damage": 0,
+      "block": 14,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "meteor_shower",
+    "name": "Meteor Shower",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["damage", "aoe", "stellar"],
+    "roles": ["frontload", "aoe", "burst"],
+    "quality_prior": 5.0,
+    "pick_context": ["frontload", "aoe", "boss_damage"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Completely overstatted."],
+    "upgrades_to": "meteor_shower_plus",
+    "effects": {
+      "damage": 20,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "child_of_the_stars",
+    "name": "Child of the Stars",
+    "character": "regent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["block", "scaling", "power"],
+    "roles": ["block", "scaling", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "scaling", "boss_prep"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Broken block engine."],
+    "upgrades_to": "child_of_the_stars_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "block_engine": 1
+      }
+    }
+  },
+  {
+    "id": "pillar_of_creation",
+    "name": "Pillar of Creation",
+    "character": "regent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["block", "scaling", "power"],
+    "roles": ["block", "scaling", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "scaling", "boss_prep"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Broken block engine."],
+    "upgrades_to": "pillar_of_creation_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "block_engine": 1
+      }
+    }
+  },
+  {
+    "id": "spectrum_shift",
+    "name": "Spectrum Shift",
+    "character": "regent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["scaling", "power"],
+    "roles": ["scaling", "consistency", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "consistency", "boss_prep"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Very strong - worth picking even early."],
+    "upgrades_to": "spectrum_shift_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "consistency_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "void_form",
+    "name": "Void Form",
+    "character": "regent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["scaling", "power"],
+    "roles": ["scaling", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "boss_prep"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Very strong - worth picking even early."],
+    "upgrades_to": "void_form_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "void_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "tyranny",
+    "name": "Tyranny",
+    "character": "regent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["scaling", "power"],
+    "roles": ["scaling", "frontload", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Very strong - worth picking even early."],
+    "upgrades_to": "tyranny_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "frontload_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "convergence",
+    "name": "Convergence",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["draw", "stellar"],
+    "roles": ["draw", "consistency", "deck_control"],
+    "quality_prior": 3.5,
+    "pick_context": ["consistency", "deck_control"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "convergence_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "charge",
+    "name": "CHARGE!!",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload", "burst"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "charge_plus",
+    "effects": {
+      "damage": 11,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "bundle_of_joy",
+    "name": "Bundle of Joy",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "draw"],
+    "roles": ["block", "draw", "consistency"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "consistency"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "bundle_of_joy_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "dying_star",
+    "name": "Dying Star",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["damage", "stellar"],
+    "roles": ["frontload", "scaling_support"],
+    "quality_prior": 3.5,
+    "pick_context": ["frontload", "stellar"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "dying_star_plus",
+    "effects": {
+      "damage": 10,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "gamma_blast",
+    "name": "Gamma Blast",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "aoe"],
+    "roles": ["frontload", "aoe"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload", "aoe"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "gamma_blast_plus",
+    "effects": {
+      "damage": 9,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "gather_light",
+    "name": "Gather Light",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["energy", "stellar"],
+    "roles": ["energy", "consistency"],
+    "quality_prior": 3.5,
+    "pick_context": ["energy", "consistency"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "gather_light_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 1
+    }
+  },
+  {
+    "id": "glow",
+    "name": "Glow",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["draw", "free"],
+    "roles": ["draw", "consistency", "deck_control"],
+    "quality_prior": 3.5,
+    "pick_context": ["consistency", "deck_control"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "glow_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "particle_wall",
+    "name": "Particle Wall",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "particle_wall_plus",
+    "effects": {
+      "damage": 0,
+      "block": 10,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "quasar",
+    "name": "Quasar",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["damage", "aoe", "stellar"],
+    "roles": ["frontload", "aoe", "burst"],
+    "quality_prior": 3.5,
+    "pick_context": ["frontload", "aoe"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "quasar_plus",
+    "effects": {
+      "damage": 16,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "radiate",
+    "name": "Radiate",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "aoe"],
+    "roles": ["frontload", "aoe"],
+    "quality_prior": 3.5,
+    "pick_context": ["frontload", "aoe"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good."],
+    "upgrades_to": "radiate_plus",
+    "effects": {
+      "damage": 8,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "royal_gamble",
+    "name": "Royal Gamble",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["draw"],
+    "roles": ["draw", "consistency", "deck_control"],
+    "quality_prior": 3.0,
+    "pick_context": ["consistency", "upgraded"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Generically good, but only good upgraded."],
+    "upgrades_to": "royal_gamble_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "collision_course",
+    "name": "Collision Course",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Good early game."],
+    "upgrades_to": "collision_course_plus",
+    "effects": {
+      "damage": 9,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "cloak_of_stars",
+    "name": "Cloak of Stars",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 2.0,
+    "pick_context": ["defense", "early"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Good early game."],
+    "upgrades_to": "cloak_of_stars_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "refine_blade",
+    "name": "Refine Blade",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "scaling_support"],
+    "roles": ["frontload", "scaling_support"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Good early game."],
+    "upgrades_to": "refine_blade_plus",
+    "effects": {
+      "damage": 10,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "wrought_in_war",
+    "name": "Wrought in War",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["damage", "block"],
+    "roles": ["frontload", "block", "burst"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "defense"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Good early game."],
+    "upgrades_to": "wrought_in_war_plus",
+    "effects": {
+      "damage": 13,
+      "block": 6,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "orbit",
+    "name": "Orbit",
+    "character": "regent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["scaling", "power"],
+    "roles": ["scaling", "power"],
+    "quality_prior": 2.5,
+    "pick_context": ["scaling", "boss_prep"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Strong powers but a bit harder to carry early."],
+    "upgrades_to": "orbit_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "orbital_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "royalties",
+    "name": "Royalties",
+    "character": "regent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["scaling", "power"],
+    "roles": ["scaling", "power"],
+    "quality_prior": 2.5,
+    "pick_context": ["scaling", "boss_prep"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Strong powers but a bit harder to carry early."],
+    "upgrades_to": "royalties_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "gold_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "arsenal",
+    "name": "Arsenal",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["damage"],
+    "roles": ["frontload", "burst", "boss_damage"],
+    "quality_prior": 2.5,
+    "pick_context": ["boss_damage", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Good boss damage."],
+    "upgrades_to": "arsenal_plus",
+    "effects": {
+      "damage": 24,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "kingly_kick",
+    "name": "Kingly Kick",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload", "boss_damage"],
+    "quality_prior": 2.5,
+    "pick_context": ["boss_damage", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Good boss damage."],
+    "upgrades_to": "kingly_kick_plus",
+    "effects": {
+      "damage": 12,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "supermassive",
+    "name": "Supermassive",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": ["damage"],
+    "roles": ["frontload", "burst", "boss_damage"],
+    "quality_prior": 2.5,
+    "pick_context": ["boss_damage", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Good boss damage."],
+    "upgrades_to": "supermassive_plus",
+    "effects": {
+      "damage": 32,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "celestial_might",
+    "name": "Celestial Might",
+    "character": "regent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["scaling", "power"],
+    "roles": ["scaling", "power"],
+    "quality_prior": 0.0,
+    "pick_context": ["scaling"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Mediocre; preferably skip when possible."],
+    "upgrades_to": "celestial_might_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "scaling": 1
+      }
+    }
+  },
+  {
+    "id": "crescent_spear",
+    "name": "Crescent Spear",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Mediocre; preferably skip when possible."],
+    "upgrades_to": "crescent_spear_plus",
+    "effects": {
+      "damage": 7,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "patter",
+    "name": "Patter",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["draw"],
+    "roles": ["draw", "consistency"],
+    "quality_prior": 0.0,
+    "pick_context": ["consistency"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Mediocre; preferably skip when possible."],
+    "upgrades_to": "patter_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "black_hole",
+    "name": "Black Hole",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["control", "stellar"],
+    "roles": ["scaling", "deck_control", "niche"],
+    "quality_prior": 0.0,
+    "pick_context": ["niche", "control"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Some niche uses."],
+    "upgrades_to": "black_hole_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "control": 1
+      }
+    }
+  },
+  {
+    "id": "parry",
+    "name": "Parry",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense", "niche"],
+    "quality_prior": 0.0,
+    "pick_context": ["defense", "niche"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Some niche uses."],
+    "upgrades_to": "parry_plus",
+    "effects": {
+      "damage": 0,
+      "block": 7,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "hidden_cache",
+    "name": "Hidden Cache",
+    "character": "regent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["draw", "free"],
+    "roles": ["draw", "consistency", "niche"],
+    "quality_prior": 0.0,
+    "pick_context": ["niche", "consistency"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Some niche uses."],
+    "upgrades_to": "hidden_cache_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "conqueror",
+    "name": "Conqueror",
+    "character": "regent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["scaling", "power"],
+    "roles": ["scaling", "power", "niche"],
+    "quality_prior": -2.0,
+    "pick_context": ["niche", "scaling"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Skip in most cases."],
+    "upgrades_to": "conqueror_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "scaling": 1
+      }
+    }
+  },
+  {
+    "id": "shining_strike",
+    "name": "Shining Strike",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload"],
+    "quality_prior": -2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Skip in most cases."],
+    "upgrades_to": "shining_strike_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "solar_strike",
+    "name": "Solar Strike",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "stellar"],
+    "roles": ["frontload"],
+    "quality_prior": -2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Skip in most cases."],
+    "upgrades_to": "solar_strike_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "photon_cut",
+    "name": "Photon Cut",
+    "character": "regent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["damage", "free"],
+    "roles": ["frontload", "niche"],
+    "quality_prior": -2.0,
+    "pick_context": ["niche", "frontload"],
+    "source_patch": "v0.103.0",
+    "source_notes": ["Regent local tier list: Skip in most cases."],
+    "upgrades_to": "photon_cut_plus",
+    "effects": {
+      "damage": 4,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  }
+]

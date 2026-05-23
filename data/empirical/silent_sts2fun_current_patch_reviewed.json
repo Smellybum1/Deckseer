@@ -1,0 +1,53 @@
+[
+  {
+    "card_id": "dagger_throw",
+    "character": "silent",
+    "patch": "main_v0.103_current",
+    "source": "STS2.fun manual capture",
+    "sample_size": 6695,
+    "pick_rate": 0.25,
+    "win_rate": 0.3,
+    "impact": -0.16,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=SILENT",
+    "captured_at": "2026-05-24",
+    "stat_definition": "STS2.fun Silent card detail with Viewing Patch = Main v0.103 - current, Overview tab, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Pick Rate, sample_size is Offered, win_rate is Win Rate, impact is displayed Delta.",
+    "reviewer_notes": "Captured from user-provided STS2.fun current v0.103 screenshot. STS2.fun does not provide card-specific URLs. Overview values: offered=6695, picked=1663, win_with_card=30%, win_without_card=46%.",
+    "review_status": "accepted"
+  },
+  {
+    "card_id": "backflip",
+    "character": "silent",
+    "patch": "main_v0.103_current",
+    "source": "STS2.fun manual capture",
+    "sample_size": 6737,
+    "pick_rate": 0.4,
+    "win_rate": 0.44,
+    "impact": 0.03,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=SILENT",
+    "captured_at": "2026-05-24",
+    "stat_definition": "STS2.fun Silent card detail with Viewing Patch = Main v0.103 - current, Overview tab, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Pick Rate, sample_size is Offered, win_rate is Win Rate, impact is displayed Delta.",
+    "reviewer_notes": "Captured from user-provided STS2.fun current v0.103 screenshot. STS2.fun does not provide card-specific URLs. Overview values: offered=6737, picked=2686, win_with_card=44%, win_without_card=42%.",
+    "review_status": "accepted"
+  },
+  {
+    "card_id": "footwork",
+    "character": "silent",
+    "patch": "main_v0.103_current",
+    "source": "STS2.fun manual capture",
+    "sample_size": 2576,
+    "pick_rate": 0.62,
+    "win_rate": 0.47,
+    "impact": 0.05,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=SILENT",
+    "captured_at": "2026-05-24",
+    "stat_definition": "STS2.fun Silent card detail with Viewing Patch = Main v0.103 - current, Overview tab, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Pick Rate, sample_size is Offered, win_rate is Win Rate, impact is displayed Delta.",
+    "reviewer_notes": "Captured from user-provided STS2.fun current v0.103 screenshot. STS2.fun does not provide card-specific URLs. Overview values: offered=2576, picked=1607, win_with_card=47%, win_without_card=42%.",
+    "review_status": "accepted"
+  }
+]

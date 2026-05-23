@@ -1,0 +1,104 @@
+{
+  "manifest_type": "accuracy_scenarios",
+  "scenarios": [
+    {
+      "id": "early_act1_low_frontload",
+      "path": "tests/fixtures/scenarios/early_act1_low_frontload.json",
+      "expected_top_choice": "pommel_strike",
+      "expected_reason_keywords": [
+        "frontload"
+      ],
+      "source": "hand-authored calibration scenario",
+      "review_status": "accepted",
+      "notes": "Low-damage early Act 1 deck should take efficient frontload over slower setup."
+    },
+    {
+      "id": "underdocks_defense_pressure",
+      "path": "tests/fixtures/scenarios/underdocks_defense_pressure.json",
+      "expected_top_choice": "shrug_it_off",
+      "expected_reason_keywords": [
+        "Underdocks"
+      ],
+      "source": "hand-authored calibration scenario",
+      "review_status": "accepted",
+      "notes": "Known Underdocks elite pressure should bias the reward toward block."
+    },
+    {
+      "id": "overgrowth_damage_pressure",
+      "path": "tests/fixtures/scenarios/overgrowth_damage_pressure.json",
+      "expected_top_choice": "pommel_strike",
+      "expected_reason_keywords": [
+        "Overgrowth"
+      ],
+      "source": "hand-authored calibration scenario",
+      "review_status": "accepted",
+      "notes": "Known Overgrowth elite pressure should bias the reward toward efficient damage."
+    },
+    {
+      "id": "act2_no_scaling",
+      "path": "tests/fixtures/scenarios/act2_no_scaling.json",
+      "expected_top_choice": "inflame",
+      "expected_reason_keywords": [
+        "scaling"
+      ],
+      "source": "hand-authored calibration scenario",
+      "review_status": "accepted",
+      "notes": "Act 2 deck with no scaling should value a clear long-fight plan."
+    },
+    {
+      "id": "bloated_deck_skip_pressure",
+      "path": "tests/fixtures/scenarios/bloated_deck_skip_pressure.json",
+      "expected_top_choice": "skip",
+      "expected_reason_keywords": [
+        "bloat"
+      ],
+      "source": "hand-authored calibration scenario",
+      "review_status": "accepted",
+      "notes": "Bloated deck with low-fit offers should let Skip compete directly."
+    },
+    {
+      "id": "necrobinder_forbidden_grimoire_frontload_guard",
+      "path": "tests/fixtures/scenarios/necrobinder_forbidden_grimoire_frontload_guard.json",
+      "expected_top_choice": "unleash",
+      "expected_reason_keywords": [
+        "frontload"
+      ],
+      "source": "Forbidden Grimoire empirical calibration: STS2.fun All Patches and main_v0.103_current reviews",
+      "review_status": "accepted",
+      "notes": "Calibration guard: Forbidden Grimoire should not be over-picked when another offered card solves urgent frontload. This supports the current-patch prior calibration but does not claim Forbidden Grimoire is universally weak."
+    },
+    {
+      "id": "defect_cold_snap_scaling_guard",
+      "path": "tests/fixtures/scenarios/defect_cold_snap_scaling_guard.json",
+      "expected_top_choice": "defragment",
+      "expected_reason_keywords": [
+        "scaling"
+      ],
+      "source": "Cold Snap empirical calibration: STS2.fun current-patch high-prior weak-empirical triage",
+      "review_status": "accepted",
+      "notes": "Calibration guard: Cold Snap should not be over-picked in Act 2 when the deck already has a copy and another offered card solves the clearer scaling need."
+    },
+    {
+      "id": "regent_astral_pulse_scaling_guard",
+      "path": "tests/fixtures/scenarios/regent_astral_pulse_scaling_guard.json",
+      "expected_top_choice": "spectrum_shift",
+      "expected_reason_keywords": [
+        "scaling"
+      ],
+      "source": "Astral Pulse empirical calibration: STS2.fun current-patch high-prior weak-empirical triage",
+      "review_status": "accepted",
+      "notes": "Calibration guard: Astral Pulse should not be over-picked in Act 2 when the deck already has a copy and another offered card solves the clearer scaling need."
+    },
+    {
+      "id": "regent_bulwark_frontload_guard",
+      "path": "tests/fixtures/scenarios/regent_bulwark_frontload_guard.json",
+      "expected_top_choice": "astral_pulse",
+      "expected_reason_keywords": [
+        "frontload"
+      ],
+      "source": "Bulwark empirical calibration: STS2.fun current-patch high-prior weak-empirical triage",
+      "review_status": "accepted",
+      "notes": "Calibration guard: Bulwark should not be over-picked when early Act 1 frontload is the clearer urgent need."
+    }
+  ]
+}

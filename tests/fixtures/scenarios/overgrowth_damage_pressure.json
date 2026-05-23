@@ -1,0 +1,55 @@
+{
+  "game": "slay_the_spire_2",
+  "character": "ironclad",
+  "act": 1,
+  "floor": 7,
+  "ascension": 8,
+  "gold": 96,
+  "hp": {
+    "current": 61,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 3
+    },
+    {
+      "id": "bash",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "card_reward": [
+    "pommel_strike",
+    "shrug_it_off",
+    "inflame"
+  ],
+  "run_context": {
+    "recent_damage": 8,
+    "next_node_type": "unknown",
+    "act_region": "overgrowth",
+    "upcoming_elites": [
+      "berdonis",
+      "bygone_effigy"
+    ],
+    "fought_elites": [],
+    "next_nodes": [
+      "combat",
+      "elite"
+    ],
+    "fire_before_elite": false,
+    "shop_before_elite": false,
+    "path_pressure": "elite_soon",
+    "boss": null,
+    "notes": []
+  }
+}

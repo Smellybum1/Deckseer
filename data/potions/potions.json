@@ -1,0 +1,12 @@
+[
+  {
+    "id": "fire_potion",
+    "name": "Fire Potion",
+    "tags": ["damage"]
+  },
+  {
+    "id": "block_potion",
+    "name": "Block Potion",
+    "tags": ["block"]
+  }
+]

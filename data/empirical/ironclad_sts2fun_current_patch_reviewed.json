@@ -1,0 +1,53 @@
+[
+  {
+    "card_id": "shrug_it_off",
+    "character": "ironclad",
+    "patch": "main_v0.103_current",
+    "source": "STS2.fun manual capture",
+    "sample_size": 7302,
+    "pick_rate": 0.44,
+    "win_rate": 0.4,
+    "impact": -0.01,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=IRONCLAD",
+    "captured_at": "2026-05-24",
+    "stat_definition": "STS2.fun Ironclad card detail with Viewing Patch = Main v0.103 - current, Overview tab, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Pick Rate, sample_size is Offered, win_rate is Win Rate, impact is displayed Delta.",
+    "reviewer_notes": "Captured from user-provided STS2.fun current v0.103 screenshot. STS2.fun does not provide card-specific URLs. Overview values: offered=7302, picked=3182, win_with_card=40%, win_without_card=41%.",
+    "review_status": "accepted"
+  },
+  {
+    "card_id": "pommel_strike",
+    "character": "ironclad",
+    "patch": "main_v0.103_current",
+    "source": "STS2.fun manual capture",
+    "sample_size": 7441,
+    "pick_rate": 0.42,
+    "win_rate": 0.41,
+    "impact": 0.0,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=IRONCLAD",
+    "captured_at": "2026-05-24",
+    "stat_definition": "STS2.fun Ironclad card detail with Viewing Patch = Main v0.103 - current, Overview tab, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Pick Rate, sample_size is Offered, win_rate is Win Rate, impact is displayed Delta.",
+    "reviewer_notes": "Captured from user-provided STS2.fun current v0.103 screenshot. STS2.fun does not provide card-specific URLs. Overview values: offered=7441, picked=3119, win_with_card=41%, win_without_card=41%.",
+    "review_status": "accepted"
+  },
+  {
+    "card_id": "anger",
+    "character": "ironclad",
+    "patch": "main_v0.103_current",
+    "source": "STS2.fun manual capture",
+    "sample_size": 7619,
+    "pick_rate": 0.13,
+    "win_rate": 0.31,
+    "impact": -0.1,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=IRONCLAD",
+    "captured_at": "2026-05-24",
+    "stat_definition": "STS2.fun Ironclad card detail with Viewing Patch = Main v0.103 - current, Overview tab, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Pick Rate, sample_size is Offered, win_rate is Win Rate, impact is displayed Delta.",
+    "reviewer_notes": "Captured from user-provided STS2.fun current v0.103 screenshot. STS2.fun does not provide card-specific URLs. Overview values: offered=7619, picked=965, win_with_card=31%, win_without_card=42%.",
+    "review_status": "accepted"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "game": "slay_the_spire_2",
+  "character": "silent",
+  "act": 1,
+  "floor": 6,
+  "ascension": 8,
+  "gold": 97,
+  "hp": {
+    "current": 39,
+    "max": 70
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "neutralize",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "survivor",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "card_reward": [
+    "dagger_throw",
+    "backflip",
+    "footwork"
+  ],
+  "run_context": {
+    "recent_damage": 14,
+    "next_node_type": "unknown",
+    "act_region": null,
+    "upcoming_elites": [],
+    "fought_elites": [],
+    "next_nodes": [],
+    "fire_before_elite": null,
+    "shop_before_elite": null,
+    "path_pressure": "unknown",
+    "boss": null,
+    "notes": []
+  }
+}

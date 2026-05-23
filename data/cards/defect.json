@@ -1,0 +1,735 @@
+[
+  {
+    "id": "zap",
+    "name": "Zap",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "starter",
+    "cost": 1,
+    "tags": ["lightning", "orb"],
+    "roles": ["frontload", "orb"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect starter card; hand-curated seed metadata."],
+    "upgrades_to": "zap_plus",
+    "effects": {
+      "damage": 3,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "dualcast",
+    "name": "Dualcast",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "starter",
+    "cost": 1,
+    "tags": ["orb", "evoke"],
+    "roles": ["frontload", "burst", "orb"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect starter card; hand-curated seed metadata."],
+    "upgrades_to": "dualcast_plus",
+    "effects": {
+      "damage": 8,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "echo_form",
+    "name": "Echo Form",
+    "character": "defect",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": ["power", "scaling"],
+    "roles": ["scaling", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "echo_form_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "duplicate_first_card": 1
+      }
+    }
+  },
+  {
+    "id": "defragment",
+    "name": "Defragment",
+    "character": "defect",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["focus", "scaling", "power"],
+    "roles": ["scaling", "orb", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "orb", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "defragment_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "focus": 1
+      }
+    }
+  },
+  {
+    "id": "glacier",
+    "name": "Glacier",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["block", "frost", "orb"],
+    "roles": ["block", "orb", "elite_prep"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "orb", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "glacier_plus",
+    "effects": {
+      "damage": 0,
+      "block": 14,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "genetic_algorithm",
+    "name": "Genetic Algorithm",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["block", "scaling"],
+    "roles": ["block", "scaling"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "genetic_algorithm_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "chill",
+    "name": "Chill",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["frost", "orb", "free"],
+    "roles": ["block", "orb", "aoe"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "orb", "aoe"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "chill_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "cold_snap",
+    "name": "Cold Snap",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "frost", "orb"],
+    "roles": ["frontload", "block", "orb"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "defense", "orb"],
+    "source_patch": "main_v0.103_current",
+    "source_notes": [
+      "Defect local tier list: S tier.",
+      "Current-patch STS2.fun review: 6,326 offers, 22% pick rate, 31% win rate, -11% impact.",
+      "Prior lowered from S-tier seed after current-patch empirical review; keep roles as frontload/block/orb utility."
+    ],
+    "upgrades_to": "cold_snap_plus",
+    "effects": {
+      "damage": 6,
+      "block": 4,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "coolheaded",
+    "name": "Coolheaded",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["draw", "frost", "orb"],
+    "roles": ["draw", "block", "consistency", "orb"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "consistency", "orb"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "coolheaded_plus",
+    "effects": {
+      "damage": 0,
+      "block": 4,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "synchronize",
+    "name": "Synchronize",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["draw", "orb"],
+    "roles": ["draw", "consistency", "orb"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "orb"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "synchronize_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "null",
+    "name": "Null",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "orb"],
+    "roles": ["block", "orb", "defense"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "orb"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "null_plus",
+    "effects": {
+      "damage": 0,
+      "block": 10,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "go_for_the_eyes",
+    "name": "Go For The Eyes",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["damage", "weak", "free"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": 5.0,
+    "pick_context": ["early", "frontload", "defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "go_for_the_eyes_plus",
+    "effects": {
+      "damage": 3,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "barrage",
+    "name": "Barrage",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "orb_payoff"],
+    "roles": ["frontload", "orb", "orb_payoff"],
+    "quality_prior": 5.0,
+    "pick_context": ["orb", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "barrage_plus",
+    "effects": {
+      "damage": 8,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "overclock",
+    "name": "Overclock",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["draw", "free"],
+    "roles": ["draw", "consistency", "deck_control"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: S tier."],
+    "upgrades_to": "overclock_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "machine_learning",
+    "name": "Machine Learning",
+    "character": "defect",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["draw", "power"],
+    "roles": ["draw", "consistency", "scaling", "power"],
+    "quality_prior": 3.5,
+    "pick_context": ["consistency", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "machine_learning_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "capacitor",
+    "name": "Capacitor",
+    "character": "defect",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["orb", "power"],
+    "roles": ["scaling", "orb", "power"],
+    "quality_prior": 3.5,
+    "pick_context": ["orb", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "capacitor_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "orb_slots": 2
+      }
+    }
+  },
+  {
+    "id": "boot_sequence",
+    "name": "Boot Sequence",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["block", "free", "innate"],
+    "roles": ["block", "frontload", "elite_prep"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "boot_sequence_plus",
+    "effects": {
+      "damage": 0,
+      "block": 10,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "darkness",
+    "name": "Darkness",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["dark", "orb", "scaling"],
+    "roles": ["scaling", "orb", "niche"],
+    "quality_prior": 3.5,
+    "pick_context": ["orb", "scaling", "niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "darkness_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "dark_orb": 1
+      }
+    }
+  },
+  {
+    "id": "quadcast",
+    "name": "Quadcast",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["orb", "evoke"],
+    "roles": ["frontload", "burst", "orb"],
+    "quality_prior": 3.5,
+    "pick_context": ["frontload", "orb", "burst"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "quadcast_plus",
+    "effects": {
+      "damage": 20,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "buffer",
+    "name": "Buffer",
+    "character": "defect",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["block", "power"],
+    "roles": ["block", "scaling", "power"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "buffer_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "buffer": 1
+      }
+    }
+  },
+  {
+    "id": "turbo",
+    "name": "Turbo",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["energy", "free"],
+    "roles": ["energy", "burst"],
+    "quality_prior": 3.5,
+    "pick_context": ["energy", "burst"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "turbo_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 2
+    }
+  },
+  {
+    "id": "compile_driver",
+    "name": "Compile Driver",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "draw", "orb"],
+    "roles": ["frontload", "draw", "consistency", "orb"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload", "consistency", "orb"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "compile_driver_plus",
+    "effects": {
+      "damage": 7,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "biased_cognition",
+    "name": "Biased Cognition",
+    "character": "defect",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["focus", "scaling", "power"],
+    "roles": ["scaling", "orb", "power"],
+    "quality_prior": 3.5,
+    "pick_context": ["orb", "scaling", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "biased_cognition_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "focus": 4,
+        "focus_loss_per_turn": 1
+      }
+    }
+  },
+  {
+    "id": "hologram",
+    "name": "Hologram",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block", "deck_control"],
+    "roles": ["block", "consistency", "deck_control"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "consistency", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "hologram_plus",
+    "effects": {
+      "damage": 0,
+      "block": 3,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "skim",
+    "name": "Skim",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["draw"],
+    "roles": ["draw", "consistency"],
+    "quality_prior": 3.5,
+    "pick_context": ["consistency"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: A tier."],
+    "upgrades_to": "skim_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 3,
+      "energy": 0
+    }
+  },
+  {
+    "id": "charge_battery",
+    "name": "Charge Battery",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block", "energy"],
+    "roles": ["block", "energy"],
+    "quality_prior": 2.0,
+    "pick_context": ["defense", "energy"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: B tier."],
+    "upgrades_to": "charge_battery_plus",
+    "effects": {
+      "damage": 0,
+      "block": 7,
+      "draw": 0,
+      "energy": 1
+    }
+  },
+  {
+    "id": "sunder",
+    "name": "Sunder",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 3,
+    "tags": ["damage", "energy"],
+    "roles": ["frontload", "burst"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: B tier."],
+    "upgrades_to": "sunder_plus",
+    "effects": {
+      "damage": 24,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "ball_lightning",
+    "name": "Ball Lightning",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "lightning", "orb"],
+    "roles": ["frontload", "orb"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "orb"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: B tier."],
+    "upgrades_to": "ball_lightning_plus",
+    "effects": {
+      "damage": 10,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "ftl",
+    "name": "FTL",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["damage", "draw", "free"],
+    "roles": ["frontload", "draw", "consistency"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "consistency"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: B tier."],
+    "upgrades_to": "ftl_plus",
+    "effects": {
+      "damage": 5,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "leap",
+    "name": "Leap",
+    "character": "defect",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 0.0,
+    "pick_context": ["defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: C tier."],
+    "upgrades_to": "leap_plus",
+    "effects": {
+      "damage": 0,
+      "block": 9,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "sweeping_beam",
+    "name": "Sweeping Beam",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "draw", "aoe"],
+    "roles": ["frontload", "draw", "consistency", "aoe"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload", "aoe"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: C tier."],
+    "upgrades_to": "sweeping_beam_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "beam_cell",
+    "name": "Beam Cell",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["damage", "vulnerable", "free"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": -2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: D tier."],
+    "upgrades_to": "beam_cell_plus",
+    "effects": {
+      "damage": 3,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "claw",
+    "name": "Claw",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["damage", "free"],
+    "roles": ["frontload", "scaling", "niche"],
+    "quality_prior": -2.0,
+    "pick_context": ["niche", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: D tier."],
+    "upgrades_to": "claw_plus",
+    "effects": {
+      "damage": 3,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "hyperbeam",
+    "name": "Hyperbeam",
+    "character": "defect",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["damage", "aoe", "focus_down"],
+    "roles": ["frontload", "aoe", "burst"],
+    "quality_prior": -2.0,
+    "pick_context": ["frontload", "aoe"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Defect local tier list: D tier."],
+    "upgrades_to": "hyperbeam_plus",
+    "effects": {
+      "damage": 26,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  }
+]

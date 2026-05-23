@@ -1,0 +1,38 @@
+[
+  {
+    "card_id": "adrenaline",
+    "character": "silent",
+    "patch": "v0.102.0",
+    "source": "legacy active reviewed multi-class empirical sample",
+    "sample_size": 1400,
+    "pick_rate": 0.54,
+    "win_rate": 0.66,
+    "impact": 0.11,
+    "act": "all",
+    "ascension": "all"
+  },
+  {
+    "card_id": "glacier",
+    "character": "defect",
+    "patch": "v0.102.0",
+    "source": "legacy active reviewed multi-class empirical sample",
+    "sample_size": 1100,
+    "pick_rate": 0.45,
+    "win_rate": 0.63,
+    "impact": 0.09,
+    "act": "all",
+    "ascension": "all"
+  },
+  {
+    "card_id": "astral_pulse",
+    "character": "regent",
+    "patch": "v0.103.0",
+    "source": "legacy active reviewed multi-class empirical sample",
+    "sample_size": 900,
+    "pick_rate": 0.43,
+    "win_rate": 0.64,
+    "impact": 0.10,
+    "act": "all",
+    "ascension": "all"
+  }
+]

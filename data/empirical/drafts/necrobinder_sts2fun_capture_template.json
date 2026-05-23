@@ -1,0 +1,23 @@
+{
+  "draft_type": "empirical_stat_draft",
+  "entries": [
+    {
+      "id": "necrobinder_sts2fun_first_capture",
+      "card_id": null,
+      "character": "necrobinder",
+      "patch": null,
+      "source": "STS2.fun manual capture",
+      "source_url": "https://sts2.fun/",
+      "captured_at": null,
+      "stat_definition": null,
+      "reviewer_notes": "Fill this worksheet from a specific STS2.fun page before running promotion. Do not promote until all null values are replaced with reviewed source values.",
+      "sample_size": null,
+      "pick_rate": null,
+      "win_rate": null,
+      "impact": null,
+      "act": "all",
+      "ascension": "all",
+      "review_status": "proposed"
+    }
+  ]
+}

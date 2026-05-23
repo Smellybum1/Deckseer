@@ -1,0 +1,86 @@
+[
+  {
+    "card_id": "adrenaline",
+    "character": "silent",
+    "patch": "v0.102.0",
+    "source": "sts2.fun-style multi-class conflict test fixture",
+    "sample_size": 1400,
+    "pick_rate": 0.54,
+    "win_rate": 0.66,
+    "impact": 0.11,
+    "act": "all",
+    "ascension": "all"
+  },
+  {
+    "card_id": "dash",
+    "character": "silent",
+    "patch": "v0.102.0",
+    "source": "sts2.fun-style multi-class conflict test fixture",
+    "sample_size": 950,
+    "pick_rate": 0.31,
+    "win_rate": 0.59,
+    "impact": 0.07,
+    "act": "all",
+    "ascension": "all"
+  },
+  {
+    "card_id": "defragment",
+    "character": "defect",
+    "patch": "v0.102.0",
+    "source": "sts2.fun-style multi-class conflict test fixture",
+    "sample_size": 1200,
+    "pick_rate": 0.47,
+    "win_rate": 0.48,
+    "impact": -0.04,
+    "act": "all",
+    "ascension": "all"
+  },
+  {
+    "card_id": "glacier",
+    "character": "defect",
+    "patch": "v0.102.0",
+    "source": "sts2.fun-style multi-class conflict test fixture",
+    "sample_size": 1100,
+    "pick_rate": 0.45,
+    "win_rate": 0.63,
+    "impact": 0.09,
+    "act": "all",
+    "ascension": "all"
+  },
+  {
+    "card_id": "scourge",
+    "character": "necrobinder",
+    "patch": "v0.102.0",
+    "source": "sts2.fun-style multi-class conflict test fixture",
+    "sample_size": 780,
+    "pick_rate": 0.28,
+    "win_rate": 0.58,
+    "impact": 0.08,
+    "act": "all",
+    "ascension": "all"
+  },
+  {
+    "card_id": "astral_pulse",
+    "character": "regent",
+    "patch": "v0.103.0",
+    "source": "sts2.fun-style multi-class conflict test fixture",
+    "sample_size": 900,
+    "pick_rate": 0.43,
+    "win_rate": 0.64,
+    "impact": 0.10,
+    "act": "all",
+    "ascension": "all"
+  },
+  {
+    "card_id": "black_hole",
+    "character": "regent",
+    "patch": "v0.102.0",
+    "source": "sts2.fun-style multi-class conflict test fixture",
+    "sample_size": 520,
+    "pick_rate": 0.14,
+    "win_rate": 0.57,
+    "impact": 0.08,
+    "act": "all",
+    "ascension": "all"
+  }
+]

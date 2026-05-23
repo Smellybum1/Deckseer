@@ -1,0 +1,61 @@
+{
+  "game": "slay_the_spire_2",
+  "character": "defect",
+  "act": 2,
+  "floor": 22,
+  "ascension": 8,
+  "gold": 132,
+  "hp": {
+    "current": 52,
+    "max": 75
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "zap",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "dualcast",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "cold_snap",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "card_reward": [
+    "defragment",
+    "cold_snap",
+    "compile_driver"
+  ],
+  "run_context": {
+    "recent_damage": 8,
+    "next_node_type": "combat",
+    "act_region": null,
+    "upcoming_elites": [],
+    "fought_elites": [],
+    "next_nodes": [],
+    "fire_before_elite": null,
+    "shop_before_elite": null,
+    "path_pressure": "unknown",
+    "boss": null,
+    "notes": [
+      "Calibration guard for Cold Snap high prior versus a clear Act 2 scaling need."
+    ]
+  }
+}

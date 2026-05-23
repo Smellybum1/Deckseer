@@ -1,0 +1,54 @@
+{
+  "game": "slay_the_spire_2",
+  "character": "necrobinder",
+  "act": 1,
+  "floor": 6,
+  "ascension": 8,
+  "gold": 91,
+  "hp": {
+    "current": 48,
+    "max": 75
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "sic_em",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "calcify",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "card_reward": [
+    "unleash",
+    "bodyguard",
+    "forbidden_grimoire"
+  ],
+  "run_context": {
+    "recent_damage": 11,
+    "next_node_type": "unknown",
+    "act_region": null,
+    "upcoming_elites": [],
+    "fought_elites": [],
+    "next_nodes": [],
+    "fire_before_elite": null,
+    "shop_before_elite": null,
+    "path_pressure": "unknown",
+    "boss": null,
+    "notes": []
+  }
+}

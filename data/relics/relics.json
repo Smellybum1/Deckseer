@@ -1,0 +1,17 @@
+[
+  {
+    "id": "burning_blood",
+    "name": "Burning Blood",
+    "tags": ["sustain", "hp"]
+  },
+  {
+    "id": "akabeko",
+    "name": "Akabeko",
+    "tags": ["damage", "frontload"]
+  },
+  {
+    "id": "kunai",
+    "name": "Kunai",
+    "tags": ["attack", "dexterity", "block"]
+  }
+]

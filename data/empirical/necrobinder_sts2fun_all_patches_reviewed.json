@@ -1,0 +1,53 @@
+[
+  {
+    "card_id": "forbidden_grimoire",
+    "character": "necrobinder",
+    "patch": "all_patches",
+    "source": "STS2.fun manual capture",
+    "sample_size": 2021,
+    "pick_rate": 0.49,
+    "win_rate": 0.5,
+    "impact": -0.031,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=NECROBINDER",
+    "captured_at": "2026-05-23",
+    "stat_definition": "STS2.fun Necrobinder card table with Viewing Patch = All Patches, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Reward %, sample_size is Offered, win_rate is Win %, impact is Impact.",
+    "reviewer_notes": "Captured manually from the STS2.fun Necrobinder card table. STS2.fun does not provide card-specific URLs. Unleash and Bodyguard omitted because they are starter/base cards with no normal reward pick stats.",
+    "review_status": "accepted"
+  },
+  {
+    "card_id": "sleight_of_flesh",
+    "character": "necrobinder",
+    "patch": "all_patches",
+    "source": "STS2.fun manual capture",
+    "sample_size": 16555,
+    "pick_rate": 0.27,
+    "win_rate": 0.49,
+    "impact": 0.015,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=NECROBINDER",
+    "captured_at": "2026-05-23",
+    "stat_definition": "STS2.fun Necrobinder card table with Viewing Patch = All Patches, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Reward %, sample_size is Offered, win_rate is Win %, impact is Impact.",
+    "reviewer_notes": "Captured manually from the STS2.fun Necrobinder card table. STS2.fun does not provide card-specific URLs. Unleash and Bodyguard omitted because they are starter/base cards with no normal reward pick stats.",
+    "review_status": "accepted"
+  },
+  {
+    "card_id": "defy",
+    "character": "necrobinder",
+    "patch": "all_patches",
+    "source": "STS2.fun manual capture",
+    "sample_size": 44758,
+    "pick_rate": 0.41,
+    "win_rate": 0.48,
+    "impact": -0.01,
+    "act": "all",
+    "ascension": "all",
+    "source_url": "https://sts2.fun/cards?character=NECROBINDER",
+    "captured_at": "2026-05-23",
+    "stat_definition": "STS2.fun Necrobinder card table with Viewing Patch = All Patches, rarity/type = All, Separate upgrades off, Min. 5 offers on. pick_rate is Reward %, sample_size is Offered, win_rate is Win %, impact is Impact.",
+    "reviewer_notes": "Captured manually from the STS2.fun Necrobinder card table. STS2.fun does not provide card-specific URLs. Unleash and Bodyguard omitted because they are starter/base cards with no normal reward pick stats.",
+    "review_status": "accepted"
+  }
+]

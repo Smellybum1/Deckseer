@@ -1,0 +1,159 @@
+{
+  "triage_type": "empirical_flag_triage",
+  "entries": [
+    {
+      "id": "necrobinder_defy_all_patches_patch_mismatch",
+      "empirical_file": "data/empirical/necrobinder_sts2fun_all_patches_reviewed.json",
+      "card_id": "defy",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Keep All Patches as historical context only; current-patch evidence is now tracked separately.",
+      "next_action": "Use data/empirical/necrobinder_sts2fun_current_patch_reviewed.json for patch-specific Defy review.",
+      "reviewer_notes": "All Patches evidence remains traceable but should not drive a card-prior change by itself.",
+      "reviewed_at": "2026-05-23"
+    },
+    {
+      "id": "necrobinder_forbidden_grimoire_all_patches_patch_mismatch",
+      "empirical_file": "data/empirical/necrobinder_sts2fun_all_patches_reviewed.json",
+      "card_id": "forbidden_grimoire",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Keep All Patches as historical context only; current-patch evidence is now tracked separately.",
+      "next_action": "Use data/empirical/necrobinder_sts2fun_current_patch_reviewed.json for patch-specific Forbidden Grimoire review.",
+      "reviewer_notes": "All Patches evidence is useful for triage, but it mixes patches and should not drive a prior change by itself.",
+      "reviewed_at": "2026-05-23"
+    },
+    {
+      "id": "necrobinder_sleight_of_flesh_all_patches_patch_mismatch",
+      "empirical_file": "data/empirical/necrobinder_sts2fun_all_patches_reviewed.json",
+      "card_id": "sleight_of_flesh",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Keep All Patches as historical context only; current-patch evidence is now tracked separately.",
+      "next_action": "Use data/empirical/necrobinder_sts2fun_current_patch_reviewed.json for patch-specific Sleight of Flesh review.",
+      "reviewer_notes": "All Patches evidence remains traceable but should not drive a card-prior change by itself.",
+      "reviewed_at": "2026-05-23"
+    },
+    {
+      "id": "necrobinder_defy_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/necrobinder_sts2fun_current_patch_reviewed.json",
+      "card_id": "defy",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Current-patch Defy evidence does not justify a card-prior change in this packet.",
+      "next_action": "Leave Defy prior unchanged unless future reviewed scenarios or broader evidence suggest a calibration change.",
+      "reviewer_notes": "Patch mismatch remains visible because the local prior source is v0.102.0, while this evidence is current-patch v0.103.",
+      "reviewed_at": "2026-05-23"
+    },
+    {
+      "id": "necrobinder_sleight_of_flesh_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/necrobinder_sts2fun_current_patch_reviewed.json",
+      "card_id": "sleight_of_flesh",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Current-patch Sleight of Flesh evidence does not justify a card-prior change in this packet.",
+      "next_action": "Leave Sleight of Flesh prior unchanged unless future reviewed scenarios or broader evidence suggest a calibration change.",
+      "reviewer_notes": "Patch mismatch remains visible because the local prior source is v0.102.0, while this evidence is current-patch v0.103.",
+      "reviewed_at": "2026-05-23"
+    },
+    {
+      "id": "ironclad_anger_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/ironclad_sts2fun_current_patch_reviewed.json",
+      "card_id": "anger",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Anger evidence as traceable review context while the local prior source remains v0.102.0.",
+      "next_action": "Do not change Anger from patch mismatch alone; revisit only with scenario evidence or broader Ironclad calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    },
+    {
+      "id": "ironclad_pommel_strike_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/ironclad_sts2fun_current_patch_reviewed.json",
+      "card_id": "pommel_strike",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Pommel Strike evidence as traceable review context while the local prior source remains v0.102.0.",
+      "next_action": "Do not change Pommel Strike from patch mismatch alone; revisit only with scenario evidence or broader Ironclad calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    },
+    {
+      "id": "ironclad_shrug_it_off_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/ironclad_sts2fun_current_patch_reviewed.json",
+      "card_id": "shrug_it_off",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Shrug It Off evidence as traceable review context while the local prior source remains v0.102.0.",
+      "next_action": "Do not change Shrug It Off from patch mismatch alone; revisit only with scenario evidence or broader Ironclad calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    },
+    {
+      "id": "silent_backflip_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/silent_sts2fun_current_patch_reviewed.json",
+      "card_id": "backflip",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Backflip evidence as traceable review context while the local prior source remains v0.102.0.",
+      "next_action": "Do not change Backflip from patch mismatch alone; revisit only with scenario evidence or broader Silent calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    },
+    {
+      "id": "silent_dagger_throw_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/silent_sts2fun_current_patch_reviewed.json",
+      "card_id": "dagger_throw",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Dagger Throw evidence as traceable review context while the local prior source remains v0.102.0.",
+      "next_action": "Do not change Dagger Throw from patch mismatch alone; revisit only with scenario evidence or broader Silent calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    },
+    {
+      "id": "silent_footwork_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/silent_sts2fun_current_patch_reviewed.json",
+      "card_id": "footwork",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Footwork evidence as traceable review context while the local prior source remains v0.102.0.",
+      "next_action": "Do not change Footwork from patch mismatch alone; revisit only with scenario evidence or broader Silent calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    },
+    {
+      "id": "defect_defragment_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/defect_sts2fun_current_patch_reviewed.json",
+      "card_id": "defragment",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Defragment evidence as traceable review context while the local prior source remains v0.102.0.",
+      "next_action": "Do not change Defragment from patch mismatch alone; revisit only with scenario evidence or broader Defect calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    },
+    {
+      "id": "defect_glacier_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/defect_sts2fun_current_patch_reviewed.json",
+      "card_id": "glacier",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Glacier evidence as traceable review context while the local prior source remains v0.102.0.",
+      "next_action": "Do not change Glacier from patch mismatch alone; revisit only with scenario evidence or broader Defect calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    },
+    {
+      "id": "regent_spectrum_shift_current_patch_patch_mismatch",
+      "empirical_file": "data/empirical/regent_sts2fun_current_patch_reviewed.json",
+      "card_id": "spectrum_shift",
+      "flag_code": "patch_mismatch",
+      "status": "resolved_no_change",
+      "decision": "Accept current-patch Spectrum Shift evidence as traceable review context while the local prior source remains v0.103.0.",
+      "next_action": "Do not change Spectrum Shift from patch mismatch alone; revisit only with scenario evidence or broader Regent calibration.",
+      "reviewer_notes": "Screenshot-captured STS2.fun current v0.103 row is active evidence, but this patch-context warning is non-blocking by itself.",
+      "reviewed_at": "2026-05-24"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "manifest_type": "empirical_intake_queue",
+  "entries": [
+    {
+      "id": "necrobinder_initial_sts2_fun_review",
+      "character": "necrobinder",
+      "topic": "Initial Necrobinder empirical coverage candidate from STS2.fun",
+      "review_status": "proposed",
+      "source_url": "https://sts2.fun/",
+      "patch": "pending",
+      "card_id": null,
+      "captured_at": null,
+      "stat_definition": null,
+      "candidate_notes": "Capture exact Necrobinder card stats, patch label, sample size, and metric definition before promoting any row to active empirical data."
+    }
+  ]
+}

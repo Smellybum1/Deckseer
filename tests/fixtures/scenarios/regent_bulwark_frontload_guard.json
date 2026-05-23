@@ -1,0 +1,54 @@
+{
+  "game": "slay_the_spire_2",
+  "character": "regent",
+  "act": 1,
+  "floor": 6,
+  "ascension": 8,
+  "gold": 101,
+  "hp": {
+    "current": 64,
+    "max": 75
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 2
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "parry",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "card_reward": [
+    "astral_pulse",
+    "bulwark",
+    "tyranny"
+  ],
+  "run_context": {
+    "recent_damage": 7,
+    "next_node_type": "combat",
+    "act_region": null,
+    "upcoming_elites": [],
+    "fought_elites": [],
+    "next_nodes": [
+      "combat",
+      "combat"
+    ],
+    "fire_before_elite": null,
+    "shop_before_elite": null,
+    "path_pressure": "unknown",
+    "boss": null,
+    "notes": [
+      "Calibration guard for Bulwark high prior versus urgent early frontload."
+    ]
+  }
+}

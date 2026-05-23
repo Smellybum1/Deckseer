@@ -1,0 +1,23 @@
+{
+  "draft_type": "empirical_stat_draft",
+  "entries": [
+    {
+      "id": "silent_dash_sts2fun_2026_05_23",
+      "card_id": "dash",
+      "character": "silent",
+      "patch": "v0.102.0",
+      "source": "STS2.fun manual capture test fixture",
+      "source_url": "https://sts2.fun/",
+      "captured_at": "2026-05-23",
+      "stat_definition": "Test fixture impact value for draft validation.",
+      "reviewer_notes": "Traceable test row expected to flag low prior versus strong impact.",
+      "sample_size": 950,
+      "pick_rate": 0.36,
+      "win_rate": 0.59,
+      "impact": 0.07,
+      "act": "all",
+      "ascension": "all",
+      "review_status": "accepted"
+    }
+  ]
+}

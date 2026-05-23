@@ -1,0 +1,720 @@
+[
+  {
+    "id": "neutralize",
+    "name": "Neutralize",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "starter",
+    "cost": 0,
+    "tags": ["damage", "weak", "free"],
+    "roles": ["frontload", "debuff"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent starter card; hand-curated seed metadata."],
+    "upgrades_to": "neutralize_plus",
+    "effects": {
+      "damage": 3,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "survivor",
+    "name": "Survivor",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "starter",
+    "cost": 1,
+    "tags": ["block", "discard"],
+    "roles": ["block", "discard", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent starter card; hand-curated seed metadata."],
+    "upgrades_to": "survivor_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "footwork",
+    "name": "Footwork",
+    "character": "silent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["dexterity", "scaling", "power"],
+    "roles": ["scaling", "block", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "scaling", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "footwork_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "dexterity": 2
+      }
+    }
+  },
+  {
+    "id": "prepared",
+    "name": "Prepared",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["draw", "discard", "free"],
+    "roles": ["draw", "discard", "consistency", "deck_control"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "discard", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "prepared_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "adrenaline",
+    "name": "Adrenaline",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 0,
+    "tags": ["draw", "energy", "free"],
+    "roles": ["draw", "energy", "consistency", "burst"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "energy", "burst"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "adrenaline_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 1
+    }
+  },
+  {
+    "id": "malaise",
+    "name": "Malaise",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 0,
+    "tags": ["weak", "strength_down", "x_cost"],
+    "roles": ["block", "debuff", "scaling"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "boss_prep", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "malaise_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "weak": 1,
+        "strength_down": 1,
+        "x_cost": 1
+      }
+    }
+  },
+  {
+    "id": "leg_sweep",
+    "name": "Leg Sweep",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["block", "weak"],
+    "roles": ["block", "debuff", "elite_prep"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "leg_sweep_plus",
+    "effects": {
+      "damage": 0,
+      "block": 12,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "acrobatics",
+    "name": "Acrobatics",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["draw", "discard"],
+    "roles": ["draw", "discard", "consistency", "deck_control"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "discard"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "acrobatics_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 3,
+      "energy": 0
+    }
+  },
+  {
+    "id": "piercing_wail",
+    "name": "Piercing Wail",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["strength_down", "aoe"],
+    "roles": ["block", "debuff", "aoe"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "aoe", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "piercing_wail_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "strength_down": 6
+      }
+    }
+  },
+  {
+    "id": "well_laid_plans",
+    "name": "Well-Laid Plans",
+    "character": "silent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["retain", "power"],
+    "roles": ["scaling", "consistency", "deck_control", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "scaling", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "well_laid_plans_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "retain": 1
+      }
+    }
+  },
+  {
+    "id": "calculated_gamble",
+    "name": "Calculated Gamble",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["draw", "discard", "free"],
+    "roles": ["draw", "discard", "consistency", "deck_control"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "discard", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "calculated_gamble_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 4,
+      "energy": 0
+    }
+  },
+  {
+    "id": "afterimage",
+    "name": "Afterimage",
+    "character": "silent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["block", "power"],
+    "roles": ["block", "scaling", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "scaling", "low_cost"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "afterimage_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "block_per_card": 1
+      }
+    }
+  },
+  {
+    "id": "escape_plan",
+    "name": "Escape Plan",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["draw", "block", "free"],
+    "roles": ["draw", "block", "consistency"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "defense", "low_cost"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "escape_plan_plus",
+    "effects": {
+      "damage": 0,
+      "block": 3,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "blur",
+    "name": "Blur",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "retain_block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "blur_plus",
+    "effects": {
+      "damage": 0,
+      "block": 5,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "noxious_fumes",
+    "name": "Noxious Fumes",
+    "character": "silent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["poison", "scaling", "power"],
+    "roles": ["scaling", "poison", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "boss_prep", "poison"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "noxious_fumes_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "poison_per_turn": 2
+      }
+    }
+  },
+  {
+    "id": "tactician",
+    "name": "Tactician",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["energy", "discard_payoff"],
+    "roles": ["energy", "discard", "niche"],
+    "quality_prior": 5.0,
+    "pick_context": ["discard", "energy", "niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "tactician_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 2
+    }
+  },
+  {
+    "id": "backflip",
+    "name": "Backflip",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block", "draw"],
+    "roles": ["block", "draw", "consistency"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "consistency"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "backflip_plus",
+    "effects": {
+      "damage": 0,
+      "block": 5,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "wraith_form",
+    "name": "Wraith Form",
+    "character": "silent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": ["block", "power"],
+    "roles": ["block", "scaling", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "boss_prep", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: S tier."],
+    "upgrades_to": "wraith_form_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "intangible": 2
+      }
+    }
+  },
+  {
+    "id": "dodge_and_roll",
+    "name": "Dodge and Roll",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: A tier."],
+    "upgrades_to": "dodge_and_roll_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "backstab",
+    "name": "Backstab",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["damage", "free", "innate"],
+    "roles": ["frontload", "burst"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: A tier."],
+    "upgrades_to": "backstab_plus",
+    "effects": {
+      "damage": 11,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "blade_dance",
+    "name": "Blade Dance",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["shiv", "damage"],
+    "roles": ["frontload", "shiv", "scaling_support"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload", "shiv"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: A tier."],
+    "upgrades_to": "blade_dance_plus",
+    "effects": {
+      "damage": 12,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "dagger_spray",
+    "name": "Dagger Spray",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "aoe"],
+    "roles": ["frontload", "aoe"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload", "aoe"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: A tier."],
+    "upgrades_to": "dagger_spray_plus",
+    "effects": {
+      "damage": 8,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "anticipate",
+    "name": "Anticipate",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["draw", "deck_control"],
+    "roles": ["draw", "consistency", "deck_control"],
+    "quality_prior": 3.5,
+    "pick_context": ["consistency", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: A tier."],
+    "upgrades_to": "anticipate_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "deflect",
+    "name": "Deflect",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["block", "free"],
+    "roles": ["block", "defense"],
+    "quality_prior": 2.0,
+    "pick_context": ["defense", "low_cost"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: B tier."],
+    "upgrades_to": "deflect_plus",
+    "effects": {
+      "damage": 0,
+      "block": 4,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "cloak_and_dagger",
+    "name": "Cloak and Dagger",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block", "shiv"],
+    "roles": ["block", "frontload", "shiv"],
+    "quality_prior": 2.0,
+    "pick_context": ["defense", "frontload", "shiv"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: B tier."],
+    "upgrades_to": "cloak_and_dagger_plus",
+    "effects": {
+      "damage": 4,
+      "block": 6,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "dagger_throw",
+    "name": "Dagger Throw",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "draw", "discard"],
+    "roles": ["frontload", "draw", "discard", "consistency"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "discard"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: B tier."],
+    "upgrades_to": "dagger_throw_plus",
+    "effects": {
+      "damage": 9,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "sucker_punch",
+    "name": "Sucker Punch",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "weak"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: B tier."],
+    "upgrades_to": "sucker_punch_plus",
+    "effects": {
+      "damage": 7,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "slice",
+    "name": "Slice",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["damage", "free"],
+    "roles": ["frontload"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: C tier."],
+    "upgrades_to": "slice_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "predator",
+    "name": "Predator",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["damage", "draw"],
+    "roles": ["frontload", "draw", "consistency"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: C tier."],
+    "upgrades_to": "predator_plus",
+    "effects": {
+      "damage": 15,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "dash",
+    "name": "Dash",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["damage", "block"],
+    "roles": ["frontload", "block"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload", "defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: C tier."],
+    "upgrades_to": "dash_plus",
+    "effects": {
+      "damage": 10,
+      "block": 10,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "deadly_poison",
+    "name": "Deadly Poison",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["poison", "scaling"],
+    "roles": ["scaling", "poison"],
+    "quality_prior": 0.0,
+    "pick_context": ["poison", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: C tier."],
+    "upgrades_to": "deadly_poison_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "poison": 5
+      }
+    }
+  },
+  {
+    "id": "poisoned_stab",
+    "name": "Poisoned Stab",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "poison"],
+    "roles": ["frontload", "poison"],
+    "quality_prior": -2.0,
+    "pick_context": ["early", "poison"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: D tier."],
+    "upgrades_to": "poisoned_stab_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "bouncing_flask",
+    "name": "Bouncing Flask",
+    "character": "silent",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["poison", "scaling"],
+    "roles": ["scaling", "poison", "niche"],
+    "quality_prior": -2.0,
+    "pick_context": ["poison", "scaling", "niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Silent local tier list: D tier."],
+    "upgrades_to": "bouncing_flask_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "poison": 12
+      }
+    }
+  }
+]

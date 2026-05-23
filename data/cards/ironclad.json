@@ -1,0 +1,543 @@
+[
+  {
+    "id": "strike",
+    "name": "Strike",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "starter",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Starter card metadata retained as baseline Ironclad seed data."],
+    "upgrades_to": "strike_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "defend",
+    "name": "Defend",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "starter",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Starter card metadata retained as baseline Ironclad seed data."],
+    "upgrades_to": "defend_plus",
+    "effects": {
+      "damage": 0,
+      "block": 5,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "bash",
+    "name": "Bash",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "starter",
+    "cost": 2,
+    "tags": ["damage", "vulnerable"],
+    "roles": ["frontload", "debuff"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Starter card metadata retained as baseline Ironclad seed data."],
+    "upgrades_to": "bash_plus",
+    "effects": {
+      "damage": 8,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "anger",
+    "name": "Anger",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["damage", "free"],
+    "roles": ["frontload"],
+    "quality_prior": 1.5,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: B tier."],
+    "upgrades_to": "anger_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "battle_trance",
+    "name": "Battle Trance",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["draw"],
+    "roles": ["draw", "consistency", "deck_control"],
+    "quality_prior": 4.5,
+    "pick_context": ["consistency", "early", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: S tier."],
+    "upgrades_to": "battle_trance_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 3,
+      "energy": 0
+    }
+  },
+  {
+    "id": "uppercut",
+    "name": "Uppercut",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["damage", "weak", "vulnerable"],
+    "roles": ["frontload", "debuff", "elite_prep"],
+    "quality_prior": 4.5,
+    "pick_context": ["early", "frontload", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: S tier."],
+    "upgrades_to": "uppercut_plus",
+    "effects": {
+      "damage": 13,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "pommel_strike",
+    "name": "Pommel Strike",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "draw"],
+    "roles": ["frontload", "draw", "consistency"],
+    "quality_prior": 4.5,
+    "pick_context": ["early", "frontload", "consistency"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: S tier."],
+    "upgrades_to": "pommel_strike_plus",
+    "effects": {
+      "damage": 9,
+      "block": 0,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "offering",
+    "name": "Offering",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 0,
+    "tags": ["draw", "energy", "hp_loss"],
+    "roles": ["draw", "energy", "consistency", "burst"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "energy", "burst"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: S tier."],
+    "upgrades_to": "offering_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 3,
+      "energy": 2
+    }
+  },
+  {
+    "id": "fiend_fire",
+    "name": "Fiend Fire",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["damage", "exhaust"],
+    "roles": ["frontload", "exhaust", "burst", "deck_control"],
+    "quality_prior": 4.5,
+    "pick_context": ["frontload", "exhaust", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: S tier."],
+    "upgrades_to": "fiend_fire_plus",
+    "effects": {
+      "damage": 21,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "corruption",
+    "name": "Corruption",
+    "character": "ironclad",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": ["skill", "exhaust", "power"],
+    "roles": ["scaling", "energy", "exhaust", "power"],
+    "quality_prior": 4.5,
+    "pick_context": ["scaling", "skill_dense", "exhaust"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: S tier."],
+    "upgrades_to": "corruption_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "skill_cost_reduction": 1,
+        "skill_exhaust": 1
+      }
+    }
+  },
+  {
+    "id": "shrug_it_off",
+    "name": "Shrug It Off",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block", "draw"],
+    "roles": ["block", "draw", "consistency"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "consistency", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: A tier."],
+    "upgrades_to": "shrug_it_off_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 1,
+      "energy": 0
+    }
+  },
+  {
+    "id": "impervious",
+    "name": "Impervious",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "boss_prep", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: A tier."],
+    "upgrades_to": "impervious_plus",
+    "effects": {
+      "damage": 0,
+      "block": 30,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "flame_barrier",
+    "name": "Flame Barrier",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["block", "damage_return"],
+    "roles": ["block", "defense"],
+    "quality_prior": 2.0,
+    "pick_context": ["defense", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: B tier."],
+    "upgrades_to": "flame_barrier_plus",
+    "effects": {
+      "damage": 0,
+      "block": 12,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "iron_wave",
+    "name": "Iron Wave",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "block"],
+    "roles": ["frontload", "block"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: B tier."],
+    "upgrades_to": "iron_wave_plus",
+    "effects": {
+      "damage": 5,
+      "block": 5,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "inflame",
+    "name": "Inflame",
+    "character": "ironclad",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["strength", "scaling", "power"],
+    "roles": ["scaling", "strength", "power"],
+    "quality_prior": 2.0,
+    "pick_context": ["scaling", "act_2"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: B tier."],
+    "upgrades_to": "inflame_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "strength": 2
+      }
+    }
+  },
+  {
+    "id": "demon_form",
+    "name": "Demon Form",
+    "character": "ironclad",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": ["strength", "scaling", "power"],
+    "roles": ["scaling", "strength", "power"],
+    "quality_prior": 0.0,
+    "pick_context": ["scaling", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: C tier."],
+    "upgrades_to": "demon_form_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "strength_per_turn": 2
+      }
+    }
+  },
+  {
+    "id": "dark_embrace",
+    "name": "Dark Embrace",
+    "character": "ironclad",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["draw", "exhaust", "power"],
+    "roles": ["scaling", "draw", "consistency", "exhaust", "power"],
+    "quality_prior": 3.5,
+    "pick_context": ["exhaust", "consistency", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: A tier."],
+    "upgrades_to": "dark_embrace_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "draw_per_exhaust": 1
+      }
+    }
+  },
+  {
+    "id": "feel_no_pain",
+    "name": "Feel No Pain",
+    "character": "ironclad",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "exhaust", "power"],
+    "roles": ["block", "scaling", "exhaust", "power"],
+    "quality_prior": 2.0,
+    "pick_context": ["exhaust", "defense", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: B tier."],
+    "upgrades_to": "feel_no_pain_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "block_per_exhaust": 3
+      }
+    }
+  },
+  {
+    "id": "second_wind",
+    "name": "Second Wind",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "exhaust"],
+    "roles": ["block", "exhaust", "deck_control"],
+    "quality_prior": 3.5,
+    "pick_context": ["exhaust", "defense", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: A tier."],
+    "upgrades_to": "second_wind_plus",
+    "effects": {
+      "damage": 0,
+      "block": 10,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "headbutt",
+    "name": "Headbutt",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "deck_control"],
+    "roles": ["frontload", "deck_control", "consistency"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: B tier."],
+    "upgrades_to": "headbutt_plus",
+    "effects": {
+      "damage": 9,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "clothesline",
+    "name": "Clothesline",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 2,
+    "tags": ["damage", "weak"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload", "debuff"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Not present in provided Ironclad local tier list; retained as seed test card."],
+    "upgrades_to": "clothesline_plus",
+    "effects": {
+      "damage": 12,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "bludgeon",
+    "name": "Bludgeon",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": ["damage"],
+    "roles": ["frontload", "burst"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "boss_damage"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: B tier."],
+    "upgrades_to": "bludgeon_plus",
+    "effects": {
+      "damage": 32,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "whirlwind",
+    "name": "Whirlwind",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["damage", "aoe", "x_cost"],
+    "roles": ["frontload", "aoe"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload", "aoe", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: B tier."],
+    "upgrades_to": "whirlwind_plus",
+    "effects": {
+      "damage": 15,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "body_slam",
+    "name": "Body Slam",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "block_payoff"],
+    "roles": ["scaling", "block_payoff", "niche"],
+    "quality_prior": -2.0,
+    "pick_context": ["block_scaling", "niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: D tier."],
+    "upgrades_to": "body_slam_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "block_damage_multiplier": 1
+      }
+    }
+  },
+  {
+    "id": "barricade",
+    "name": "Barricade",
+    "character": "ironclad",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": ["block", "power"],
+    "roles": ["scaling", "block", "power", "niche"],
+    "quality_prior": -2.0,
+    "pick_context": ["block_scaling", "boss_prep", "niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Ironclad local tier list: D tier."],
+    "upgrades_to": "barricade_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "block_retention": 1
+      }
+    }
+  }
+]

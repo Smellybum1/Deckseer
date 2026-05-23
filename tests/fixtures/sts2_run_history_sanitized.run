@@ -1,0 +1,63 @@
+{
+  "acts": [],
+  "ascension": 8,
+  "build_id": "test-build",
+  "game_mode": "standard",
+  "killed_by_encounter": null,
+  "killed_by_event": null,
+  "map_point_history": [],
+  "modifiers": [],
+  "platform_type": "steam",
+  "players": [
+    {
+      "badges": [],
+      "character": "CHARACTER.IRONCLAD",
+      "deck": [
+        {
+          "current_upgrade_level": 0,
+          "floor_added_to_deck": 1,
+          "id": "CARD.STRIKE_IRONCLAD"
+        },
+        {
+          "current_upgrade_level": 0,
+          "floor_added_to_deck": 1,
+          "id": "CARD.STRIKE_IRONCLAD"
+        },
+        {
+          "current_upgrade_level": 0,
+          "floor_added_to_deck": 1,
+          "id": "CARD.DEFEND_IRONCLAD"
+        },
+        {
+          "current_upgrade_level": 1,
+          "floor_added_to_deck": 1,
+          "id": "CARD.BASH"
+        },
+        {
+          "current_upgrade_level": 0,
+          "floor_added_to_deck": 3,
+          "id": "CARD.POMMEL_STRIKE"
+        }
+      ],
+      "id": 0,
+      "max_potion_slot_count": 3,
+      "potions": [
+        {
+          "id": "POTION.FIRE_POTION"
+        }
+      ],
+      "relics": [
+        {
+          "floor_added_to_deck": 1,
+          "id": "RELIC.BURNING_BLOOD"
+        }
+      ]
+    }
+  ],
+  "run_time": 5750,
+  "schema_version": 1,
+  "seed": "SANITIZED",
+  "start_time": 1779010086,
+  "was_abandoned": false,
+  "win": true
+}

@@ -1,0 +1,873 @@
+[
+  {
+    "id": "unleash",
+    "name": "Unleash",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["damage", "summon"],
+    "roles": ["frontload", "summon", "burst"],
+    "quality_prior": 5.0,
+    "pick_context": ["early", "frontload", "summon"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "unleash_plus",
+    "effects": {
+      "damage": 12,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "bodyguard",
+    "name": "Bodyguard",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "summon"],
+    "roles": ["block", "summon", "elite_prep"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "summon", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "bodyguard_plus",
+    "effects": {
+      "damage": 0,
+      "block": 12,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "neurosurge",
+    "name": "Neurosurge",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["draw", "energy"],
+    "roles": ["draw", "energy", "consistency", "burst"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "energy", "burst"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "neurosurge_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 1
+    }
+  },
+  {
+    "id": "putrefy",
+    "name": "Putrefy",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["damage", "debuff"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": 5.0,
+    "pick_context": ["early", "frontload", "debuff"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "putrefy_plus",
+    "effects": {
+      "damage": 10,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "defy",
+    "name": "Defy",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "defy_plus",
+    "effects": {
+      "damage": 0,
+      "block": 11,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "deathbringer",
+    "name": "Deathbringer",
+    "character": "necrobinder",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["scaling", "summon", "power"],
+    "roles": ["scaling", "summon", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "summon", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "deathbringer_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "summon_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "danse_macabre",
+    "name": "Danse Macabre",
+    "character": "necrobinder",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["scaling", "summon", "power"],
+    "roles": ["scaling", "summon", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "summon", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "danse_macabre_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "summon_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "debilitate",
+    "name": "Debilitate",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["weak", "debuff"],
+    "roles": ["block", "debuff", "elite_prep"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "debuff", "elite_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "debilitate_plus",
+    "effects": {
+      "damage": 0,
+      "block": 7,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "enfeebling_touch",
+    "name": "Enfeebling Touch",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "weak", "debuff"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": 5.0,
+    "pick_context": ["early", "frontload", "defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "enfeebling_touch_plus",
+    "effects": {
+      "damage": 7,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "friendship",
+    "name": "Friendship",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["summon", "block"],
+    "roles": ["block", "summon", "consistency"],
+    "quality_prior": 5.0,
+    "pick_context": ["defense", "summon", "consistency"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "friendship_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "demesne",
+    "name": "Demesne",
+    "character": "necrobinder",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["scaling", "summon", "power"],
+    "roles": ["scaling", "summon", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "summon"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "demesne_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "summon_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "forbidden_grimoire",
+    "name": "Forbidden Grimoire",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["draw", "summon"],
+    "roles": ["draw", "consistency", "summon", "deck_control"],
+    "quality_prior": 1.0,
+    "pick_context": ["consistency", "summon", "deck_control"],
+    "source_patch": "main_v0.103_current",
+    "source_notes": [
+      "Current-patch STS2.fun review: 2,023 offers, 49% reward pick rate, 50% win rate, -3.2% impact.",
+      "Prior lowered from S-tier seed after current-patch empirical review; keep roles as draw/summon utility."
+    ],
+    "upgrades_to": "forbidden_grimoire_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 3,
+      "energy": 0
+    }
+  },
+  {
+    "id": "sleight_of_flesh",
+    "name": "Sleight of Flesh",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["draw", "free"],
+    "roles": ["draw", "consistency", "deck_control"],
+    "quality_prior": 5.0,
+    "pick_context": ["consistency", "deck_control"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "sleight_of_flesh_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "lethality",
+    "name": "Lethality",
+    "character": "necrobinder",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["scaling", "power"],
+    "roles": ["scaling", "frontload", "power"],
+    "quality_prior": 5.0,
+    "pick_context": ["scaling", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "lethality_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "damage_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "pagestorm",
+    "name": "Pagestorm",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["damage", "draw", "aoe"],
+    "roles": ["frontload", "draw", "consistency", "aoe"],
+    "quality_prior": 5.0,
+    "pick_context": ["frontload", "consistency", "aoe"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: S tier."],
+    "upgrades_to": "pagestorm_plus",
+    "effects": {
+      "damage": 12,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "call_of_the_void",
+    "name": "Call of the Void",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["summon", "void"],
+    "roles": ["summon", "scaling"],
+    "quality_prior": 3.5,
+    "pick_context": ["summon", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "call_of_the_void_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "summon": 1,
+        "void": 1
+      }
+    }
+  },
+  {
+    "id": "grave_warden",
+    "name": "Grave Warden",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "summon"],
+    "roles": ["block", "summon"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "summon"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "grave_warden_plus",
+    "effects": {
+      "damage": 0,
+      "block": 10,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "dirge",
+    "name": "Dirge",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "debuff"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "dirge_plus",
+    "effects": {
+      "damage": 9,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "reanimate",
+    "name": "Reanimate",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["summon"],
+    "roles": ["summon", "scaling"],
+    "quality_prior": 3.5,
+    "pick_context": ["summon", "scaling"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "reanimate_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "summon": 1
+      }
+    }
+  },
+  {
+    "id": "end_of_days",
+    "name": "End of Days",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["damage", "aoe"],
+    "roles": ["frontload", "aoe", "burst"],
+    "quality_prior": 3.5,
+    "pick_context": ["frontload", "aoe"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "end_of_days_plus",
+    "effects": {
+      "damage": 20,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "banshees_cry",
+    "name": "Banshee's Cry",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["weak", "aoe", "debuff"],
+    "roles": ["block", "debuff", "aoe"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "debuff", "aoe"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "banshees_cry_plus",
+    "effects": {
+      "damage": 0,
+      "block": 7,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "squeeze",
+    "name": "Squeeze",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "block"],
+    "roles": ["frontload", "block"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload", "defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "squeeze_plus",
+    "effects": {
+      "damage": 7,
+      "block": 5,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "eradicate",
+    "name": "Eradicate",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload", "burst"],
+    "quality_prior": 3.5,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "eradicate_plus",
+    "effects": {
+      "damage": 13,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "negative_pulse",
+    "name": "Negative Pulse",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["damage", "debuff"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": 3.5,
+    "pick_context": ["frontload", "debuff"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "negative_pulse_plus",
+    "effects": {
+      "damage": 8,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "deaths_door",
+    "name": "Death's Door",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["block", "scaling"],
+    "roles": ["block", "scaling"],
+    "quality_prior": 3.5,
+    "pick_context": ["defense", "scaling", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: A tier."],
+    "upgrades_to": "deaths_door_plus",
+    "effects": {
+      "damage": 0,
+      "block": 13,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "shared_fate",
+    "name": "Shared Fate",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["draw"],
+    "roles": ["draw", "consistency"],
+    "quality_prior": 2.0,
+    "pick_context": ["consistency"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: B tier."],
+    "upgrades_to": "shared_fate_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 2,
+      "energy": 0
+    }
+  },
+  {
+    "id": "devour_life",
+    "name": "Devour Life",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["damage", "heal"],
+    "roles": ["frontload", "sustain"],
+    "quality_prior": 2.0,
+    "pick_context": ["frontload", "sustain"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: B tier."],
+    "upgrades_to": "devour_life_plus",
+    "effects": {
+      "damage": 14,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "bone_shards",
+    "name": "Bone Shards",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: B tier."],
+    "upgrades_to": "bone_shards_plus",
+    "effects": {
+      "damage": 9,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "calcify",
+    "name": "Calcify",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 2.0,
+    "pick_context": ["defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: B tier."],
+    "upgrades_to": "calcify_plus",
+    "effects": {
+      "damage": 0,
+      "block": 8,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "rattle",
+    "name": "Rattle",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage"],
+    "roles": ["frontload"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: B tier."],
+    "upgrades_to": "rattle_plus",
+    "effects": {
+      "damage": 8,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "poke",
+    "name": "Poke",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["damage", "free"],
+    "roles": ["frontload"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: B tier."],
+    "upgrades_to": "poke_plus",
+    "effects": {
+      "damage": 5,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "flatten",
+    "name": "Flatten",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 2,
+    "tags": ["damage"],
+    "roles": ["frontload", "burst"],
+    "quality_prior": 2.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: B tier."],
+    "upgrades_to": "flatten_plus",
+    "effects": {
+      "damage": 15,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "shroud",
+    "name": "Shroud",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 2.0,
+    "pick_context": ["defense"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: B tier."],
+    "upgrades_to": "shroud_plus",
+    "effects": {
+      "damage": 0,
+      "block": 9,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "sacrifice",
+    "name": "Sacrifice",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 0,
+    "tags": ["energy", "hp_loss"],
+    "roles": ["energy", "burst", "niche"],
+    "quality_prior": 0.0,
+    "pick_context": ["energy", "niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: C tier."],
+    "upgrades_to": "sacrifice_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 2
+    }
+  },
+  {
+    "id": "necromastery",
+    "name": "Necro Mastery",
+    "character": "necrobinder",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["scaling", "summon", "power"],
+    "roles": ["scaling", "summon", "power", "niche"],
+    "quality_prior": 0.0,
+    "pick_context": ["summon", "scaling", "niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: C tier."],
+    "upgrades_to": "necromastery_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "summon_scaling": 1
+      }
+    }
+  },
+  {
+    "id": "scourge",
+    "name": "Scourge",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "debuff"],
+    "roles": ["frontload", "debuff"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: C tier."],
+    "upgrades_to": "scourge_plus",
+    "effects": {
+      "damage": 7,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "fear",
+    "name": "Fear",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["weak", "debuff"],
+    "roles": ["block", "debuff"],
+    "quality_prior": 0.0,
+    "pick_context": ["defense", "debuff"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: C tier."],
+    "upgrades_to": "fear_plus",
+    "effects": {
+      "damage": 0,
+      "block": 5,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "sic_em",
+    "name": "Sic 'em",
+    "character": "necrobinder",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "summon"],
+    "roles": ["frontload", "summon"],
+    "quality_prior": -2.0,
+    "pick_context": ["early", "summon"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: D tier."],
+    "upgrades_to": "sic_em_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 0,
+      "energy": 0
+    }
+  },
+  {
+    "id": "misery",
+    "name": "Misery",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["debuff"],
+    "roles": ["debuff", "niche"],
+    "quality_prior": -2.0,
+    "pick_context": ["niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: D tier."],
+    "upgrades_to": "misery_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "debuff": 1
+      }
+    }
+  },
+  {
+    "id": "eidolon",
+    "name": "Eidolon",
+    "character": "necrobinder",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["summon"],
+    "roles": ["summon", "niche"],
+    "quality_prior": -2.0,
+    "pick_context": ["summon", "niche"],
+    "source_patch": "v0.102.0",
+    "source_notes": ["Necrobinder local tier list: D tier."],
+    "upgrades_to": "eidolon_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "summon": 1
+      }
+    }
+  }
+]
