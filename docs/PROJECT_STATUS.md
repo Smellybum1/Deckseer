@@ -54,7 +54,7 @@ Relic and potion data exist as sparse seed files. Empirical data support is inte
 
 ## Recommended Next Milestones
 
-1. Deckseer Exporter Mod design: document a read-only/export-only live-state bridge before any implementation.
+1. Deckseer Exporter Mod implementation readiness: `docs/EXPORTER_MOD_DESIGN.md` now documents the read-only/export-only boundary and proposed card reward JSON contract, but no exporter code or watch mode has been implemented.
 2. Vision State Extractor design remains a future fallback/complement for screenshot-based visible state extraction.
 3. Broader advice modules: relic choice, potion choice, pathing, combat planning, and run-history learning.
 4. Data QA maintenance: keep `data-health` passing as new card metadata, roles, and effects are added.

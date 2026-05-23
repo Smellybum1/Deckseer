@@ -266,7 +266,7 @@ Implemented sources:
 
 Planned sources:
 
-- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect.
+- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The initial design contract lives in `docs/EXPORTER_MOD_DESIGN.md`; exporter code is not implemented yet.
 - **Vision State Extractor**: screenshot/OCR fallback or complement when an exporter mod is unavailable, unwanted, or unreliable.
 
 Source metadata and caveats stay outside the scorer. The recommendation engine receives the same validated card reward payload regardless of where the state came from.
@@ -406,7 +406,7 @@ The core recommendation engine should remain usable without an LLM. Future expla
 
 The preferred long-term live-state path is a small Slay the Spire 2 companion mod that exports the current run and decision state to local JSON. Deckseer would read that exported JSON using the same decision engine and schemas as the manual v0 workflow.
 
-This milestone is not implemented yet. It should stay read-only and export-only:
+This milestone is not implemented yet. The initial design is documented in `docs/EXPORTER_MOD_DESIGN.md`. It should stay read-only and export-only:
 
 - no mouse or keyboard automation
 - no gameplay control
@@ -465,7 +465,7 @@ Example future exporter output shape:
 
 Exporter milestone breakdown:
 
-- **Exporter 1: Modding Surface Research**: document how STS2 mods are packaged, loaded, and allowed to access current run state. Confirm whether a read-only exporter is viable before writing mod code.
+- **Exporter 1: Modding Surface Research**: use `docs/EXPORTER_MOD_DESIGN.md` as the boundary and contract, then document how STS2 mods are packaged, loaded, and allowed to access current run state. Confirm whether a read-only exporter is viable before writing mod code.
 - **Exporter 2: Static JSON Export Spike**: create the smallest possible companion mod that writes a harmless local JSON file with build/version metadata only.
 - **Exporter 3: Card Reward Export**: export visible/current card reward state, character, act, floor, HP, gold, deck, relics, and potions into Deckseer's existing input shape.
 - **Exporter 4: Deckseer Watch Mode**: add an optional Deckseer CLI mode that reads the latest exported JSON and prints recommendations after user confirmation.
