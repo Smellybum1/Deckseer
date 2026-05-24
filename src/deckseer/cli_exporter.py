@@ -7,9 +7,10 @@ from pathlib import Path
 from deckseer.data_loader import DeckseerData
 from deckseer.diagnostics import diagnose_run_state
 from deckseer.exporter_toolchain import build_exporter_toolchain_preflight
-from deckseer.importers.exporter_state import inspect_exporter_state, load_exporter_state
+from deckseer.importers.exporter_state import ExportedRelicState, inspect_exporter_state, load_exporter_recommendation_state
 from deckseer.models import ValidationError
 from deckseer.rendering import render_exporter_toolchain_preflight, render_recommendation
+from deckseer.relic_choice import recommend_relic_choice
 from deckseer.scoring.card_reward import recommend_card_reward
 
 
@@ -27,16 +28,20 @@ def handle_exporter_command(args: argparse.Namespace) -> int | None:
         print(render_exporter_toolchain_preflight(report, args.format))
         return 0
     if args.command == "recommend-export":
-        exported = load_exporter_state(Path(args.export_json))
+        exported = load_exporter_recommendation_state(Path(args.export_json))
         if exported.metadata.get("requires_user_confirmation") is True and not args.confirmed:
             raise ValidationError(
                 "exporter state requires user confirmation; run inspect-export, verify the visible state, "
                 "then rerun recommend-export with --confirmed"
             )
-        run = exported.current_state.to_run_state()
         data = DeckseerData.load(Path(args.data_dir))
-        result = recommend_card_reward(run, data)
-        diagnosis = diagnose_run_state(run, data) if args.include_diagnosis else None
+        if isinstance(exported, ExportedRelicState):
+            result = recommend_relic_choice(exported.relic_state, data)
+            diagnosis = None
+        else:
+            run = exported.current_state.to_run_state()
+            result = recommend_card_reward(run, data)
+            diagnosis = diagnose_run_state(run, data) if args.include_diagnosis else None
         print(render_recommendation(result, args.format, diagnosis=diagnosis))
         return 0
     return None

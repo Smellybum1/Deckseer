@@ -9,7 +9,7 @@ Deckseer is currently a local, manual JSON-first decision-support coach for Slay
 - Run diagnosis helpers for deck shape, prioritized needs, HP pressure, act/floor phase, and region/path context.
 - CLI commands for `recommend-card`, `recommend-relic`, `diagnose-run`, `check-run-data`, `check-runs`, `normalize-run`, `list-cards`, `data-summary`, `data-review`, `data-health`, `qa`, `qa-baseline`, `accuracy-report`, `audit-card-priors`, `empirical-coverage`, `empirical-intake`, `empirical-triage-report`, `empirical-current-patch-review`, `empirical-capture-guide`, `empirical-capture-packet`, `empirical-cross-class-capture-packet`, `empirical-cross-class-apply-packet`, `empirical-cross-class-readiness`, `empirical-cross-class-promotion-preview`, `empirical-worksheet-check`, `empirical-worksheet-fill`, `empirical-worksheet-apply-packet`, `empirical-draft-check`, `empirical-promote-draft`, `inspect-save`, `import-run`, `recommend-save`, `inspect-export`, `recommend-export`, and `exporter-toolchain-preflight`.
 - Read-only import from plain JSON Slay the Spire 2 run-history files, with manual live-state fields supplied by the user.
-- Read-only import from proposed Deckseer Exporter JSON files, with exporter metadata and caveats kept outside scoring. `inspect-export` accepts static exporter status, card reward, and relic reward files; `recommend-export` remains card-reward only until the confirmed relic recommendation packet.
+- Read-only import from proposed Deckseer Exporter JSON files, with exporter metadata and caveats kept outside scoring. `inspect-export` accepts static exporter status, card reward, and relic reward files; `recommend-export` supports confirmed card reward and relic reward files.
 - Read-only exporter toolchain preflight report for checking the local STS2 install, `.NET SDK`, STS2 templates, and Megadot/Godot visibility before any static mod source is added.
 - JSON, text, and Markdown recommendation output.
 - Strategy backlog for reviewed creator claims, tier-list sources, and empirical data ideas.
@@ -66,7 +66,7 @@ Relic and potion data exist as sparse seed files. The three current relic seed r
 2. Reviewed scenario expansion: use `docs/ACCURACY_SCENARIO_INTAKE.md` to add accepted real-run card-reward examples only when source states are reviewed and expected choices can be justified without changing scoring first.
 3. Deckseer Exporter Mod implementation readiness: Deckseer can now inspect static exporter status files, recommend from confirmed card reward exporter files, and run `deckseer exporter-toolchain-preflight --format text` to repeat the read-only local readiness check. `docs/EXPORTER_MOD_SURFACE_REVIEW.md` documents the modding-surface research, `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` records local install/toolchain findings, and `docs/EXPORTER_TOOLCHAIN_SETUP.md` lists the setup checks that must pass before static mod source is added. The in-game exporter mod and watch mode have not been implemented.
 4. Vision State Extractor design remains a future fallback/complement for screenshot-based visible state extraction.
-5. Broader advice modules: relic choice is the approved first surface. `recommend-relic` now supports manual relic reward JSON, backed by `docs/RELIC_CHOICE_DESIGN.md`, `docs/RELIC_METADATA_SEED_PLAN.md`, and `tests/test_relic_choice.py`. `docs/EXPORTER_MOD_DESIGN.md` documents the future `screen_type: "relic_reward"` exporter contract, and `inspect-export` can validate and summarize relic reward exports without scoring them yet. The next packet should allow confirmed `recommend-export` relic reward recommendations.
+5. Broader advice modules: relic choice is the approved first surface. `recommend-relic` now supports manual relic reward JSON, backed by `docs/RELIC_CHOICE_DESIGN.md`, `docs/RELIC_METADATA_SEED_PLAN.md`, and `tests/test_relic_choice.py`. Deckseer can inspect and recommend from confirmed proposed `screen_type: "relic_reward"` exporter files. The next packet should add a relic choice regression manifest/report before expanding relic metadata.
 6. Data QA maintenance: keep `data-health` passing as new card metadata, roles, and effects are added.
 
 ## Verification Snapshot
@@ -124,6 +124,7 @@ deckseer audit-card-priors tests/fixtures/empirical/multi_class_conflict_stats.j
 deckseer inspect-export tests/fixtures/exporter_card_reward_state.json
 deckseer inspect-export tests/fixtures/exporter_status_state.json
 deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
+deckseer recommend-export tests/fixtures/exporter_relic_reward_state.json --confirmed --format text
 deckseer exporter-toolchain-preflight --format text
 deckseer recommend-relic tests/fixtures/relic_choice/elite_frontload.json --format text
 deckseer recommend-card examples/card_reward_basic.json

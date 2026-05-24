@@ -1,6 +1,6 @@
 # Deckseer Relic Choice Design
 
-This document defines the first broader advice surface after card rewards: deterministic, manual JSON relic choice advice. The design, metadata seed, private scorer, and public `recommend-relic` CLI packets are now complete. A proposed exporter-side `screen_type: "relic_reward"` contract is documented, but there is still no live capture, mod code, card reward behavior change, or baseline change.
+This document defines the first broader advice surface after card rewards: deterministic, manual JSON relic choice advice. The design, metadata seed, private scorer, public `recommend-relic` CLI, and confirmed exporter recommendation packets are now complete. There is still no live capture, mod code, card reward behavior change, or baseline change.
 
 ## Goal
 
@@ -214,4 +214,4 @@ Stop and ask before:
 
 ## Recommended Next Packet
 
-The next implementation packet should be **Confirmed Relic Export Recommendation**: allow confirmed `recommend-export` calls to score proposed `screen_type: "relic_reward"` files through the existing relic choice scorer.
+The next implementation packet should be **Relic Choice Regression Manifest**: add reviewed relic-choice scenario reporting before expanding relic metadata beyond the current three seed relics.

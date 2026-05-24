@@ -57,6 +57,7 @@ Completed:
 - Relic choice CLI packet: `recommend-relic` now ranks manual relic reward JSON using JSON, text, or Markdown output, while card reward/exporter behavior remains unchanged.
 - Relic exporter contract packet: `docs/EXPORTER_MOD_DESIGN.md` now documents a proposed future `screen_type: "relic_reward"` JSON shape and fixture without enabling live capture or scoring from exporter relic files.
 - Inspect-only relic export adapter packet: `inspect-export` now accepts `screen_type: "relic_reward"` files and summarizes visible relic choices while `recommend-export` still rejects them.
+- Confirmed relic export recommendation packet: `recommend-export` now dispatches confirmed `screen_type: "relic_reward"` files through the relic choice scorer.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -90,11 +91,11 @@ Completed:
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
-- Dependencies: manual relic advice and inspect-only relic exporter support are available.
-- Likely files: exporter adapter, `src/deckseer/cli_exporter.py`, README/docs, and exporter/relic tests.
-- Validation: `recommend-export <relic_export> --confirmed --format text` returns `Relic Choice`; missing `--confirmed` fails when required.
+- Dependencies: manual and exporter relic advice are available.
+- Likely files: relic accuracy manifest/report module, tests, and docs.
+- Validation: relic accuracy report passes the existing three reviewed relic fixtures; standard QA remains green.
 - Effort: medium.
-- Status: inspect-only relic export support complete; next unblocked packet is confirmed relic export recommendation.
+- Status: confirmed relic export recommendation complete; next unblocked packet is a relic choice regression manifest/report.
 
 ### 5. Vision State Extractor Design Packet
 
@@ -129,6 +130,7 @@ Use the bundled Python runtime if plain `python` is not on PATH.
 ```bash
 python -m deckseer.cli inspect-export tests/fixtures/exporter_status_state.json
 python -m deckseer.cli recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
+python -m deckseer.cli recommend-export tests/fixtures/exporter_relic_reward_state.json --confirmed --format text
 python -m deckseer.cli exporter-toolchain-preflight --format text
 python -m deckseer.cli recommend-relic tests/fixtures/relic_choice/elite_frontload.json --format text
 python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage
@@ -174,6 +176,7 @@ Guardrails:
 Default verification:
 - python -m deckseer.cli inspect-export tests/fixtures/exporter_status_state.json
 - python -m deckseer.cli recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
+- python -m deckseer.cli recommend-export tests/fixtures/exporter_relic_reward_state.json --confirmed --format text
 - python -m deckseer.cli exporter-toolchain-preflight --format text
 - python -m deckseer.cli recommend-relic tests/fixtures/relic_choice/elite_frontload.json --format text
 - python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage

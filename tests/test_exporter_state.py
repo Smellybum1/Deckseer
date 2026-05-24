@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from deckseer.cli import main
-from deckseer.importers.exporter_state import inspect_exporter_state, load_exporter_state
+from deckseer.importers.exporter_state import inspect_exporter_state, load_exporter_recommendation_state, load_exporter_state
 from deckseer.models import ValidationError
 
 
@@ -107,17 +107,46 @@ def test_recommend_export_cli_rejects_status_fixture(capsys) -> None:
 
     assert status == 2
     assert captured.out == ""
-    assert "recommend-export only supports card_reward exports" in captured.err
+    assert "recommend-export only supports card_reward or relic_reward exports" in captured.err
 
 
-def test_recommend_export_cli_rejects_relic_fixture_until_recommendation_packet(capsys) -> None:
-    status = main(["recommend-export", str(RELIC_FIXTURE), "--confirmed"])
+def test_exporter_recommendation_state_loads_relic_fixture() -> None:
+    exported = load_exporter_recommendation_state(RELIC_FIXTURE)
+
+    assert exported.screen_type == "relic_reward"
+    assert exported.relic_state.relic_reward == ("akabeko", "kunai")
+
+
+def test_recommend_export_requires_confirmation_for_relic_fixture(capsys) -> None:
+    status = main(["recommend-export", str(RELIC_FIXTURE)])
 
     captured = capsys.readouterr()
 
     assert status == 2
     assert captured.out == ""
-    assert "recommend-export only supports card_reward exports; got relic_reward" in captured.err
+    assert "run inspect-export, verify the visible state" in captured.err
+    assert "--confirmed" in captured.err
+
+
+def test_recommend_export_cli_scores_relic_fixture_when_confirmed(capsys) -> None:
+    status = main(["recommend-export", str(RELIC_FIXTURE), "--confirmed"])
+
+    captured = capsys.readouterr()
+    payload = json.loads(captured.out)
+
+    assert status == 0
+    assert payload["recommendation_type"] == "relic_choice"
+    assert payload["ranked_choices"][0]["choice"] == "akabeko"
+
+
+def test_recommend_export_cli_scores_relic_fixture_as_text_when_confirmed(capsys) -> None:
+    status = main(["recommend-export", str(RELIC_FIXTURE), "--confirmed", "--format", "text"])
+
+    captured = capsys.readouterr()
+
+    assert status == 0
+    assert "Relic Choice" in captured.out
+    assert "1. Akabeko (akabeko)" in captured.out
 
 
 def test_recommend_export_requires_confirmation(capsys) -> None:
