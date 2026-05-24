@@ -598,3 +598,5 @@ Vision milestone breakdown:
 - **Vision 5: Broader State Extraction**: extract HP, max HP, gold, potions, relics, map node choices, shop inventory, and combat basics while preserving human confirmation before use.
 
 Other future recommendation areas can include relic advice, potion advice, pathing, combat advice, run history, outcome learning, and optional LLM explanation.
+
+Relic choice is the approved first broader advice surface after card rewards. The design boundary lives in `docs/RELIC_CHOICE_DESIGN.md`; it defines a manual JSON-first relic reward shape and validation plan without adding runtime behavior yet.

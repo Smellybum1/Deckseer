@@ -98,7 +98,7 @@ Out of scope:
 
 ## Proposed Relic Choice V1 Packet Sequence
 
-1. **Relic Choice Design**: document input/output shape, scoring philosophy, metadata fields, confidence rules, and stop rules.
+1. **Relic Choice Design**: document input/output shape, scoring philosophy, metadata fields, confidence rules, and stop rules. Completed in `docs/RELIC_CHOICE_DESIGN.md`.
 2. **Relic Metadata Seed Expansion**: add a small reviewed seed set only when source notes are available.
 3. **Relic Choice Engine Spike**: add a private Python scorer and tests against fixtures, without a public CLI command if the surface is still unsettled.
 4. **Relic Choice CLI**: add a public command only after fixture behavior and output wording are stable.

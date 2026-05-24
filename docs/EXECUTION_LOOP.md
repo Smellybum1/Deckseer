@@ -51,6 +51,7 @@ Completed:
 - Empirical intake cleanup: the stale initial Necrobinder proposed intake note is closed as superseded by reviewed promoted rows, and `empirical-intake` now reflects no pending proposed source-review work.
 - Accuracy scenario intake readiness: `docs/ACCURACY_SCENARIO_INTAKE.md` now defines the evidence checklist, fixture template, review steps, and acceptance rules for future real-run scenario expansion.
 - Advice module decision brief: `docs/ADVICE_MODULES_DECISION_BRIEF.md` now compares relic choice, potion usage, pathing, and combat planning, and recommends relic choice as the lowest-risk first broader advice target after explicit approval.
+- Relic choice design packet: `docs/RELIC_CHOICE_DESIGN.md` now defines the proposed manual JSON input shape, output shape, metadata fields, scoring philosophy, confidence rules, validation plan, and stop rules without runtime changes.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -84,11 +85,11 @@ Completed:
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
-- Dependencies: decide first target: relic choice or potion usage.
-- Likely files: design docs first; later `data/relics`, `data/potions`, and advice modules.
-- Validation: docs-only first; later focused fixtures and CLI smoke tests.
+- Dependencies: user approved relic choice as the first target; next packet should still avoid runtime behavior unless explicitly authorized.
+- Likely files: `data/relics`, relic metadata docs, and later advice modules.
+- Validation: data-health, focused relic metadata tests when code/data changes, and standard QA.
 - Effort: medium.
-- Status: blocked pending explicit product-direction choice for the first broader advice surface.
+- Status: relic choice design complete; next unblocked packet is a relic metadata seed plan.
 
 ### 5. Vision State Extractor Design Packet
 
