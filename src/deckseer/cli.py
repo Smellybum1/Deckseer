@@ -12,11 +12,15 @@ from deckseer.cli_exporter import (
     register_exporter_inspection_commands,
     register_exporter_recommendation_commands,
 )
+from deckseer.cli_run_state import (
+    handle_run_state_command,
+    register_run_state_commands,
+    register_run_state_normalize_command,
+)
 from deckseer.cli_save import handle_save_command, register_save_inspection_commands, register_save_recommendation_commands
-from deckseer.current_state import load_manual_card_reward_state
 from deckseer.data_loader import DeckseerData
 from deckseer.data_summary import build_data_health, build_data_review, build_data_summary
-from deckseer.diagnostics import check_run_data_coverage, check_run_files_data_coverage, diagnose_run_state
+from deckseer.diagnostics import check_run_files_data_coverage
 from deckseer.empirical_coverage import build_empirical_coverage_report
 from deckseer.empirical_capture_guide import build_empirical_capture_guide
 from deckseer.empirical_capture_packet import build_empirical_capture_packet, build_empirical_capture_packet_apply_report
@@ -34,7 +38,6 @@ from deckseer.empirical_triage import build_empirical_triage_report
 from deckseer.empirical_worksheet import build_empirical_worksheet_fill_report, build_empirical_worksheet_report
 from deckseer.models import DeckseerError
 from deckseer.audit.card_priors import audit_card_priors, load_empirical_card_stats
-from deckseer.normalization import normalize_run_file, write_normalized_payload
 from deckseer.qa import (
     build_project_qa,
     build_recommendation_smoke_baseline,
@@ -65,9 +68,7 @@ from deckseer.rendering import (
     render_empirical_worksheet,
     render_empirical_worksheet_fill,
     render_project_qa,
-    render_recommendation,
 )
-from deckseer.scoring.card_reward import recommend_card_reward
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -304,34 +305,10 @@ def main(argv: list[str] | None = None) -> int:
             if report["status"] == "review" and not report["wrote_file"]:
                 return 1
             return 0
-        if args.command == "recommend-card":
-            run = load_manual_card_reward_state(Path(args.input_json)).to_run_state()
-            data = DeckseerData.load(Path(args.data_dir))
-            result = recommend_card_reward(run, data)
-            diagnosis = diagnose_run_state(run, data) if args.include_diagnosis else None
-            print(render_recommendation(result, args.format, diagnosis=diagnosis))
-            return 0
-        if args.command == "diagnose-run":
-            run = load_manual_card_reward_state(Path(args.input_json)).to_run_state()
-            data = DeckseerData.load(Path(args.data_dir))
-            print(json.dumps(diagnose_run_state(run, data), indent=2))
-            return 0
-        if args.command == "check-run-data":
-            run = load_manual_card_reward_state(Path(args.input_json)).to_run_state()
-            data = DeckseerData.load(Path(args.data_dir))
-            print(json.dumps(check_run_data_coverage(run, data), indent=2))
-            return 0
         if args.command == "check-runs":
             data = DeckseerData.load(Path(args.data_dir))
             paths = _expand_run_paths([Path(path) for path in args.paths])
             print(json.dumps(check_run_files_data_coverage(paths, data), indent=2))
-            return 0
-        if args.command == "normalize-run":
-            data = DeckseerData.load(Path(args.data_dir))
-            report = normalize_run_file(Path(args.input_json), data)
-            if args.output:
-                write_normalized_payload(report, Path(args.output))
-            print(json.dumps(report, indent=2))
             return 0
         if args.command == "audit-card-priors":
             data = DeckseerData.load(Path(args.data_dir))
@@ -345,6 +322,9 @@ def main(argv: list[str] | None = None) -> int:
         save_status = handle_save_command(args)
         if save_status is not None:
             return save_status
+        run_state_status = handle_run_state_command(args)
+        if run_state_status is not None:
+            return run_state_status
         exporter_status = handle_exporter_command(args)
         if exporter_status is not None:
             return exporter_status
@@ -555,28 +535,13 @@ def _build_parser() -> argparse.ArgumentParser:
     empirical_promote.add_argument("--replace", action="store_true", help="Allow --write to replace an existing empirical JSON file.")
     empirical_promote.add_argument("--allow-review-flags", action="store_true", help="Allow --write to activate reviewed rows that produce audit review flags.")
 
-    recommend_card = subparsers.add_parser("recommend-card", help="Rank the current card reward choices, including Skip.")
-    recommend_card.add_argument("input_json", help="Path to a structured run-state JSON file.")
-    recommend_card.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    recommend_card.add_argument("--format", choices=("json", "text", "markdown"), default="json", help="Output format. Defaults to json.")
-    recommend_card.add_argument("--include-diagnosis", action="store_true", help="Include deck profile and prioritized run needs with the recommendation.")
-
-    diagnose_run = subparsers.add_parser("diagnose-run", help="Show deck profile and prioritized run needs for a run-state JSON file.")
-    diagnose_run.add_argument("input_json", help="Path to a structured run-state JSON file.")
-    diagnose_run.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-
-    check_run_data = subparsers.add_parser("check-run-data", help="Report missing deck or reward card metadata for a run-state JSON file.")
-    check_run_data.add_argument("input_json", help="Path to a structured run-state JSON file.")
-    check_run_data.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
+    register_run_state_commands(subparsers)
 
     check_runs = subparsers.add_parser("check-runs", help="Batch-check run-state JSON files or directories for data coverage.")
     check_runs.add_argument("paths", nargs="+", help="Run-state JSON files or directories containing *.json files.")
     check_runs.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
 
-    normalize_run = subparsers.add_parser("normalize-run", help="Normalize exact card display names in a run JSON to Deckseer card IDs.")
-    normalize_run.add_argument("input_json", help="Path to a structured run-state JSON file.")
-    normalize_run.add_argument("--output", help="Optional path for the normalized run-state payload.")
-    normalize_run.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
+    register_run_state_normalize_command(subparsers)
 
     audit_card_priors_parser = subparsers.add_parser(
         "audit-card-priors",
