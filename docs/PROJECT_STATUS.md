@@ -20,6 +20,7 @@ Deckseer is currently a local, manual JSON-first decision-support coach for Slay
 - Relic choice design document for the first approved broader advice surface.
 - Relic Choice V1 scorer, fixtures, and `recommend-relic` CLI for manual `screen_type: "relic_reward"` JSON.
 - Relic metadata seed plan and reviewed V1 metadata on the existing three seed relics.
+- Relic metadata expansion readiness guide for future tiny reviewed batches guarded by `relic-accuracy-report`.
 - Empirical coverage report workflow for measuring active stats coverage by class and patch.
 - Empirical intake queue for pending or closed source review notes that are not active audit evidence.
 - Empirical triage manifest and report workflow for tracking active audit flags without changing scoring.
@@ -67,7 +68,7 @@ Relic and potion data exist as sparse seed files. The three current relic seed r
 2. Reviewed scenario expansion: use `docs/ACCURACY_SCENARIO_INTAKE.md` to add accepted real-run card-reward examples only when source states are reviewed and expected choices can be justified without changing scoring first.
 3. Deckseer Exporter Mod implementation readiness: Deckseer can now inspect static exporter status files, recommend from confirmed card reward exporter files, and run `deckseer exporter-toolchain-preflight --format text` to repeat the read-only local readiness check. `docs/EXPORTER_MOD_SURFACE_REVIEW.md` documents the modding-surface research, `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` records local install/toolchain findings, and `docs/EXPORTER_TOOLCHAIN_SETUP.md` lists the setup checks that must pass before static mod source is added. The in-game exporter mod and watch mode have not been implemented.
 4. Vision State Extractor design remains a future fallback/complement for screenshot-based visible state extraction.
-5. Broader advice modules: relic choice is the approved first surface. `recommend-relic` now supports manual relic reward JSON, backed by `docs/RELIC_CHOICE_DESIGN.md`, `docs/RELIC_METADATA_SEED_PLAN.md`, `tests/test_relic_choice.py`, and `relic-accuracy-report`. Deckseer can inspect and recommend from confirmed proposed `screen_type: "relic_reward"` exporter files. The next packet should add a relic metadata expansion readiness plan before expanding beyond the current three seed relics.
+5. Broader advice modules: relic choice is the approved first surface. `recommend-relic` now supports manual relic reward JSON, backed by `docs/RELIC_CHOICE_DESIGN.md`, `docs/RELIC_METADATA_SEED_PLAN.md`, `docs/RELIC_METADATA_EXPANSION_READINESS.md`, `tests/test_relic_choice.py`, and `relic-accuracy-report`. Deckseer can inspect and recommend from confirmed proposed `screen_type: "relic_reward"` exporter files. The next data-changing packet should add only a tiny reviewed relic metadata batch with matching relic accuracy scenarios.
 6. Data QA maintenance: keep `data-health` passing as new card metadata, roles, and effects are added.
 
 ## Verification Snapshot

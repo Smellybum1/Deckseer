@@ -214,4 +214,4 @@ Stop and ask before:
 
 ## Recommended Next Packet
 
-The relic choice regression manifest is complete with `relic-accuracy-report`. The next implementation packet should be **Relic Metadata Expansion Readiness**: define the reviewed metadata intake process for adding a tiny next relic batch.
+The relic choice regression manifest is complete with `relic-accuracy-report`, and relic metadata expansion readiness is documented in `docs/RELIC_METADATA_EXPANSION_READINESS.md`. The next data-changing packet should add only a tiny reviewed relic batch with matching relic accuracy scenarios.

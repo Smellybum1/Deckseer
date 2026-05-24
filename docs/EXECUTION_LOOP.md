@@ -59,6 +59,7 @@ Completed:
 - Inspect-only relic export adapter packet: `inspect-export` now accepts `screen_type: "relic_reward"` files and summarizes visible relic choices while `recommend-export` still rejects them.
 - Confirmed relic export recommendation packet: `recommend-export` now dispatches confirmed `screen_type: "relic_reward"` files through the relic choice scorer.
 - Relic choice regression manifest packet: `relic-accuracy-report` checks three accepted Relic Choice V1 scenarios before relic metadata expands further.
+- Relic metadata expansion readiness packet: `docs/RELIC_METADATA_EXPANSION_READINESS.md` defines the safe intake workflow for future tiny reviewed relic batches without changing data yet.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -92,11 +93,11 @@ Completed:
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
-- Dependencies: manual/exporter relic advice and the relic accuracy report are available.
-- Likely files: relic metadata docs and optional draft intake worksheet.
+- Dependencies: reviewed candidate relic evidence is needed before data expansion.
+- Likely files: `data/relics/relics.json`, `data/relic_accuracy/scenarios.json`, relic fixtures, and relic metadata docs.
 - Validation: data-health, `relic-accuracy-report`, `recommend-relic`, and standard QA.
 - Effort: medium.
-- Status: relic choice regression report complete; next unblocked packet is a relic metadata expansion readiness plan.
+- Status: readiness complete; next data-changing packet is blocked until a tiny reviewed relic candidate batch is available.
 
 ### 5. Vision State Extractor Design Packet
 
