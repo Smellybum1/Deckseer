@@ -18,7 +18,12 @@ from deckseer.cli_run_state import (
     register_run_state_normalize_command,
 )
 from deckseer.cli_qa import handle_qa_command, register_check_runs_command, register_qa_commands
-from deckseer.cli_review import handle_review_command, register_accuracy_report_command, register_card_prior_audit_command
+from deckseer.cli_review import (
+    handle_review_command,
+    register_accuracy_report_command,
+    register_card_prior_audit_command,
+    register_relic_accuracy_report_command,
+)
 from deckseer.cli_save import handle_save_command, register_save_inspection_commands, register_save_recommendation_commands
 from deckseer.models import DeckseerError
 
@@ -71,6 +76,7 @@ def _build_parser() -> argparse.ArgumentParser:
     register_qa_commands(subparsers)
 
     register_accuracy_report_command(subparsers)
+    register_relic_accuracy_report_command(subparsers)
 
     register_empirical_overview_commands(subparsers)
     register_empirical_workflow_commands(subparsers)

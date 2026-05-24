@@ -556,6 +556,32 @@ def render_accuracy_report(report: dict, output_format: str) -> str:
     return "\n".join(lines)
 
 
+def render_relic_accuracy_report(report: dict, output_format: str) -> str:
+    if output_format == "json":
+        return json.dumps(report, indent=2)
+
+    summary = report["summary"]
+    lines = [
+        f"Relic Accuracy Report: {report['status'].upper()}",
+        f"Scenarios: {summary['scenarios']} | Passed: {summary['passed']} | Failed: {summary['failed']}",
+    ]
+    if summary["review_status_counts"]:
+        lines.append(f"Review statuses: {_format_counts(summary['review_status_counts'])}")
+    for scenario in report["scenarios"]:
+        status = "PASS" if scenario["passed"] else "FAIL"
+        actual = scenario["actual_top_choice"] or "none"
+        score = "unknown" if scenario["actual_top_score"] is None else f"{scenario['actual_top_score']:.1f}"
+        confidence = scenario["actual_confidence"] or "unknown"
+        lines.append(
+            f"{status} {scenario['id']}: expected {scenario['expected_top_choice']}, got {actual} ({score}, {confidence})"
+        )
+        if scenario["missing_reason_keywords"]:
+            lines.append(f"   Missing reason keywords: {', '.join(scenario['missing_reason_keywords'])}")
+        if scenario["error"]:
+            lines.append(f"   Error: {scenario['error']}")
+    return "\n".join(lines)
+
+
 def render_project_qa(report: dict, output_format: str) -> str:
     if output_format == "json":
         return json.dumps(report, indent=2)

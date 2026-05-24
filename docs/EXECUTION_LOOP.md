@@ -58,6 +58,7 @@ Completed:
 - Relic exporter contract packet: `docs/EXPORTER_MOD_DESIGN.md` now documents a proposed future `screen_type: "relic_reward"` JSON shape and fixture without enabling live capture or scoring from exporter relic files.
 - Inspect-only relic export adapter packet: `inspect-export` now accepts `screen_type: "relic_reward"` files and summarizes visible relic choices while `recommend-export` still rejects them.
 - Confirmed relic export recommendation packet: `recommend-export` now dispatches confirmed `screen_type: "relic_reward"` files through the relic choice scorer.
+- Relic choice regression manifest packet: `relic-accuracy-report` checks three accepted Relic Choice V1 scenarios before relic metadata expands further.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -91,11 +92,11 @@ Completed:
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
-- Dependencies: manual and exporter relic advice are available.
-- Likely files: relic accuracy manifest/report module, tests, and docs.
-- Validation: relic accuracy report passes the existing three reviewed relic fixtures; standard QA remains green.
+- Dependencies: manual/exporter relic advice and the relic accuracy report are available.
+- Likely files: relic metadata docs and optional draft intake worksheet.
+- Validation: data-health, `relic-accuracy-report`, `recommend-relic`, and standard QA.
 - Effort: medium.
-- Status: confirmed relic export recommendation complete; next unblocked packet is a relic choice regression manifest/report.
+- Status: relic choice regression report complete; next unblocked packet is a relic metadata expansion readiness plan.
 
 ### 5. Vision State Extractor Design Packet
 
@@ -136,6 +137,7 @@ python -m deckseer.cli recommend-relic tests/fixtures/relic_choice/elite_frontlo
 python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage
 python -m deckseer.cli empirical-coverage --format text
 python -m deckseer.cli accuracy-report --format text
+python -m deckseer.cli relic-accuracy-report --format text
 python -m pytest
 ```
 
@@ -145,6 +147,7 @@ Expected healthy state:
 - Exporter toolchain preflight: `blocked_missing_toolchain` until external setup is completed.
 - Empirical coverage: `REVIEW`, 18 rows, 14 `patch_mismatch` warnings unless intentionally changed.
 - Accuracy report: `PASS`, 9/9 unless intentionally expanded.
+- Relic accuracy report: `PASS`, 3/3 unless intentionally expanded.
 - Pytest: green.
 
 ## Done Criteria
@@ -182,6 +185,7 @@ Default verification:
 - python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage
 - python -m deckseer.cli empirical-coverage --format text
 - python -m deckseer.cli accuracy-report --format text
+- python -m deckseer.cli relic-accuracy-report --format text
 - python -m pytest
 
 Expected healthy state:
@@ -189,6 +193,7 @@ Expected healthy state:
 - exporter toolchain preflight blocked_missing_toolchain until external setup is completed
 - empirical coverage REVIEW with 18 rows and 14 patch_mismatch warnings unless intentionally changed
 - accuracy PASS, 9/9 unless intentionally expanded
+- relic accuracy PASS, 3/3 unless intentionally expanded
 - pytest green
 
 After each packet, update relevant docs, commit with a concise message, push main if configured, and leave a clear handoff: what changed, verification, current blocker, and recommended next task.

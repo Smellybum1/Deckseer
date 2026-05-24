@@ -1,0 +1,40 @@
+{
+  "manifest_type": "relic_accuracy_scenarios",
+  "scenarios": [
+    {
+      "id": "elite_frontload",
+      "path": "tests/fixtures/relic_choice/elite_frontload.json",
+      "expected_top_choice": "akabeko",
+      "expected_reason_keywords": [
+        "frontload",
+        "elite_prep"
+      ],
+      "source": "Relic Choice V1 reviewed fixture",
+      "review_status": "accepted",
+      "notes": "Early elite-pressure route should prefer Akabeko over Kunai because immediate frontload is the clearer need."
+    },
+    {
+      "id": "low_hp_sustain",
+      "path": "tests/fixtures/relic_choice/low_hp_sustain.json",
+      "expected_top_choice": "burning_blood",
+      "expected_reason_keywords": [
+        "low_hp"
+      ],
+      "source": "Relic Choice V1 reviewed fixture",
+      "review_status": "accepted",
+      "notes": "Low-HP sustain pressure should prefer Burning Blood over more damage."
+    },
+    {
+      "id": "long_fight_scaling",
+      "path": "tests/fixtures/relic_choice/long_fight_scaling.json",
+      "expected_top_choice": "kunai",
+      "expected_reason_keywords": [
+        "scaling",
+        "attack_dense"
+      ],
+      "source": "Relic Choice V1 reviewed fixture",
+      "review_status": "accepted",
+      "notes": "Act 2 attack-dense deck should prefer Kunai as a longer-fight scaling/defense payoff."
+    }
+  ]
+}

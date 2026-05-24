@@ -82,6 +82,7 @@ Review accuracy scenarios directly:
 ```bash
 deckseer accuracy-report --format text
 deckseer accuracy-report --fail-on-mismatch
+deckseer relic-accuracy-report --format text
 ```
 
 For stricter CI-style gates, use:
@@ -638,4 +639,4 @@ Vision milestone breakdown:
 
 Other future recommendation areas can include relic advice, potion advice, pathing, combat advice, run history, outcome learning, and optional LLM explanation.
 
-Relic choice is the approved first broader advice surface after card rewards. The design boundary lives in `docs/RELIC_CHOICE_DESIGN.md`; `recommend-relic` currently supports manual JSON relic rewards only.
+Relic choice is the approved first broader advice surface after card rewards. The design boundary lives in `docs/RELIC_CHOICE_DESIGN.md`; `recommend-relic` supports manual JSON relic rewards, `recommend-export --confirmed` supports proposed relic exporter files, and `relic-accuracy-report` checks reviewed relic-choice drift scenarios.
