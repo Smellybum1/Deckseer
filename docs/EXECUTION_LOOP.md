@@ -54,6 +54,7 @@ Completed:
 - Relic choice design packet: `docs/RELIC_CHOICE_DESIGN.md` now defines the proposed manual JSON input shape, output shape, metadata fields, scoring philosophy, confidence rules, validation plan, and stop rules without runtime changes.
 - Relic metadata seed packet: `docs/RELIC_METADATA_SEED_PLAN.md` documents the tiny V1 seed, and the existing three relic records now carry roles, weak priors, pick context, and source notes without changing card reward behavior.
 - Private relic choice scorer packet: `src/deckseer/relic_choice.py` can load manual `screen_type: "relic_reward"` JSON and rank the three seed relics with focused fixtures, without adding public CLI behavior.
+- Relic choice CLI packet: `recommend-relic` now ranks manual relic reward JSON using JSON, text, or Markdown output, while card reward/exporter behavior remains unchanged.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -87,11 +88,11 @@ Completed:
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
-- Dependencies: user approved relic choice as the first target and explicitly approved the CLI packet.
-- Likely files: `src/deckseer/cli.py`, a small CLI helper module, `src/deckseer/rendering.py`, README/docs, and CLI tests.
-- Validation: focused relic choice CLI tests, `recommend-relic` smoke commands, and standard QA.
+- Dependencies: manual relic advice is available; exporter relic support should wait for a contract-only packet.
+- Likely files: exporter design docs and fixtures only at first.
+- Validation: `recommend-relic` smoke commands and standard QA.
 - Effort: medium.
-- Status: private scorer complete; next unblocked packet is the public `recommend-relic` CLI.
+- Status: manual relic choice CLI complete; next unblocked packet is a relic exporter contract design note for `screen_type: "relic_reward"` without live capture.
 
 ### 5. Vision State Extractor Design Packet
 
@@ -127,6 +128,7 @@ Use the bundled Python runtime if plain `python` is not on PATH.
 python -m deckseer.cli inspect-export tests/fixtures/exporter_status_state.json
 python -m deckseer.cli recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
 python -m deckseer.cli exporter-toolchain-preflight --format text
+python -m deckseer.cli recommend-relic tests/fixtures/relic_choice/elite_frontload.json --format text
 python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage
 python -m deckseer.cli empirical-coverage --format text
 python -m deckseer.cli accuracy-report --format text
@@ -171,6 +173,7 @@ Default verification:
 - python -m deckseer.cli inspect-export tests/fixtures/exporter_status_state.json
 - python -m deckseer.cli recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
 - python -m deckseer.cli exporter-toolchain-preflight --format text
+- python -m deckseer.cli recommend-relic tests/fixtures/relic_choice/elite_frontload.json --format text
 - python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage
 - python -m deckseer.cli empirical-coverage --format text
 - python -m deckseer.cli accuracy-report --format text

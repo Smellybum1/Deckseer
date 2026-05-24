@@ -1,6 +1,6 @@
 # Deckseer Relic Choice Design
 
-This document defines the proposed first broader advice surface after card rewards: deterministic, manual JSON relic choice advice. The design and private scorer packets are now complete. There is still no public CLI command, exporter expansion, card reward behavior change, or baseline change.
+This document defines the first broader advice surface after card rewards: deterministic, manual JSON relic choice advice. The design, metadata seed, private scorer, and public `recommend-relic` CLI packets are now complete. There is still no exporter expansion, card reward behavior change, or baseline change.
 
 ## Goal
 
@@ -177,15 +177,15 @@ Low confidence:
 
 ## Validation Plan
 
-Before a public CLI command exists:
+Implementation validation:
 
 1. Add a private relic choice model/scorer module. Completed in `src/deckseer/relic_choice.py`.
 2. Add focused unit tests for score ordering, caveats, and confidence labels. Completed in `tests/test_relic_choice.py`.
 3. Add two to four small fixture states under `tests/fixtures/relic_choice/`. Completed for frontload, sustain, and scaling contexts.
-4. Keep fixtures proposed until expected picks are reviewed. Completed for the private scorer packet only; public CLI wording remains the next review point.
+4. Keep fixtures proposed until expected picks are reviewed. Completed for the private scorer and CLI packets.
 5. Run `pytest` and the standard Deckseer QA gate.
 
-Before a public CLI command exists:
+CLI validation:
 
 - Confirm output wording is stable.
 - Confirm unknown reward relic IDs fail clearly.
@@ -197,14 +197,14 @@ Before a public CLI command exists:
 1. **Design packet**: this document.
 2. **Metadata review packet**: define a tiny reviewed relic metadata seed plan without changing advice behavior. Completed in `docs/RELIC_METADATA_SEED_PLAN.md`.
 3. **Private scorer packet**: implement a non-public relic choice scorer with tests and fixtures. Completed in `src/deckseer/relic_choice.py`.
-4. **CLI packet**: add a public command such as `recommend-relic` now that private scorer output is covered by focused tests.
+4. **CLI packet**: add a public command such as `recommend-relic` now that private scorer output is covered by focused tests. Completed with `recommend-relic`.
 5. **Exporter contract packet**: document `screen_type: "relic_reward"` only after manual relic advice works.
 
 ## Stop Rules
 
 Stop and ask before:
 
-- Adding a public CLI command.
+- Adding additional public relic choice commands or changing `recommend-relic` behavior.
 - Adding or changing relic data beyond a tiny reviewed seed packet.
 - Introducing new schema requirements for existing card reward inputs.
 - Changing card reward scoring or run diagnosis behavior.
@@ -214,4 +214,4 @@ Stop and ask before:
 
 ## Recommended Next Packet
 
-The next implementation packet should be **CLI Packet**: add a public `recommend-relic` command backed by the private scorer, document it, and preserve existing card reward/exporter behavior.
+The next implementation packet should be **Exporter Contract Packet**: document how a future exporter would represent `screen_type: "relic_reward"` for `inspect-export`, without adding live capture, watcher mode, or mod code.

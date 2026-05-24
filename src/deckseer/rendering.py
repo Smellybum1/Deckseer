@@ -815,14 +815,8 @@ def _render_markdown_result(result: RecommendationResult, *, diagnosis: dict | N
             lines.append(f"- Caveat: {caveat}")
         lines.append("")
 
-    lines.extend(
-        [
-            "## Card Reward Recommendation",
-            "",
-            "| Rank | Choice | Score | Confidence |",
-            "| ---: | --- | ---: | --- |",
-        ]
-    )
+    title = f"{result.recommendation_type.replace('_', ' ').title()} Recommendation"
+    lines.extend([f"## {title}", "", "| Rank | Choice | Score | Confidence |", "| ---: | --- | ---: | --- |"])
     for choice in result.ranked_choices:
         lines.append(f"| {choice.rank} | {choice.name} (`{choice.choice}`) | {choice.score:.1f} | {choice.confidence} |")
     lines.append("")

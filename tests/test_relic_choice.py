@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from deckseer.cli import main
 from deckseer.data_loader import DeckseerData
 from deckseer.models import DataError, ValidationError
 from deckseer.relic_choice import RelicChoiceState, recommend_relic_choice
@@ -92,3 +93,49 @@ def test_relic_choice_result_dict_shape_is_stable() -> None:
         "reasoning",
         "risks",
     }
+
+
+def test_recommend_relic_cli_text_output(capsys) -> None:
+    status = main(["recommend-relic", str(FIXTURE_DIR / "elite_frontload.json"), "--format", "text"])
+
+    captured = capsys.readouterr()
+
+    assert status == 0
+    assert "Relic Choice" in captured.out
+    assert "1. Akabeko (akabeko)" in captured.out
+    assert "Why:" in captured.out
+
+
+def test_recommend_relic_cli_json_output(capsys) -> None:
+    status = main(["recommend-relic", str(FIXTURE_DIR / "low_hp_sustain.json")])
+
+    captured = capsys.readouterr()
+    payload = json.loads(captured.out)
+
+    assert status == 0
+    assert payload["recommendation_type"] == "relic_choice"
+    assert payload["ranked_choices"][0]["choice"] == "burning_blood"
+
+
+def test_recommend_relic_cli_markdown_output(capsys) -> None:
+    status = main(["recommend-relic", str(FIXTURE_DIR / "long_fight_scaling.json"), "--format", "markdown"])
+
+    captured = capsys.readouterr()
+
+    assert status == 0
+    assert "## Relic Choice Recommendation" in captured.out
+    assert "Kunai (`kunai`)" in captured.out
+
+
+def test_recommend_relic_cli_unknown_reward_relic_returns_validation_status(tmp_path, capsys) -> None:
+    raw = _raw_state("elite_frontload.json")
+    raw["relic_reward"] = ["unknown_relic"]
+    path = tmp_path / "unknown_reward_relic.json"
+    path.write_text(json.dumps(raw), encoding="utf-8")
+
+    status = main(["recommend-relic", str(path)])
+
+    captured = capsys.readouterr()
+
+    assert status == 2
+    assert "Missing relic data for reward choices: unknown_relic" in captured.err

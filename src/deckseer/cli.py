@@ -11,6 +11,7 @@ from deckseer.cli_exporter import (
     register_exporter_inspection_commands,
     register_exporter_recommendation_commands,
 )
+from deckseer.cli_relic import handle_relic_command, register_relic_commands
 from deckseer.cli_run_state import (
     handle_run_state_command,
     register_run_state_commands,
@@ -48,6 +49,9 @@ def main(argv: list[str] | None = None) -> int:
         run_state_status = handle_run_state_command(args)
         if run_state_status is not None:
             return run_state_status
+        relic_status = handle_relic_command(args)
+        if relic_status is not None:
+            return relic_status
         exporter_status = handle_exporter_command(args)
         if exporter_status is not None:
             return exporter_status
@@ -72,6 +76,7 @@ def _build_parser() -> argparse.ArgumentParser:
     register_empirical_workflow_commands(subparsers)
 
     register_run_state_commands(subparsers)
+    register_relic_commands(subparsers)
     register_check_runs_command(subparsers)
 
     register_run_state_normalize_command(subparsers)

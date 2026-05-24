@@ -105,6 +105,12 @@ Pretty text output:
 deckseer recommend-card examples/card_reward_basic.json --format text
 ```
 
+Rank a manual relic reward state:
+
+```bash
+deckseer recommend-relic tests/fixtures/relic_choice/elite_frontload.json --format text
+```
+
 Markdown output:
 
 ```bash
@@ -169,6 +175,7 @@ If the installed script directory is not on your PATH, use the module form:
 
 ```bash
 python -m deckseer.cli recommend-card examples/card_reward_basic.json --format text
+python -m deckseer.cli recommend-relic tests/fixtures/relic_choice/elite_frontload.json --format text
 ```
 
 Use a custom data directory:
@@ -245,6 +252,8 @@ Deckseer requires metadata for offered reward cards, but it can still score a ru
 Use `check-run-data` when adding new examples or imported runs. Missing reward-card metadata blocks scoring; missing existing-deck metadata only limits diagnosis quality and confidence.
 
 Use `check-runs` to batch-audit a directory like `examples/` or a list of run-state JSON files. Coverage reports include suggestions when a missing card looks like a known card with different spacing, punctuation, or casing.
+
+Relic choice advice is a manual JSON-first V1 surface. `recommend-relic` accepts `screen_type: "relic_reward"`, validates visible reward relic IDs against `data/relics/relics.json`, ranks the offered relics, and returns the same JSON/text/Markdown recommendation shape used by card rewards. Unknown reward relics block scoring; unknown owned relics become recommendation risks and lower confidence. Relic Choice V1 is tag-based and does not simulate combat, exact trigger timing, boss relic special rules, or pathing.
 
 Inspect a proposed Deckseer Exporter JSON file:
 
@@ -350,6 +359,35 @@ Card reward inputs are JSON files with run state, deck contents, current relics 
 ```
 
 Skip is always added by Deckseer and should not be included in `card_reward`.
+
+Relic reward inputs use the same run-state fields with `screen_type: "relic_reward"` and a `relic_reward` list:
+
+```json
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "relic_reward",
+  "character": "ironclad",
+  "act": 1,
+  "floor": 7,
+  "hp": {
+    "current": 63,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 3
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "relic_reward": [
+    "akabeko",
+    "kunai"
+  ]
+}
+```
 
 All `run_context` fields are optional. The v0.2 context fields let manual JSON capture upcoming threats without requiring pathing automation:
 
@@ -599,4 +637,4 @@ Vision milestone breakdown:
 
 Other future recommendation areas can include relic advice, potion advice, pathing, combat advice, run history, outcome learning, and optional LLM explanation.
 
-Relic choice is the approved first broader advice surface after card rewards. The design boundary lives in `docs/RELIC_CHOICE_DESIGN.md`; it defines a manual JSON-first relic reward shape and validation plan without adding runtime behavior yet.
+Relic choice is the approved first broader advice surface after card rewards. The design boundary lives in `docs/RELIC_CHOICE_DESIGN.md`; `recommend-relic` currently supports manual JSON relic rewards only.
