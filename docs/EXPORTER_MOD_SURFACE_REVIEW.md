@@ -2,6 +2,8 @@
 
 This review prepares the next Deckseer Exporter packet: a static, harmless Slay the Spire 2 mod spike that writes only `screen_type: "exporter_status"` JSON. It is not approval to export live run state yet.
 
+See `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` for local Windows install, mod-folder, log-folder, and toolchain findings before attempting the static spike.
+
 ## Source Snapshot
 
 Reviewed on 2026-05-24. Treat all STS2 modding details as volatile because the game is in Early Access and public modding support is still changing.

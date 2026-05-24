@@ -55,7 +55,7 @@ Relic and potion data exist as sparse seed files. Empirical data support is inte
 
 ## Recommended Next Milestones
 
-1. Deckseer Exporter Mod implementation readiness: Deckseer can now inspect static exporter status files and recommend from confirmed card reward exporter files. `docs/EXPORTER_MOD_SURFACE_REVIEW.md` documents the modding-surface research needed before the first static in-game exporter spike; the in-game exporter mod and watch mode have not been implemented.
+1. Deckseer Exporter Mod implementation readiness: Deckseer can now inspect static exporter status files and recommend from confirmed card reward exporter files. `docs/EXPORTER_MOD_SURFACE_REVIEW.md` documents the modding-surface research, and `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` records local install/toolchain findings. The in-game exporter mod and watch mode have not been implemented.
 2. Vision State Extractor design remains a future fallback/complement for screenshot-based visible state extraction.
 3. Broader advice modules: relic choice, potion choice, pathing, combat planning, and run-history learning.
 4. Data QA maintenance: keep `data-health` passing as new card metadata, roles, and effects are added.
