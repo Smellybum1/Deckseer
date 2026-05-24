@@ -250,6 +250,7 @@ Inspect a proposed Deckseer Exporter JSON file:
 
 ```bash
 deckseer inspect-export tests/fixtures/exporter_card_reward_state.json
+deckseer inspect-export tests/fixtures/exporter_status_state.json
 ```
 
 Recommend from a proposed Deckseer Exporter JSON file:
@@ -258,7 +259,7 @@ Recommend from a proposed Deckseer Exporter JSON file:
 deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
 ```
 
-Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. When an export has `requires_user_confirmation: true`, run `inspect-export` first and pass `--confirmed` only after checking the visible state. The Slay the Spire 2 companion mod itself is still not implemented.
+Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. `inspect-export` also accepts `screen_type: exporter_status` as a harmless static exporter-health contract. When a card reward export has `requires_user_confirmation: true`, run `inspect-export` first and pass `--confirmed` only after checking the visible state. The Slay the Spire 2 companion mod itself is still not implemented.
 
 ## State Sources
 
@@ -277,7 +278,7 @@ Implemented sources:
 
 - **Manual JSON**: primary v0 workflow, loaded directly from a user-authored run-state file.
 - **Run-history import**: read-only `.run` history parsing that can draft a recommendation input after you manually provide current HP, act, floor, and visible card reward.
-- **Exporter JSON import**: read-only proposed `latest_state.json` contract parsing through `inspect-export` and `recommend-export`. This consumes local files only; the game mod that would write them is not implemented yet.
+- **Exporter JSON import**: read-only proposed `latest_state.json` contract parsing through `inspect-export` and `recommend-export`. `inspect-export` accepts static exporter status files and card reward files; `recommend-export` remains card-reward only. This consumes local files only; the game mod that would write them is not implemented yet.
 
 Planned sources:
 
@@ -481,7 +482,7 @@ Example future exporter output shape:
 Exporter milestone breakdown:
 
 - **Exporter 1: Modding Surface Research**: use `docs/EXPORTER_MOD_DESIGN.md` as the boundary and contract, then document how STS2 mods are packaged, loaded, and allowed to access current run state. Confirm whether a read-only exporter is viable before writing mod code.
-- **Exporter 2: Static JSON Export Spike**: create the smallest possible companion mod that writes a harmless local JSON file with build/version metadata only.
+- **Exporter 2: Static JSON Export Spike**: create the smallest possible companion mod that writes a harmless `screen_type: "exporter_status"` local JSON file with build/version metadata only.
 - **Exporter 3: Card Reward Export**: export visible/current card reward state, character, act, floor, HP, gold, deck, relics, and potions into Deckseer's existing input shape.
 - **Exporter 4: Deckseer Watch Mode**: add an optional Deckseer CLI mode that reads the latest exported JSON and prints recommendations after user confirmation.
 - **Exporter 5: Broader Decision Export**: extend exported state for relic choices, potion choices, pathing, shop, combat basics, and other advisor modules as they are added.

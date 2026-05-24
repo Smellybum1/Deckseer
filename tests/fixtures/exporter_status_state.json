@@ -1,0 +1,17 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.1.0",
+    "game_build": null,
+    "game_patch": "main_v0.103_current",
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Static exporter status only; no live run state is present."
+    ]
+  }
+}

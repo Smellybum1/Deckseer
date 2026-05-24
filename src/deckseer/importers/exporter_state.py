@@ -34,6 +34,64 @@ class ExportedState:
         }
 
 
+@dataclass(frozen=True)
+class InspectedExport:
+    source_type: str
+    screen_type: str
+    metadata: dict[str, Any]
+    status: str | None = None
+    current_state: CurrentState | None = None
+
+    def to_summary_dict(self) -> dict[str, Any]:
+        payload = self.current_state.to_recommendation_input() if self.current_state is not None else None
+        summary = {
+            "source_type": self.source_type,
+            "screen_type": self.screen_type,
+            "source": self.metadata.get("source"),
+            "exporter_version": self.metadata.get("exporter_version"),
+            "game_patch": self.metadata.get("game_patch"),
+            "game_build": self.metadata.get("game_build"),
+            "exported_at": self.metadata.get("exported_at"),
+            "requires_user_confirmation": self.metadata.get("requires_user_confirmation", False),
+            "valid": True,
+            "caveats": _metadata_caveats(self.metadata),
+        }
+        if self.status is not None:
+            summary["status"] = self.status
+        if payload is not None:
+            summary["character"] = payload["character"]
+            summary["card_reward"] = list(payload["card_reward"])
+            summary["caveats"] = list(self.current_state.caveats)
+        return summary
+
+
+def inspect_exporter_state(path: Path) -> InspectedExport:
+    raw = _read_json(path)
+    data = _require_mapping(raw, "exporter state")
+    game = _require_str(data.get("game", "slay_the_spire_2"), "game")
+    if game != "slay_the_spire_2":
+        raise ValidationError(f"unsupported exporter game: {game}")
+    screen_type = _require_str(data.get("screen_type"), "screen_type")
+    metadata = _copy_optional_mapping(data.get("export_metadata"), "export_metadata")
+    source_type = _require_str(metadata.get("source", "deckseer_exporter_mod"), "export_metadata.source")
+    if screen_type == "card_reward":
+        exported = _load_card_reward_export(data, metadata, source_type)
+        return InspectedExport(
+            source_type=exported.source_type,
+            screen_type=exported.screen_type,
+            metadata=exported.metadata,
+            current_state=exported.current_state,
+        )
+    if screen_type == "exporter_status":
+        return InspectedExport(
+            source_type=source_type,
+            screen_type=screen_type,
+            metadata=metadata,
+            status=_require_str(data.get("status"), "status"),
+        )
+    raise ValidationError(f"unsupported exporter screen_type: {screen_type}")
+
+
 def load_exporter_state(path: Path) -> ExportedState:
     raw = _read_json(path)
     data = _require_mapping(raw, "exporter state")
@@ -42,10 +100,14 @@ def load_exporter_state(path: Path) -> ExportedState:
         raise ValidationError(f"unsupported exporter game: {game}")
     screen_type = _require_str(data.get("screen_type"), "screen_type")
     if screen_type != "card_reward":
-        raise ValidationError(f"unsupported exporter screen_type: {screen_type}")
+        raise ValidationError(f"recommend-export only supports card_reward exports; got {screen_type}")
 
     metadata = _copy_optional_mapping(data.get("export_metadata"), "export_metadata")
     source_type = _require_str(metadata.get("source", "deckseer_exporter_mod"), "export_metadata.source")
+    return _load_card_reward_export(data, metadata, source_type)
+
+
+def _load_card_reward_export(data: dict[str, Any], metadata: dict[str, Any], source_type: str) -> ExportedState:
     caveats = _metadata_caveats(metadata)
     if metadata.get("requires_user_confirmation") is True:
         caveats.append("Exporter state requires user confirmation before recommendation.")
@@ -55,7 +117,7 @@ def load_exporter_state(path: Path) -> ExportedState:
     state.to_run_state()
     return ExportedState(
         source_type=source_type,
-        screen_type=screen_type,
+        screen_type="card_reward",
         metadata=metadata,
         current_state=state,
     )

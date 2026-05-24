@@ -42,9 +42,35 @@ The exporter should write a single latest-state JSON file plus optional rotated 
 
 The implementation should write to a temporary file first, then atomically replace `latest_state.json` when possible. The file should be plain JSON, not compressed or hidden, so the user can inspect or edit it before Deckseer reads it.
 
-## Card Reward Export Contract
+## Export Contracts
 
-The first useful export target is `screen_type: "card_reward"` because it maps directly to Deckseer's current advisor.
+The first harmless export target is `screen_type: "exporter_status"` because it proves the exporter loaded and wrote a local file without exposing live run state. The first recommendation export target is `screen_type: "card_reward"` because it maps directly to Deckseer's current advisor.
+
+## Static Status Export Contract
+
+The static exporter status contract is the required bridge before live run-state export. `inspect-export` accepts this shape; `recommend-export` rejects it because there is no card reward to score.
+
+```json
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.1.0",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Static exporter status only; no live run state is present."
+    ]
+  }
+}
+```
+
+## Card Reward Export Contract
 
 ```json
 {
@@ -120,9 +146,10 @@ Deckseer should continue to score the same advisor-ready card reward payload it 
 
 1. Read `latest_state.json`.
 2. Check `game` and `screen_type`.
-3. Preserve `export_metadata` for display or caveats.
-4. Convert the rest into the existing card reward input shape.
-5. Require `recommend-export --confirmed` before recommendation when `requires_user_confirmation` is true.
+3. For `exporter_status`, inspect metadata and status only.
+4. For `card_reward`, preserve `export_metadata` for display or caveats.
+5. Convert card reward exports into the existing card reward input shape.
+6. Require `recommend-export --confirmed` before recommendation when `requires_user_confirmation` is true.
 
 Skip should not appear in `card_reward`; Deckseer adds Skip internally.
 
@@ -142,7 +169,7 @@ Deckseer should treat these as review warnings for the user, not as scoring inpu
 ## Milestone Sequence
 
 1. **Modding Surface Research**: confirm packaging, load path, accessible state APIs, local file write path, and safe identifier mapping.
-2. **Static JSON Export Spike**: write harmless build/version metadata only.
+2. **Static JSON Export Spike**: write a harmless `screen_type: "exporter_status"` file with build/version metadata only.
 3. **Card Reward Export**: export the card reward contract above.
 4. **Deckseer Import Adapter**: read exporter JSON and convert it into the existing manual input shape after user confirmation.
 5. **Optional Watch Mode**: add a CLI helper only after the static export and adapter are stable.

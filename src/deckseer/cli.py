@@ -28,7 +28,7 @@ from deckseer.empirical_triage import build_empirical_triage_report
 from deckseer.empirical_worksheet import build_empirical_worksheet_fill_report, build_empirical_worksheet_report
 from deckseer.models import DeckseerError, ValidationError
 from deckseer.audit.card_priors import audit_card_priors, load_empirical_card_stats
-from deckseer.importers.exporter_state import load_exporter_state
+from deckseer.importers.exporter_state import inspect_exporter_state, load_exporter_state
 from deckseer.importers.sts2_save import load_sts2_run
 from deckseer.normalization import normalize_run_file, write_normalized_payload
 from deckseer.qa import (
@@ -343,7 +343,7 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(imported.to_summary_dict(), indent=2))
             return 0
         if args.command == "inspect-export":
-            exported = load_exporter_state(Path(args.export_json))
+            exported = inspect_exporter_state(Path(args.export_json))
             print(json.dumps(exported.to_summary_dict(), indent=2))
             return 0
         if args.command == "import-run":

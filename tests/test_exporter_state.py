@@ -6,11 +6,12 @@ from pathlib import Path
 import pytest
 
 from deckseer.cli import main
-from deckseer.importers.exporter_state import load_exporter_state
+from deckseer.importers.exporter_state import inspect_exporter_state, load_exporter_state
 from deckseer.models import ValidationError
 
 
 FIXTURE = Path("tests/fixtures/exporter_card_reward_state.json")
+STATUS_FIXTURE = Path("tests/fixtures/exporter_status_state.json")
 
 
 def test_exporter_state_loads_through_current_state_adapter() -> None:
@@ -46,7 +47,12 @@ def test_exporter_state_rejects_unsupported_screen_type(tmp_path: Path) -> None:
     path.write_text(json.dumps(raw), encoding="utf-8")
 
     with pytest.raises(ValidationError, match="unsupported exporter screen_type: shop"):
-        load_exporter_state(path)
+        inspect_exporter_state(path)
+
+
+def test_recommend_export_rejects_status_export() -> None:
+    with pytest.raises(ValidationError, match="recommend-export only supports card_reward exports; got exporter_status"):
+        load_exporter_state(STATUS_FIXTURE)
 
 
 def test_inspect_export_cli_smoke(capsys) -> None:
@@ -60,6 +66,31 @@ def test_inspect_export_cli_smoke(capsys) -> None:
     assert payload["screen_type"] == "card_reward"
     assert payload["valid"] is True
     assert payload["card_reward"] == ["pommel_strike", "shrug_it_off", "anger"]
+
+
+def test_inspect_export_accepts_status_fixture(capsys) -> None:
+    status = main(["inspect-export", str(STATUS_FIXTURE)])
+
+    captured = capsys.readouterr()
+    payload = json.loads(captured.out)
+
+    assert status == 0
+    assert payload["source_type"] == "deckseer_exporter_mod"
+    assert payload["screen_type"] == "exporter_status"
+    assert payload["status"] == "ok"
+    assert payload["valid"] is True
+    assert payload["requires_user_confirmation"] is False
+    assert payload["caveats"] == ["Static exporter status only; no live run state is present."]
+
+
+def test_recommend_export_cli_rejects_status_fixture(capsys) -> None:
+    status = main(["recommend-export", str(STATUS_FIXTURE)])
+
+    captured = capsys.readouterr()
+
+    assert status == 2
+    assert captured.out == ""
+    assert "recommend-export only supports card_reward exports" in captured.err
 
 
 def test_recommend_export_requires_confirmation(capsys) -> None:

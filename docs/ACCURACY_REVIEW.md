@@ -4,7 +4,7 @@ Deckseer is currently focused on calibration quality, not new input surfaces. Th
 
 ## Current QA Snapshot
 
-- `pytest` passes across the current suite (`293 passed` at the latest verification).
+- `pytest` passes across the current suite (`296 passed` at the latest verification).
 - `deckseer data-health` reports `PASS`.
 - `deckseer qa --check-recommendation-baseline --check-accuracy` reports `REVIEW` because active empirical rows intentionally surface audit flags while recommendation baseline and accuracy checks pass.
 - `deckseer qa --check-recommendation-baseline --check-accuracy --check-empirical-triage` reports `PASS` because all active empirical flags are triaged as non-blocking context.
