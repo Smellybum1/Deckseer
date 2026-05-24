@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 import sys
 
 from deckseer.cli_data import handle_data_command, register_data_commands
 from deckseer.cli_empirical_overview import handle_empirical_overview_command, register_empirical_overview_commands
+from deckseer.cli_empirical_workflow import handle_empirical_workflow_command, register_empirical_workflow_commands
 from deckseer.cli_exporter import (
     handle_exporter_command,
     register_exporter_inspection_commands,
@@ -19,32 +19,7 @@ from deckseer.cli_run_state import (
 from deckseer.cli_qa import handle_qa_command, register_check_runs_command, register_qa_commands
 from deckseer.cli_review import handle_review_command, register_accuracy_report_command, register_card_prior_audit_command
 from deckseer.cli_save import handle_save_command, register_save_inspection_commands, register_save_recommendation_commands
-from deckseer.data_loader import DeckseerData
-from deckseer.empirical_capture_guide import build_empirical_capture_guide
-from deckseer.empirical_capture_packet import build_empirical_capture_packet, build_empirical_capture_packet_apply_report
-from deckseer.empirical_cross_class_packet import (
-    build_empirical_cross_class_apply_packet_report,
-    build_empirical_cross_class_capture_packet,
-)
-from deckseer.empirical_cross_class_promotion import build_empirical_cross_class_promotion_preview_report
-from deckseer.empirical_cross_class_readiness import build_empirical_cross_class_readiness_report
-from deckseer.empirical_draft import build_empirical_draft_report
-from deckseer.empirical_promotion import build_empirical_promotion_report
-from deckseer.empirical_worksheet import build_empirical_worksheet_fill_report, build_empirical_worksheet_report
 from deckseer.models import DeckseerError
-from deckseer.rendering import (
-    render_empirical_capture_guide,
-    render_empirical_capture_packet,
-    render_empirical_capture_packet_apply,
-    render_empirical_cross_class_capture_packet,
-    render_empirical_cross_class_capture_packet_apply,
-    render_empirical_cross_class_promotion_preview,
-    render_empirical_cross_class_readiness,
-    render_empirical_draft,
-    render_empirical_promotion,
-    render_empirical_worksheet,
-    render_empirical_worksheet_fill,
-)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -52,113 +27,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     try:
-        if args.command == "empirical-capture-guide":
-            worksheet_path = Path(args.worksheet) if args.worksheet else None
-            report = build_empirical_capture_guide(args.character, data_dir=Path(args.data_dir), worksheet_path=worksheet_path)
-            print(render_empirical_capture_guide(report, args.format))
-            return 0
-        if args.command == "empirical-capture-packet":
-            report = build_empirical_capture_packet(Path(args.worksheet_json))
-            print(render_empirical_capture_packet(report, args.format))
-            return 0
-        if args.command == "empirical-cross-class-capture-packet":
-            report = build_empirical_cross_class_capture_packet(Path(args.data_dir))
-            print(render_empirical_cross_class_capture_packet(report, args.format))
-            return 0
-        if args.command == "empirical-cross-class-apply-packet":
-            data = DeckseerData.load(Path(args.data_dir))
-            report = build_empirical_cross_class_apply_packet_report(
-                data,
-                Path(args.packet_json),
-                write=args.write,
-            )
-            print(render_empirical_cross_class_capture_packet_apply(report, args.format))
-            return 0
-        if args.command == "empirical-cross-class-readiness":
-            data_dir = Path(args.data_dir)
-            data = DeckseerData.load(data_dir)
-            report = build_empirical_cross_class_readiness_report(
-                data,
-                data_dir=data_dir,
-                min_sample_size=args.min_sample_size,
-            )
-            print(render_empirical_cross_class_readiness(report, args.format))
-            return 0 if report["status"] != "fail" else 1
-        if args.command == "empirical-cross-class-promotion-preview":
-            data_dir = Path(args.data_dir)
-            data = DeckseerData.load(data_dir)
-            report = build_empirical_cross_class_promotion_preview_report(
-                data,
-                data_dir=data_dir,
-                min_sample_size=args.min_sample_size,
-            )
-            print(render_empirical_cross_class_promotion_preview(report, args.format))
-            return 0 if report["status"] != "fail" else 1
-        if args.command == "empirical-worksheet-apply-packet":
-            data = DeckseerData.load(Path(args.data_dir))
-            report = build_empirical_capture_packet_apply_report(
-                data,
-                Path(args.packet_json),
-                worksheet_path=Path(args.worksheet),
-                write=args.write,
-            )
-            print(render_empirical_capture_packet_apply(report, args.format))
-            return 0
-        if args.command == "empirical-draft-check":
-            data = DeckseerData.load(Path(args.data_dir))
-            report = build_empirical_draft_report(data, Path(args.draft_json), min_sample_size=args.min_sample_size)
-            print(render_empirical_draft(report, args.format))
-            if args.fail_on_review and report["status"] == "review":
-                return 1
-            return 0
-        if args.command == "empirical-worksheet-check":
-            report = build_empirical_worksheet_report(Path(args.worksheet_json))
-            print(render_empirical_worksheet(report, args.format))
-            if args.fail_on_incomplete and not report["summary"]["ready_for_draft_check"]:
-                return 1
-            return 0
-        if args.command == "empirical-worksheet-fill":
-            data = DeckseerData.load(Path(args.data_dir))
-            updates = {
-                "patch": args.patch,
-                "sample_size": args.sample_size,
-                "pick_rate": args.pick_rate,
-                "win_rate": args.win_rate,
-                "impact": args.impact,
-                "captured_at": args.captured_at,
-                "stat_definition": args.stat_definition,
-                "reviewer_notes": args.reviewer_notes,
-                "source_url": args.source_url,
-                "act": args.act,
-                "ascension": args.ascension,
-                "review_status": args.review_status,
-            }
-            report = build_empirical_worksheet_fill_report(
-                data,
-                Path(args.worksheet_json),
-                entry_id=args.entry_id,
-                updates=updates,
-                write=args.write,
-            )
-            print(render_empirical_worksheet_fill(report, args.format))
-            return 0
-        if args.command == "empirical-promote-draft":
-            data_dir = Path(args.data_dir)
-            data = DeckseerData.load(data_dir)
-            report = build_empirical_promotion_report(
-                data,
-                Path(args.draft_json),
-                output_path=Path(args.output),
-                data_dir=data_dir,
-                write=args.write,
-                replace=args.replace,
-                allow_review_flags=args.allow_review_flags,
-                min_sample_size=args.min_sample_size,
-            )
-            print(render_empirical_promotion(report, args.format))
-            if report["status"] == "review" and not report["wrote_file"]:
-                return 1
-            return 0
         data_status = handle_data_command(args)
         if data_status is not None:
             return data_status
@@ -168,6 +36,9 @@ def main(argv: list[str] | None = None) -> int:
         empirical_overview_status = handle_empirical_overview_command(args)
         if empirical_overview_status is not None:
             return empirical_overview_status
+        empirical_workflow_status = handle_empirical_workflow_command(args)
+        if empirical_workflow_status is not None:
+            return empirical_workflow_status
         review_status = handle_review_command(args)
         if review_status is not None:
             return review_status
@@ -198,108 +69,7 @@ def _build_parser() -> argparse.ArgumentParser:
     register_accuracy_report_command(subparsers)
 
     register_empirical_overview_commands(subparsers)
-
-    empirical_capture_guide = subparsers.add_parser("empirical-capture-guide", help="Print manual empirical capture instructions for a worksheet batch.")
-    empirical_capture_guide.add_argument("--character", required=True, help="Character guide to show. Currently supports necrobinder.")
-    empirical_capture_guide.add_argument("--worksheet", help="Optional empirical worksheet JSON file. Defaults to the Necrobinder capture batch.")
-    empirical_capture_guide.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_capture_guide.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-
-    empirical_capture_packet = subparsers.add_parser("empirical-capture-packet", help="Generate a manual fill-in packet from an empirical worksheet.")
-    empirical_capture_packet.add_argument("worksheet_json", help="Path to an empirical_stat_draft worksheet JSON file.")
-    empirical_capture_packet.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-
-    empirical_cross_capture_packet = subparsers.add_parser(
-        "empirical-cross-class-capture-packet",
-        help="Generate one manual fill-in packet for Ironclad, Silent, Defect, and Regent worksheets.",
-    )
-    empirical_cross_capture_packet.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_cross_capture_packet.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-
-    empirical_cross_apply_packet = subparsers.add_parser(
-        "empirical-cross-class-apply-packet",
-        help="Preview or write a filled cross-class empirical capture packet into its worksheets.",
-    )
-    empirical_cross_apply_packet.add_argument("packet_json", help="Path to an empirical_cross_class_capture_packet JSON file.")
-    empirical_cross_apply_packet.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_cross_apply_packet.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-    empirical_cross_apply_packet.add_argument("--write", action="store_true", help="Write updated worksheets. Defaults to preview only.")
-
-    empirical_cross_readiness = subparsers.add_parser(
-        "empirical-cross-class-readiness",
-        help="Review cross-class empirical worksheets before strict draft checks or promotion.",
-    )
-    empirical_cross_readiness.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_cross_readiness.add_argument("--min-sample-size", type=int, default=300, help="Minimum sample size before empirical conflict flags are trusted.")
-    empirical_cross_readiness.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-
-    empirical_cross_promotion_preview = subparsers.add_parser(
-        "empirical-cross-class-promotion-preview",
-        help="Preview active empirical promotion outputs for cross-class worksheets without writing files.",
-    )
-    empirical_cross_promotion_preview.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_cross_promotion_preview.add_argument("--min-sample-size", type=int, default=300, help="Minimum sample size before empirical conflict flags are trusted.")
-    empirical_cross_promotion_preview.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-
-    empirical_apply_packet = subparsers.add_parser(
-        "empirical-worksheet-apply-packet",
-        help="Preview or write a filled empirical capture packet into a worksheet.",
-    )
-    empirical_apply_packet.add_argument("packet_json", help="Path to an empirical_capture_packet JSON file.")
-    empirical_apply_packet.add_argument("--worksheet", required=True, help="Target empirical worksheet JSON file.")
-    empirical_apply_packet.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_apply_packet.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-    empirical_apply_packet.add_argument("--write", action="store_true", help="Write the updated worksheet. Defaults to preview only.")
-
-    empirical_draft = subparsers.add_parser("empirical-draft-check", help="Validate manually captured empirical stat drafts before promotion.")
-    empirical_draft.add_argument("draft_json", help="Path to an empirical_stat_draft JSON file.")
-    empirical_draft.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_draft.add_argument("--min-sample-size", type=int, default=300, help="Minimum sample size before empirical conflict flags are trusted.")
-    empirical_draft.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-    empirical_draft.add_argument("--fail-on-review", action="store_true", help="Exit with status 1 when the draft is valid but needs review.")
-
-    empirical_worksheet = subparsers.add_parser(
-        "empirical-worksheet-check",
-        help="Review incomplete empirical capture worksheets without promoting them.",
-    )
-    empirical_worksheet.add_argument("worksheet_json", help="Path to an empirical_stat_draft worksheet JSON file.")
-    empirical_worksheet.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-    empirical_worksheet.add_argument("--fail-on-incomplete", action="store_true", help="Exit with status 1 when worksheet entries still have null or missing fields.")
-
-    empirical_worksheet_fill = subparsers.add_parser(
-        "empirical-worksheet-fill",
-        help="Preview or write field updates for one empirical capture worksheet row.",
-    )
-    empirical_worksheet_fill.add_argument("worksheet_json", help="Path to an empirical_stat_draft worksheet JSON file.")
-    empirical_worksheet_fill.add_argument("--entry-id", help="Worksheet entry id to update.")
-    empirical_worksheet_fill.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_worksheet_fill.add_argument("--patch", help="Observed game patch for the empirical row.")
-    empirical_worksheet_fill.add_argument("--sample-size", type=int, help="Exact observed sample size.")
-    empirical_worksheet_fill.add_argument("--pick-rate", type=float, help="Exact observed pick rate.")
-    empirical_worksheet_fill.add_argument("--win-rate", type=float, help="Exact observed win rate.")
-    empirical_worksheet_fill.add_argument("--impact", type=float, help="Exact observed impact value.")
-    empirical_worksheet_fill.add_argument("--captured-at", help="Capture date, for example 2026-05-23.")
-    empirical_worksheet_fill.add_argument("--stat-definition", help="Definition of the copied empirical metric and filters.")
-    empirical_worksheet_fill.add_argument("--reviewer-notes", help="Reviewer notes, filters, page context, or caveats.")
-    empirical_worksheet_fill.add_argument("--source-url", help="Specific source URL for the copied row.")
-    empirical_worksheet_fill.add_argument("--act", help="Act filter used by the source, or all.")
-    empirical_worksheet_fill.add_argument("--ascension", help="Ascension filter used by the source, or all.")
-    empirical_worksheet_fill.add_argument("--review-status", choices=("proposed", "accepted", "rejected"), help="Review status for the draft row.")
-    empirical_worksheet_fill.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-    empirical_worksheet_fill.add_argument("--write", action="store_true", help="Write the updated worksheet. Defaults to preview only.")
-
-    empirical_promote = subparsers.add_parser(
-        "empirical-promote-draft",
-        help="Preview or explicitly write active empirical stats from a promotion-ready draft.",
-    )
-    empirical_promote.add_argument("draft_json", help="Path to an empirical_stat_draft JSON file.")
-    empirical_promote.add_argument("--output", required=True, help="Output path under data/empirical for the active empirical JSON file.")
-    empirical_promote.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    empirical_promote.add_argument("--min-sample-size", type=int, default=300, help="Minimum sample size before empirical conflict flags are trusted.")
-    empirical_promote.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-    empirical_promote.add_argument("--write", action="store_true", help="Write the promoted empirical JSON file. Defaults to preview only.")
-    empirical_promote.add_argument("--replace", action="store_true", help="Allow --write to replace an existing empirical JSON file.")
-    empirical_promote.add_argument("--allow-review-flags", action="store_true", help="Allow --write to activate reviewed rows that produce audit review flags.")
+    register_empirical_workflow_commands(subparsers)
 
     register_run_state_commands(subparsers)
     register_check_runs_command(subparsers)

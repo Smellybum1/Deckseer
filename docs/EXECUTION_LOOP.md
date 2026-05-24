@@ -46,15 +46,17 @@ Completed:
 - Fifth CLI decomposition slice: review report command handling and registration now live in `src/deckseer/cli_review.py`, preserving `accuracy-report` and `audit-card-priors`.
 - Sixth CLI decomposition slice: project QA command handling, batch run checks, and shared run-path helpers now live in `src/deckseer/cli_qa.py`, preserving `qa`, `qa-baseline`, and `check-runs`.
 - Seventh CLI decomposition slice: read-only empirical overview command handling and registration now live in `src/deckseer/cli_empirical_overview.py`, preserving `empirical-coverage`, `empirical-intake`, `empirical-triage-report`, and `empirical-current-patch-review`.
+- Eighth CLI decomposition slice: empirical worksheet, capture packet, cross-class readiness, and draft promotion command handling now live in `src/deckseer/cli_empirical_workflow.py`, preserving preview/write behavior and public CLI output.
+- Large CLI dispatcher decomposition is complete for the current roadmap; `src/deckseer/cli.py` should remain a thin public entrypoint and command-order facade.
 
-### 1. Decompose The Large CLI Dispatcher
+### 1. Empirical Intake Cleanup
 
-- Impact: high; `src/deckseer/cli.py` is large enough to slow future autonomous changes.
-- Risk: medium; output text and exit-code regressions are possible.
-- Dependencies: current full test suite.
-- Likely files: `src/deckseer/cli.py`, new CLI submodules.
-- Validation: full `pytest`; smoke commands for exporter, QA, empirical, and recommendation paths.
-- Effort: medium.
+- Impact: medium; removes stale proposed intake and clarifies next data capture.
+- Risk: low to medium; must not fabricate stats or change scoring.
+- Dependencies: manual source review if promoting rows.
+- Likely files: `data/empirical/intake_queue.json`, empirical docs, draft worksheets if new rows are captured.
+- Validation: `empirical-intake`, `empirical-coverage`, `empirical-triage-report`, QA.
+- Effort: small to medium.
 
 ### 2. Static Exporter Mod Spike
 
@@ -83,16 +85,7 @@ Completed:
 - Validation: `accuracy-report --format text`, `qa --check-accuracy`, full pytest.
 - Effort: medium.
 
-### 5. Empirical Intake Cleanup
-
-- Impact: medium; removes stale proposed intake and clarifies next data capture.
-- Risk: low to medium; must not fabricate stats or change scoring.
-- Dependencies: manual source review if promoting rows.
-- Likely files: `data/empirical/intake_queue.json`, empirical docs, draft worksheets if new rows are captured.
-- Validation: `empirical-intake`, `empirical-coverage`, `empirical-triage-report`, QA.
-- Effort: small to medium.
-
-### 6. Relic/Potion Advice Design Packet
+### 5. Relic/Potion Advice Design Packet
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
@@ -101,7 +94,7 @@ Completed:
 - Validation: docs-only first; later focused fixtures and CLI smoke tests.
 - Effort: medium.
 
-### 7. Vision State Extractor Design Packet
+### 6. Vision State Extractor Design Packet
 
 - Impact: medium; useful fallback if exporter tooling remains blocked.
 - Risk: medium-high; OCR/capture can invite complexity and UX ambiguity.
