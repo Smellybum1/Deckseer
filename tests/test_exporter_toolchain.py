@@ -58,7 +58,7 @@ def test_exporter_toolchain_preflight_reports_missing_game(tmp_path: Path) -> No
 
 
 def test_exporter_toolchain_preflight_cli_text_smoke(monkeypatch, capsys) -> None:
-    monkeypatch.setattr("deckseer.cli.build_exporter_toolchain_preflight", lambda **_kwargs: _fake_report())
+    monkeypatch.setattr("deckseer.cli_exporter.build_exporter_toolchain_preflight", lambda **_kwargs: _fake_report())
 
     status = main(["exporter-toolchain-preflight", "--format", "text"])
 
@@ -70,7 +70,7 @@ def test_exporter_toolchain_preflight_cli_text_smoke(monkeypatch, capsys) -> Non
 
 
 def test_exporter_toolchain_preflight_cli_json_smoke(monkeypatch, capsys) -> None:
-    monkeypatch.setattr("deckseer.cli.build_exporter_toolchain_preflight", lambda **_kwargs: _fake_report())
+    monkeypatch.setattr("deckseer.cli_exporter.build_exporter_toolchain_preflight", lambda **_kwargs: _fake_report())
 
     status = main(["exporter-toolchain-preflight", "--format", "json"])
 

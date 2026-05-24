@@ -7,6 +7,11 @@ import sys
 
 from deckseer.accuracy import build_accuracy_report
 from deckseer.catalog import list_cards
+from deckseer.cli_exporter import (
+    handle_exporter_command,
+    register_exporter_inspection_commands,
+    register_exporter_recommendation_commands,
+)
 from deckseer.current_state import load_manual_card_reward_state
 from deckseer.data_loader import DeckseerData
 from deckseer.data_summary import build_data_health, build_data_review, build_data_summary
@@ -26,10 +31,8 @@ from deckseer.empirical_intake import build_empirical_intake_report
 from deckseer.empirical_promotion import build_empirical_promotion_report
 from deckseer.empirical_triage import build_empirical_triage_report
 from deckseer.empirical_worksheet import build_empirical_worksheet_fill_report, build_empirical_worksheet_report
-from deckseer.exporter_toolchain import build_exporter_toolchain_preflight
-from deckseer.models import DeckseerError, ValidationError
+from deckseer.models import DeckseerError
 from deckseer.audit.card_priors import audit_card_priors, load_empirical_card_stats
-from deckseer.importers.exporter_state import inspect_exporter_state, load_exporter_state
 from deckseer.importers.sts2_save import load_sts2_run
 from deckseer.normalization import normalize_run_file, write_normalized_payload
 from deckseer.qa import (
@@ -61,7 +64,6 @@ from deckseer.rendering import (
     render_empirical_triage,
     render_empirical_worksheet,
     render_empirical_worksheet_fill,
-    render_exporter_toolchain_preflight,
     render_project_qa,
     render_recommendation,
 )
@@ -344,18 +346,6 @@ def main(argv: list[str] | None = None) -> int:
             imported = load_sts2_run(Path(args.save_json), player_index=args.player_index)
             print(json.dumps(imported.to_summary_dict(), indent=2))
             return 0
-        if args.command == "inspect-export":
-            exported = inspect_exporter_state(Path(args.export_json))
-            print(json.dumps(exported.to_summary_dict(), indent=2))
-            return 0
-        if args.command == "exporter-toolchain-preflight":
-            report = build_exporter_toolchain_preflight(
-                sts2_install_path=Path(args.sts2_install),
-                steam_manifest_path=Path(args.steam_manifest),
-                export_dir=Path(args.export_dir) if args.export_dir else None,
-            )
-            print(render_exporter_toolchain_preflight(report, args.format))
-            return 0
         if args.command == "import-run":
             imported = load_sts2_run(Path(args.save_json), player_index=args.player_index)
             payload = imported.to_recommendation_input(
@@ -385,19 +375,9 @@ def main(argv: list[str] | None = None) -> int:
             diagnosis = diagnose_run_state(run, data) if args.include_diagnosis else None
             print(render_recommendation(result, args.format, diagnosis=diagnosis))
             return 0
-        if args.command == "recommend-export":
-            exported = load_exporter_state(Path(args.export_json))
-            if exported.metadata.get("requires_user_confirmation") is True and not args.confirmed:
-                raise ValidationError(
-                    "exporter state requires user confirmation; run inspect-export, verify the visible state, "
-                    "then rerun recommend-export with --confirmed"
-                )
-            run = exported.current_state.to_run_state()
-            data = DeckseerData.load(Path(args.data_dir))
-            result = recommend_card_reward(run, data)
-            diagnosis = diagnose_run_state(run, data) if args.include_diagnosis else None
-            print(render_recommendation(result, args.format, diagnosis=diagnosis))
-            return 0
+        exporter_status = handle_exporter_command(args)
+        if exporter_status is not None:
+            return exporter_status
         parser.error("missing command")
     except DeckseerError as exc:
         print(f"deckseer: {exc}", file=sys.stderr)
@@ -642,28 +622,7 @@ def _build_parser() -> argparse.ArgumentParser:
     inspect_save.add_argument("save_json", help="Path to a Slay the Spire 2 .run JSON file.")
     inspect_save.add_argument("--player-index", type=int, default=0, help="Player index for multi-player run files. Defaults to 0.")
 
-    inspect_export = subparsers.add_parser("inspect-export", help="Summarize a Deckseer Exporter JSON state file.")
-    inspect_export.add_argument("export_json", help="Path to a Deckseer Exporter latest_state.json file.")
-
-    exporter_preflight = subparsers.add_parser(
-        "exporter-toolchain-preflight",
-        help="Read-only readiness report for the future static Deckseer Exporter mod spike.",
-    )
-    exporter_preflight.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-    exporter_preflight.add_argument(
-        "--sts2-install",
-        default=r"D:\Games\Steam\steamapps\common\Slay the Spire 2",
-        help="Slay the Spire 2 install path. Defaults to the documented local Steam install path.",
-    )
-    exporter_preflight.add_argument(
-        "--steam-manifest",
-        default=r"D:\Games\Steam\steamapps\appmanifest_2868840.acf",
-        help="Steam app manifest path. Defaults to the documented local STS2 manifest path.",
-    )
-    exporter_preflight.add_argument(
-        "--export-dir",
-        help="Expected Deckseer exporter output directory. Defaults to %%LOCALAPPDATA%%\\Deckseer\\exports.",
-    )
+    register_exporter_inspection_commands(subparsers)
 
     import_run = subparsers.add_parser("import-run", help="Create a Deckseer recommendation JSON draft from a run-history save.")
     import_run.add_argument("save_json", help="Path to a Slay the Spire 2 .run JSON file.")
@@ -687,12 +646,7 @@ def _build_parser() -> argparse.ArgumentParser:
     recommend_save.add_argument("--format", choices=("json", "text", "markdown"), default="json", help="Output format. Defaults to json.")
     recommend_save.add_argument("--include-diagnosis", action="store_true", help="Include deck profile and prioritized run needs with the recommendation.")
 
-    recommend_export = subparsers.add_parser("recommend-export", help="Rank card rewards from a Deckseer Exporter JSON state file.")
-    recommend_export.add_argument("export_json", help="Path to a Deckseer Exporter latest_state.json file.")
-    recommend_export.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    recommend_export.add_argument("--format", choices=("json", "text", "markdown"), default="json", help="Output format. Defaults to json.")
-    recommend_export.add_argument("--include-diagnosis", action="store_true", help="Include deck profile and prioritized run needs with the recommendation.")
-    recommend_export.add_argument("--confirmed", action="store_true", help="Confirm that you reviewed the exported visible state before recommendation.")
+    register_exporter_recommendation_commands(subparsers)
     return parser
 
 

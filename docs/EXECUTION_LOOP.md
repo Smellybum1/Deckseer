@@ -39,6 +39,7 @@ At the start of each run:
 Completed:
 
 - Read-only `exporter-toolchain-preflight` CLI command for repeatable local exporter readiness checks. The expected current state is `blocked_missing_toolchain` until `.NET SDK`, STS2 templates, and Megadot/Godot are visible.
+- First CLI decomposition slice: exporter command handling and registration now live in `src/deckseer/cli_exporter.py`, with `src/deckseer/cli.py` still preserving the public entrypoint.
 
 ### 1. Decompose The Large CLI Dispatcher
 
