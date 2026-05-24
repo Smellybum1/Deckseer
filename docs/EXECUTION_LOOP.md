@@ -45,6 +45,7 @@ Completed:
 - Fourth CLI decomposition slice: catalog/data command handling and registration now live in `src/deckseer/cli_data.py`, preserving `list-cards`, `data-summary`, `data-review`, and `data-health`.
 - Fifth CLI decomposition slice: review report command handling and registration now live in `src/deckseer/cli_review.py`, preserving `accuracy-report` and `audit-card-priors`.
 - Sixth CLI decomposition slice: project QA command handling, batch run checks, and shared run-path helpers now live in `src/deckseer/cli_qa.py`, preserving `qa`, `qa-baseline`, and `check-runs`.
+- Seventh CLI decomposition slice: read-only empirical overview command handling and registration now live in `src/deckseer/cli_empirical_overview.py`, preserving `empirical-coverage`, `empirical-intake`, `empirical-triage-report`, and `empirical-current-patch-review`.
 
 ### 1. Decompose The Large CLI Dispatcher
 
