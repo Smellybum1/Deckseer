@@ -50,6 +50,7 @@ Completed:
 - Large CLI dispatcher decomposition is complete for the current roadmap; `src/deckseer/cli.py` should remain a thin public entrypoint and command-order facade.
 - Empirical intake cleanup: the stale initial Necrobinder proposed intake note is closed as superseded by reviewed promoted rows, and `empirical-intake` now reflects no pending proposed source-review work.
 - Accuracy scenario intake readiness: `docs/ACCURACY_SCENARIO_INTAKE.md` now defines the evidence checklist, fixture template, review steps, and acceptance rules for future real-run scenario expansion.
+- Advice module decision brief: `docs/ADVICE_MODULES_DECISION_BRIEF.md` now compares relic choice, potion usage, pathing, and combat planning, and recommends relic choice as the lowest-risk first broader advice target after explicit approval.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -87,6 +88,7 @@ Completed:
 - Likely files: design docs first; later `data/relics`, `data/potions`, and advice modules.
 - Validation: docs-only first; later focused fixtures and CLI smoke tests.
 - Effort: medium.
+- Status: blocked pending explicit product-direction choice for the first broader advice surface.
 
 ### 5. Vision State Extractor Design Packet
 
