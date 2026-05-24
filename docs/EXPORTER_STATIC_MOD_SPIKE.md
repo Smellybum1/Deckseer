@@ -90,4 +90,4 @@ Still forbidden:
 
 ## Next Packet
 
-The next exporter packet should be a design/readiness pass for card reward export from safe normal mod-accessible APIs. It should identify the exact game APIs for visible screen type, character, act/floor, HP, gold, deck, relics, potions, and current reward choices before exporting any live run state.
+The card reward API recon packet is complete in `docs/EXPORTER_CARD_REWARD_API_RECON.md`. The next exporter packet should be a compile-time or diagnostic-only probe against the identified public reward/run-state surfaces before exporting any live card reward state.

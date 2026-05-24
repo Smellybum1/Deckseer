@@ -299,11 +299,11 @@ Implemented sources:
 
 Planned sources:
 
-- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The static status spike lives under `exporter_mod/DeckseerExporter` and is documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`. It writes only `screen_type: "exporter_status"`; card reward and relic reward live-state export are not implemented yet.
+- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The static status spike lives under `exporter_mod/DeckseerExporter` and is documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`. The card reward API recon lives in `docs/EXPORTER_CARD_REWARD_API_RECON.md`. The mod currently writes only `screen_type: "exporter_status"`; card reward and relic reward live-state export are not implemented yet.
 - **Vision State Extractor**: screenshot/OCR fallback or complement when an exporter mod is unavailable, unwanted, or unreliable.
 
 Source metadata and caveats stay outside the scorer. The recommendation engine receives the same validated card reward payload regardless of where the state came from.
-Exporter mod implementation readiness notes live in `docs/EXPORTER_MOD_SURFACE_REVIEW.md`; the first in-game spike should write only `screen_type: "exporter_status"`.
+Exporter mod implementation readiness notes live in `docs/EXPORTER_MOD_SURFACE_REVIEW.md`; the first in-game spike writes only `screen_type: "exporter_status"`, and card reward API recon is documented before live reward export begins.
 
 ## Input Shape
 
@@ -530,9 +530,11 @@ Exporter milestone breakdown:
 
 - **Exporter 1: Modding Surface Research**: use `docs/EXPORTER_MOD_DESIGN.md` as the boundary and contract, then document how STS2 mods are packaged, loaded, and allowed to access current run state. Confirm whether a read-only exporter is viable before writing mod code.
 - **Exporter 2: Static JSON Export Spike**: implemented. The local companion mod writes a harmless `screen_type: "exporter_status"` JSON file only.
-- **Exporter 3: Card Reward Export**: export visible/current card reward state, character, act, floor, HP, gold, deck, relics, and potions into Deckseer's existing input shape.
-- **Exporter 4: Deckseer Watch Mode**: add an optional Deckseer CLI mode that reads the latest exported JSON and prints recommendations after user confirmation.
-- **Exporter 5: Broader Decision Export**: extend exported state for relic choices, potion choices, pathing, shop, combat basics, and other advisor modules as they are added.
+- **Exporter 3: Card Reward API Recon**: completed. `docs/EXPORTER_CARD_REWARD_API_RECON.md` identifies likely public STS2 reward/run-state surfaces from local metadata before live export.
+- **Exporter 4: Card Reward Compile Probe**: next. Compile or log diagnostic availability for the identified APIs while continuing to write only status/diagnostic JSON.
+- **Exporter 5: Card Reward Export**: export visible/current card reward state, character, act, floor, HP, gold, deck, relics, and potions into Deckseer's existing input shape.
+- **Exporter 6: Deckseer Watch Mode**: add an optional Deckseer CLI mode that reads the latest exported JSON and prints recommendations after user confirmation.
+- **Exporter 7: Broader Decision Export**: extend exported state for relic choices, potion choices, pathing, shop, combat basics, and other advisor modules as they are added.
 
 ### Future Milestone: Vision State Extractor
 

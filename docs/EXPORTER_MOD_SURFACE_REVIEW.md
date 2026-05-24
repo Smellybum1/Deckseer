@@ -4,6 +4,7 @@ This review prepared the first Deckseer Exporter packet: a static, harmless Slay
 
 See `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` for local Windows install, mod-folder, log-folder, and toolchain findings before attempting the static spike.
 See `docs/EXPORTER_STATIC_MOD_SPIKE.md` for the accepted static mod result.
+See `docs/EXPORTER_CARD_REWARD_API_RECON.md` for the current card reward API recon before attempting live reward export.
 
 ## Source Snapshot
 
@@ -120,4 +121,4 @@ Forbidden:
 
 ## Next Handoff
 
-The next implementation packet should be named **Exporter Card Reward API Recon**. It should identify safe normal mod-accessible APIs for visible card reward state before writing any live card reward export. Card reward export starts only after that API surface is understood and documented.
+The card reward API recon packet is complete. The next implementation packet should be named **Exporter Card Reward Compile Probe**. It should compile or log only diagnostic availability for the identified candidate APIs before writing any live card reward export.

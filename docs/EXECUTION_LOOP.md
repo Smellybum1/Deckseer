@@ -61,6 +61,7 @@ Completed:
 - Relic choice regression manifest packet: `relic-accuracy-report` checks three accepted Relic Choice V1 scenarios before relic metadata expands further.
 - Relic metadata expansion readiness packet: `docs/RELIC_METADATA_EXPANSION_READINESS.md` defines the safe intake workflow for future tiny reviewed relic batches without changing data yet.
 - Exporter static mod spike: `exporter_mod/DeckseerExporter` now builds a local STS2 mod that writes only `screen_type: "exporter_status"` JSON, and the real mod-written file passes `inspect-export`.
+- Exporter card reward API recon: `docs/EXPORTER_CARD_REWARD_API_RECON.md` documents likely public reward, run-state, save-like, and hook surfaces from local `sts2.dll` metadata without implementing live export.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -72,16 +73,26 @@ Completed:
 - Effort: medium.
 - Status: blocked until a reviewed real-run state and expected top choice are available.
 
-### 2. Exporter Card Reward Contract Spike
+### 2. Exporter Card Reward Compile Probe
+
+- Impact: high; proves the recon candidates compile against the current local STS2 API before any live export.
+- Risk: medium; still touches C# mod source, but should remain diagnostic-only.
+- Dependencies: static exporter spike passing and `docs/EXPORTER_CARD_REWARD_API_RECON.md`.
+- Likely files: exporter mod source and exporter docs.
+- Validation: `dotnet build`, real static status export still passes `inspect-export`, full QA.
+- Effort: small to medium.
+- Guardrail: do not emit live card reward choices yet; write only status/diagnostic metadata if runtime output changes.
+
+### 3. Exporter Card Reward Contract Spike
 
 - Impact: high; first real low-friction recommendation input.
-- Risk: high; needs safe mod APIs and stable card ID mapping.
-- Dependencies: static exporter spike passing.
+- Risk: high; needs the compile probe to confirm safe APIs and stable card ID mapping.
+- Dependencies: Exporter Card Reward Compile Probe.
 - Likely files: exporter mod source, exporter docs, exporter fixtures/tests if contract gaps appear.
 - Validation: `inspect-export`, `recommend-export --confirmed`, scenario winners unchanged, full QA.
 - Effort: large.
 
-### 3. Relic/Potion Advice Design Packet
+### 4. Relic/Potion Advice Design Packet
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
@@ -91,7 +102,7 @@ Completed:
 - Effort: medium.
 - Status: readiness complete; next data-changing packet is blocked until a tiny reviewed relic candidate batch is available.
 
-### 4. Vision State Extractor Design Packet
+### 5. Vision State Extractor Design Packet
 
 - Impact: medium; useful fallback if exporter tooling remains blocked.
 - Risk: medium-high; OCR/capture can invite complexity and UX ambiguity.
