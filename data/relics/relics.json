@@ -2,16 +2,37 @@
   {
     "id": "burning_blood",
     "name": "Burning Blood",
-    "tags": ["sustain", "hp"]
+    "tags": ["sustain", "hp"],
+    "roles": ["sustain"],
+    "quality_prior": 3.0,
+    "pick_context": ["low_hp", "long_act"],
+    "source_patch": "deckseer_relic_seed_v1",
+    "source_notes": [
+      "Deckseer Relic Choice V1 seed: sustain relic; simplified metadata for planning only, not exact trigger simulation."
+    ]
   },
   {
     "id": "akabeko",
     "name": "Akabeko",
-    "tags": ["damage", "frontload"]
+    "tags": ["damage", "frontload"],
+    "roles": ["frontload"],
+    "quality_prior": 4.0,
+    "pick_context": ["early", "elite_prep", "attack_dense"],
+    "source_patch": "deckseer_relic_seed_v1",
+    "source_notes": [
+      "Deckseer Relic Choice V1 seed: immediate damage/frontload relic; simplified metadata for planning only, not exact trigger simulation."
+    ]
   },
   {
     "id": "kunai",
     "name": "Kunai",
-    "tags": ["attack", "dexterity", "block"]
+    "tags": ["attack", "dexterity", "block"],
+    "roles": ["defense", "scaling"],
+    "quality_prior": 4.0,
+    "pick_context": ["attack_dense", "skill_dense", "long_act"],
+    "source_patch": "deckseer_relic_seed_v1",
+    "source_notes": [
+      "Deckseer Relic Choice V1 seed: attack-density payoff that can improve block over longer fights; simplified metadata for planning only, not exact trigger simulation."
+    ]
   }
 ]

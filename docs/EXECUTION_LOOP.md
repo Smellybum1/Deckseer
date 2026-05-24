@@ -52,6 +52,7 @@ Completed:
 - Accuracy scenario intake readiness: `docs/ACCURACY_SCENARIO_INTAKE.md` now defines the evidence checklist, fixture template, review steps, and acceptance rules for future real-run scenario expansion.
 - Advice module decision brief: `docs/ADVICE_MODULES_DECISION_BRIEF.md` now compares relic choice, potion usage, pathing, and combat planning, and recommends relic choice as the lowest-risk first broader advice target after explicit approval.
 - Relic choice design packet: `docs/RELIC_CHOICE_DESIGN.md` now defines the proposed manual JSON input shape, output shape, metadata fields, scoring philosophy, confidence rules, validation plan, and stop rules without runtime changes.
+- Relic metadata seed packet: `docs/RELIC_METADATA_SEED_PLAN.md` documents the tiny V1 seed, and the existing three relic records now carry roles, weak priors, pick context, and source notes without changing card reward behavior.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -89,7 +90,7 @@ Completed:
 - Likely files: `data/relics`, relic metadata docs, and later advice modules.
 - Validation: data-health, focused relic metadata tests when code/data changes, and standard QA.
 - Effort: medium.
-- Status: relic choice design complete; next unblocked packet is a relic metadata seed plan.
+- Status: relic metadata seed plan complete; next unblocked packet is a private relic choice scorer.
 
 ### 5. Vision State Extractor Design Packet
 

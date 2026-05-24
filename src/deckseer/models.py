@@ -287,10 +287,28 @@ class TaggedData:
     id: str
     name: str
     tags: frozenset[str]
+    roles: frozenset[str] = frozenset()
+    quality_prior: float = 0
+    pick_context: frozenset[str] = frozenset()
+    source_patch: str | None = None
+    source_notes: tuple[str, ...] = ()
 
     @classmethod
     def from_dict(cls, raw: Any, source: str) -> "TaggedData":
         data = _require_mapping(raw, source)
+        item_id = data.get("id", source)
+        roles = frozenset(
+            _require_str(role, f"{item_id}.roles[{index}]")
+            for index, role in enumerate(_require_list(data.get("roles", []), f"{source}.roles"))
+        )
+        pick_context = frozenset(
+            _require_str(context, f"{item_id}.pick_context[{index}]")
+            for index, context in enumerate(_require_list(data.get("pick_context", []), f"{source}.pick_context"))
+        )
+        source_notes = tuple(
+            _require_str(note, f"{item_id}.source_notes[{index}]")
+            for index, note in enumerate(_require_list(data.get("source_notes", []), f"{source}.source_notes"))
+        )
         return cls(
             id=_require_str(data.get("id"), f"{source}.id"),
             name=_require_str(data.get("name"), f"{source}.name"),
@@ -298,6 +316,11 @@ class TaggedData:
                 _require_str(tag, f"{source}.tags[{index}]")
                 for index, tag in enumerate(_require_list(data.get("tags", []), f"{source}.tags"))
             ),
+            roles=roles,
+            quality_prior=_optional_number(data.get("quality_prior"), f"{source}.quality_prior"),
+            pick_context=pick_context,
+            source_patch=_optional_str(data.get("source_patch"), f"{source}.source_patch"),
+            source_notes=source_notes,
         )
 
 

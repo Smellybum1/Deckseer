@@ -195,7 +195,7 @@ Before a public CLI command exists:
 ## Proposed Packet Sequence
 
 1. **Design packet**: this document.
-2. **Metadata review packet**: define a tiny reviewed relic metadata seed plan without changing advice behavior.
+2. **Metadata review packet**: define a tiny reviewed relic metadata seed plan without changing advice behavior. Completed in `docs/RELIC_METADATA_SEED_PLAN.md`.
 3. **Private scorer packet**: implement a non-public relic choice scorer with tests and fixtures.
 4. **CLI packet**: add a public command such as `recommend-relic` only after scorer output is stable.
 5. **Exporter contract packet**: document `screen_type: "relic_reward"` only after manual relic advice works.
@@ -214,4 +214,4 @@ Stop and ask before:
 
 ## Recommended Next Packet
 
-The next implementation packet should be **Relic Metadata Seed Plan**: review the current sparse relic records, define the minimum metadata fields needed for V1, and propose two to five candidate relics for hand-curated expansion. That packet should still avoid runtime behavior changes unless explicitly approved.
+The next implementation packet should be **Private Scorer Packet**: implement a non-public relic choice scorer with focused tests and small fixtures. It should still avoid public CLI behavior until output wording, confidence, and caveats are stable.

@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from deckseer.data_loader import DeckseerData
-from deckseer.models import CardData, DataError, RunState, ValidationError
+from deckseer.models import CardData, DataError, RunState, TaggedData, ValidationError
 
 
 def test_run_state_loads_fixture() -> None:
@@ -231,3 +231,35 @@ def test_card_effects_support_extra_numeric_metadata() -> None:
     )
 
     assert card.effects.extra == {"poison": 5.0}
+
+
+def test_tagged_data_supports_relic_choice_metadata() -> None:
+    relic = TaggedData.from_dict(
+        {
+            "id": "test_relic",
+            "name": "Test Relic",
+            "tags": ["damage"],
+            "roles": ["frontload"],
+            "quality_prior": 3.5,
+            "pick_context": ["elite_prep"],
+            "source_patch": "deckseer_relic_seed_v1",
+            "source_notes": ["Reviewed seed note."],
+        },
+        "test_relic",
+    )
+
+    assert relic.roles == frozenset({"frontload"})
+    assert relic.quality_prior == 3.5
+    assert relic.pick_context == frozenset({"elite_prep"})
+    assert relic.source_patch == "deckseer_relic_seed_v1"
+    assert relic.source_notes == ("Reviewed seed note.",)
+
+
+def test_relic_seed_metadata_loads_for_relic_choice_v1() -> None:
+    data = DeckseerData.load(data_dir=Path("data"))
+
+    assert data.relics_by_id["burning_blood"].roles == frozenset({"sustain"})
+    assert data.relics_by_id["akabeko"].quality_prior == 4.0
+    assert {"early", "elite_prep", "attack_dense"}.issubset(data.relics_by_id["akabeko"].pick_context)
+    assert {"defense", "scaling"}.issubset(data.relics_by_id["kunai"].roles)
+    assert data.relics_by_id["kunai"].source_patch == "deckseer_relic_seed_v1"
