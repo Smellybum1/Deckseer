@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 from deckseer.accuracy import build_accuracy_report
-from deckseer.catalog import list_cards
+from deckseer.cli_data import handle_data_command, register_data_commands
 from deckseer.cli_exporter import (
     handle_exporter_command,
     register_exporter_inspection_commands,
@@ -19,7 +19,6 @@ from deckseer.cli_run_state import (
 )
 from deckseer.cli_save import handle_save_command, register_save_inspection_commands, register_save_recommendation_commands
 from deckseer.data_loader import DeckseerData
-from deckseer.data_summary import build_data_health, build_data_review, build_data_summary
 from deckseer.diagnostics import check_run_files_data_coverage
 from deckseer.empirical_coverage import build_empirical_coverage_report
 from deckseer.empirical_capture_guide import build_empirical_capture_guide
@@ -47,11 +46,7 @@ from deckseer.qa import (
 )
 from deckseer.rendering import (
     render_accuracy_report,
-    render_card_catalog,
     render_card_prior_audit,
-    render_data_health,
-    render_data_review,
-    render_data_summary,
     render_empirical_capture_guide,
     render_empirical_capture_packet,
     render_empirical_capture_packet_apply,
@@ -76,31 +71,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     try:
-        if args.command == "list-cards":
-            data = DeckseerData.load(Path(args.data_dir))
-            catalog = list_cards(data, character=args.character, query=args.query)
-            print(render_card_catalog(catalog, args.format))
-            return 0
-        if args.command == "data-summary":
-            data = DeckseerData.load(Path(args.data_dir))
-            print(
-                render_data_summary(
-                    build_data_summary(data, character=args.character),
-                    args.format,
-                    show_gap_ids=args.show_gap_ids,
-                    max_gap_ids=args.max_gap_ids,
-                )
-            )
-            return 0
-        if args.command == "data-review":
-            data = DeckseerData.load(Path(args.data_dir))
-            print(render_data_review(build_data_review(data, character=args.character, flag=args.flag), args.format))
-            return 0
-        if args.command == "data-health":
-            data = DeckseerData.load(Path(args.data_dir))
-            health = build_data_health(data, character=args.character)
-            print(render_data_health(health, args.format))
-            return 0 if health["status"] == "pass" else 1
         if args.command == "qa":
             data_dir = Path(args.data_dir)
             data = DeckseerData.load(data_dir)
@@ -319,6 +289,9 @@ def main(argv: list[str] | None = None) -> int:
             if args.fail_on_flags and result.to_dict()["summary"]["flags"] > 0:
                 return 1
             return 0
+        data_status = handle_data_command(args)
+        if data_status is not None:
+            return data_status
         save_status = handle_save_command(args)
         if save_status is not None:
             return save_status
@@ -340,29 +313,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="deckseer", description="Local decision-support coach for Slay the Spire 2.")
     subparsers = parser.add_subparsers(dest="command")
 
-    list_cards_parser = subparsers.add_parser("list-cards", help="Search Deckseer's local card catalog and show exact card IDs.")
-    list_cards_parser.add_argument("--character", help="Optional character filter, such as ironclad, silent, defect, necrobinder, or regent.")
-    list_cards_parser.add_argument("--query", help="Optional search across card id, name, roles, and tags.")
-    list_cards_parser.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    list_cards_parser.add_argument("--format", choices=("json", "text"), default="json", help="Output format. Defaults to json.")
-
-    data_summary = subparsers.add_parser("data-summary", help="Summarize local card/relic/potion data coverage and metadata gaps.")
-    data_summary.add_argument("--character", help="Optional character filter, such as ironclad, silent, defect, necrobinder, or regent.")
-    data_summary.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    data_summary.add_argument("--format", choices=("json", "text"), default="json", help="Output format. Defaults to json.")
-    data_summary.add_argument("--show-gap-ids", action="store_true", help="In text output, show example card IDs for metadata gaps.")
-    data_summary.add_argument("--max-gap-ids", type=int, default=12, help="Maximum IDs to show per metadata gap in text output. Defaults to 12.")
-
-    data_review = subparsers.add_parser("data-review", help="List cards behind data review flags with source metadata.")
-    data_review.add_argument("--character", help="Optional character filter, such as ironclad, silent, defect, necrobinder, or regent.")
-    data_review.add_argument("--flag", help="Optional review flag filter, such as attack_skill_cards_with_empty_direct_effects.")
-    data_review.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    data_review.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-
-    data_health = subparsers.add_parser("data-health", help="Pass/fail gate for catalog metadata and blocking review flags.")
-    data_health.add_argument("--character", help="Optional character filter, such as ironclad, silent, defect, necrobinder, or regent.")
-    data_health.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    data_health.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
+    register_data_commands(subparsers)
 
     qa = subparsers.add_parser("qa", help="Run project-native data health and empirical audit checks.")
     qa.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
