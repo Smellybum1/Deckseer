@@ -10,7 +10,7 @@ namespace DeckseerExporter.DeckseerExporterCode;
 public partial class MainFile : Node
 {
     public const string ModId = "DeckseerExporter";
-    private const string ExporterVersion = "0.1.0";
+    private const string ExporterVersion = "0.2.0";
 
     public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } = new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
 
@@ -50,7 +50,14 @@ public partial class MainFile : Node
                         caveats = new[]
                         {
                             "Static exporter status only; no live run state is present.",
-                            "Game patch/build metadata is not exported in the first static spike."
+                            "Game patch/build metadata is not exported in this diagnostic spike.",
+                            "Card reward API probe compiled against public STS2 reward/run-state symbols, but no live reward data is exported."
+                        },
+                        diagnostics = new
+                        {
+                            card_reward_api_probe = CardRewardApiProbe.Status,
+                            verified_symbol_count = CardRewardApiProbe.VerifiedSymbolNames.Length,
+                            verified_symbols = CardRewardApiProbe.VerifiedSymbolNames
                         }
                     }
                 },

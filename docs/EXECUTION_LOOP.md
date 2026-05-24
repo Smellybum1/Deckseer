@@ -62,6 +62,7 @@ Completed:
 - Relic metadata expansion readiness packet: `docs/RELIC_METADATA_EXPANSION_READINESS.md` defines the safe intake workflow for future tiny reviewed relic batches without changing data yet.
 - Exporter static mod spike: `exporter_mod/DeckseerExporter` now builds a local STS2 mod that writes only `screen_type: "exporter_status"` JSON, and the real mod-written file passes `inspect-export`.
 - Exporter card reward API recon: `docs/EXPORTER_CARD_REWARD_API_RECON.md` documents likely public reward, run-state, save-like, and hook surfaces from local `sts2.dll` metadata without implementing live export.
+- Exporter card reward compile probe: `exporter_mod/DeckseerExporter/DeckseerExporterCode/CardRewardApiProbe.cs` verifies a narrower public API set and `docs/EXPORTER_CARD_REWARD_COMPILE_PROBE.md` records members that are metadata-visible but not public enough.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -73,21 +74,21 @@ Completed:
 - Effort: medium.
 - Status: blocked until a reviewed real-run state and expected top choice are available.
 
-### 2. Exporter Card Reward Compile Probe
+### 2. Exporter Status Diagnostic Install Check
 
-- Impact: high; proves the recon candidates compile against the current local STS2 API before any live export.
-- Risk: medium; still touches C# mod source, but should remain diagnostic-only.
-- Dependencies: static exporter spike passing and `docs/EXPORTER_CARD_REWARD_API_RECON.md`.
-- Likely files: exporter mod source and exporter docs.
-- Validation: `dotnet build`, real static status export still passes `inspect-export`, full QA.
-- Effort: small to medium.
-- Guardrail: do not emit live card reward choices yet; write only status/diagnostic metadata if runtime output changes.
+- Impact: high; verifies the `v0.2.0` diagnostic status build in the real game-written export file.
+- Risk: medium; modifies the local STS2 `mods/DeckseerExporter` package and requires a game relaunch.
+- Dependencies: explicit approval to update the local STS2 mod package.
+- Likely files: no repo source changes unless docs need observed-output updates.
+- Validation: install build to the STS2 mods folder, launch from Steam, accept Load Mods if prompted, inspect `%LOCALAPPDATA%\Deckseer\exports\latest_state.json`.
+- Effort: small.
+- Guardrail: still no live card reward export; status/diagnostic metadata only.
 
 ### 3. Exporter Card Reward Contract Spike
 
 - Impact: high; first real low-friction recommendation input.
-- Risk: high; needs the compile probe to confirm safe APIs and stable card ID mapping.
-- Dependencies: Exporter Card Reward Compile Probe.
+- Risk: high; needs visible-screen proof and stable card ID mapping before export.
+- Dependencies: Exporter Status Diagnostic Install Check or a repo-only Card Reward Visibility Design packet.
 - Likely files: exporter mod source, exporter docs, exporter fixtures/tests if contract gaps appear.
 - Validation: `inspect-export`, `recommend-export --confirmed`, scenario winners unchanged, full QA.
 - Effort: large.

@@ -6,6 +6,7 @@ The current mod is intentionally static and harmless:
 
 - writes `%LOCALAPPDATA%\Deckseer\exports\latest_state.json`
 - exports only `screen_type: "exporter_status"`
+- includes diagnostic compile-probe metadata for public card reward API symbols in version `v0.2.0`
 - does not read live run state, deck state, rewards, relics, potions, HP, gold, input, memory, screenshots, saves, or profiles
 - does not automate gameplay or control the game
 - sets `affects_gameplay: false`
@@ -19,6 +20,8 @@ dotnet build exporter_mod\DeckseerExporter\DeckseerExporter.csproj "/p:Sts2Path=
 ```
 
 `exporter_mod/local_mods/` is ignored by git and is only a local build target.
+
+The local build verifies the diagnostic compile probe without modifying the live STS2 install.
 
 ## Local Install
 
@@ -38,4 +41,4 @@ After the game reports that it is running modded with one loaded mod:
 deckseer inspect-export "$env:LOCALAPPDATA\Deckseer\exports\latest_state.json"
 ```
 
-The expected result is `valid: true`, `screen_type: "exporter_status"`, and `status: "ok"`.
+The expected result is `valid: true`, `screen_type: "exporter_status"`, and `status: "ok"`. Version `v0.2.0` also writes `export_metadata.diagnostics` with compile-probe symbol names; this remains status metadata only and is not live reward state.

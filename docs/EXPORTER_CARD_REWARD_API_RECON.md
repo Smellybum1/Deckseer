@@ -185,7 +185,7 @@ Do not use screen private fields as the first live export path. Keep them as a d
 
 ## Next Packet
 
-Recommended next packet: **Exporter Card Reward Compile Probe**.
+Recommended next packet from this recon was **Exporter Card Reward Compile Probe**. That follow-up is now complete; see `docs/EXPORTER_CARD_REWARD_COMPILE_PROBE.md`.
 
 Acceptance criteria:
 
@@ -203,6 +203,17 @@ Stop before implementing live card reward export if:
 - card IDs from reward objects differ from Deckseer's catalog IDs
 - calling `RunManager.ToSave()` or similar helpers appears to mutate state or perform file I/O
 - multiplayer or synchronizer APIs become necessary for single-player visible reward export
+
+## Compile Probe Follow-Up
+
+The compile probe is now documented in `docs/EXPORTER_CARD_REWARD_COMPILE_PROBE.md`. It confirmed that several metadata-visible members are not normal public C# API:
+
+- `RunManager.State`
+- `Reward.RewardType`
+- `CardReward.Options`
+- `NRewardButton.GetReward`
+
+Future exporter work should prefer the public symbols that compiled cleanly and avoid private/publicizer/reflection workarounds unless explicitly approved in a later packet.
 
 ## Verification Commands
 

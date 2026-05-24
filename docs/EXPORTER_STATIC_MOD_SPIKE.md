@@ -90,4 +90,4 @@ Still forbidden:
 
 ## Next Packet
 
-The card reward API recon packet is complete in `docs/EXPORTER_CARD_REWARD_API_RECON.md`. The next exporter packet should be a compile-time or diagnostic-only probe against the identified public reward/run-state surfaces before exporting any live card reward state.
+The card reward API recon packet is complete in `docs/EXPORTER_CARD_REWARD_API_RECON.md`, and the compile probe is documented in `docs/EXPORTER_CARD_REWARD_COMPILE_PROBE.md`. The next exporter packet should either install-check the `v0.2.0` diagnostic status build with explicit approval, or design how to prove public reward model data corresponds to the visible card reward screen before exporting any live card reward state.

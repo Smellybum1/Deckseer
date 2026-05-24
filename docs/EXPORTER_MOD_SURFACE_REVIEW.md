@@ -121,4 +121,4 @@ Forbidden:
 
 ## Next Handoff
 
-The card reward API recon packet is complete. The next implementation packet should be named **Exporter Card Reward Compile Probe**. It should compile or log only diagnostic availability for the identified candidate APIs before writing any live card reward export.
+The card reward API recon and compile probe packets are complete. The next implementation packet should either install-check the `v0.2.0` diagnostic status build with explicit approval to update the local STS2 mod package, or stay repo-only and design how to prove public reward model data corresponds to the visible card reward screen before writing any live card reward export.

@@ -88,7 +88,7 @@ Reviewed on 2026-05-24. Treat these details as volatile while STS2 is in Early A
 
 1. Keep `.NET SDK 9`, the STS2 template, and Godot/Megadot visibility checked with `deckseer exporter-toolchain-preflight --format text`.
 2. Keep the static status mod dependency-free unless a later reviewed packet proves a dependency is necessary.
-3. For the next exporter packet, identify safe normal mod-accessible APIs before exporting any live decision state.
+3. For the next exporter packet, either install-check the `v0.2.0` diagnostic status build with explicit approval, or design how to prove public reward model data corresponds to the visible card reward screen before exporting any live decision state.
 
 The accepted `DeckseerExporter` static spike writes:
 
