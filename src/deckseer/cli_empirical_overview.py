@@ -75,7 +75,7 @@ def register_empirical_overview_commands(subparsers: argparse._SubParsersAction)
     empirical_coverage.add_argument("--min-sample-size", type=int, default=300, help="Minimum sample size before empirical conflict flags are trusted.")
     empirical_coverage.add_argument("--fail-on-review", action="store_true", help="Exit with status 1 when coverage status is review or fail.")
 
-    empirical_intake = subparsers.add_parser("empirical-intake", help="Summarize pending empirical intake notes without activating them.")
+    empirical_intake = subparsers.add_parser("empirical-intake", help="Summarize empirical intake notes without activating them.")
     empirical_intake.add_argument("--manifest", default="data/empirical/intake_queue.json", help="Empirical intake manifest. Defaults to data/empirical/intake_queue.json.")
     empirical_intake.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
 

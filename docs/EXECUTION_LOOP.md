@@ -48,15 +48,16 @@ Completed:
 - Seventh CLI decomposition slice: read-only empirical overview command handling and registration now live in `src/deckseer/cli_empirical_overview.py`, preserving `empirical-coverage`, `empirical-intake`, `empirical-triage-report`, and `empirical-current-patch-review`.
 - Eighth CLI decomposition slice: empirical worksheet, capture packet, cross-class readiness, and draft promotion command handling now live in `src/deckseer/cli_empirical_workflow.py`, preserving preview/write behavior and public CLI output.
 - Large CLI dispatcher decomposition is complete for the current roadmap; `src/deckseer/cli.py` should remain a thin public entrypoint and command-order facade.
+- Empirical intake cleanup: the stale initial Necrobinder proposed intake note is closed as superseded by reviewed promoted rows, and `empirical-intake` now reflects no pending proposed source-review work.
 
-### 1. Empirical Intake Cleanup
+### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
-- Impact: medium; removes stale proposed intake and clarifies next data capture.
-- Risk: low to medium; must not fabricate stats or change scoring.
-- Dependencies: manual source review if promoting rows.
-- Likely files: `data/empirical/intake_queue.json`, empirical docs, draft worksheets if new rows are captured.
-- Validation: `empirical-intake`, `empirical-coverage`, `empirical-triage-report`, QA.
-- Effort: small to medium.
+- Impact: high; improves trust before scoring or exporter-driven workflows expand.
+- Risk: medium; expected top choices require careful review.
+- Dependencies: reviewed run states or user-provided examples.
+- Likely files: `data/accuracy/scenarios.json`, `tests/fixtures/scenarios/`, and possibly card data only if a scenario reveals a reviewed defect.
+- Validation: `accuracy-report --format text`, `qa --check-accuracy`, full pytest.
+- Effort: medium.
 
 ### 2. Static Exporter Mod Spike
 
@@ -76,16 +77,7 @@ Completed:
 - Validation: `inspect-export`, `recommend-export --confirmed`, scenario winners unchanged, full QA.
 - Effort: large.
 
-### 4. Expand Reviewed Accuracy Scenarios From Real Runs
-
-- Impact: high; improves trust before scoring or exporter-driven workflows expand.
-- Risk: medium; expected top choices require careful review.
-- Dependencies: reviewed run states or user-provided examples.
-- Likely files: `data/accuracy/scenarios.json`, `tests/fixtures/scenarios/`, and possibly card data only if a scenario reveals a reviewed defect.
-- Validation: `accuracy-report --format text`, `qa --check-accuracy`, full pytest.
-- Effort: medium.
-
-### 5. Relic/Potion Advice Design Packet
+### 4. Relic/Potion Advice Design Packet
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
@@ -94,7 +86,7 @@ Completed:
 - Validation: docs-only first; later focused fixtures and CLI smoke tests.
 - Effort: medium.
 
-### 6. Vision State Extractor Design Packet
+### 5. Vision State Extractor Design Packet
 
 - Impact: medium; useful fallback if exporter tooling remains blocked.
 - Risk: medium-high; OCR/capture can invite complexity and UX ambiguity.

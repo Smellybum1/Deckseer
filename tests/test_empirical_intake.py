@@ -15,16 +15,17 @@ def test_empirical_intake_manifest_loads() -> None:
     assert len(entries) == 1
     assert entries[0].id == "necrobinder_initial_sts2_fun_review"
     assert entries[0].character == "necrobinder"
-    assert entries[0].review_status == "proposed"
+    assert entries[0].review_status == "rejected"
 
 
-def test_empirical_intake_report_summarizes_proposed_entries() -> None:
+def test_empirical_intake_report_summarizes_closed_entries() -> None:
     report = build_empirical_intake_report(Path("data/empirical/intake_queue.json"))
 
     assert report["intake_type"] == "empirical_intake_queue"
-    assert report["status"] == "review"
+    assert report["status"] == "pass"
     assert report["summary"]["entries"] == 1
-    assert report["summary"]["proposed"] == 1
+    assert report["summary"]["proposed"] == 0
+    assert report["summary"]["rejected"] == 1
     assert report["summary"]["entries_by_character"] == {"necrobinder": 1}
 
 
@@ -104,8 +105,10 @@ def test_empirical_intake_cli_text_smoke(capsys) -> None:
     captured = capsys.readouterr()
 
     assert status == 0
-    assert "Empirical Intake: REVIEW" in captured.out
+    assert "Empirical Intake: PASS" in captured.out
     assert "Entries by character: necrobinder=1" in captured.out
+    assert "Entries by status: rejected=1" in captured.out
+    assert "Intake entries:" in captured.out
     assert "necrobinder_initial_sts2_fun_review" in captured.out
 
 
@@ -117,5 +120,6 @@ def test_empirical_intake_cli_json_smoke(capsys) -> None:
 
     assert status == 0
     assert payload["intake_type"] == "empirical_intake_queue"
-    assert payload["summary"]["proposed"] == 1
-    assert payload["entries"][0]["review_status"] == "proposed"
+    assert payload["summary"]["proposed"] == 0
+    assert payload["summary"]["rejected"] == 1
+    assert payload["entries"][0]["review_status"] == "rejected"

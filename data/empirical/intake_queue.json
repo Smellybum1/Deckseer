@@ -4,14 +4,14 @@
     {
       "id": "necrobinder_initial_sts2_fun_review",
       "character": "necrobinder",
-      "topic": "Initial Necrobinder empirical coverage candidate from STS2.fun",
-      "review_status": "proposed",
+      "topic": "Closed initial Necrobinder empirical coverage candidate from STS2.fun",
+      "review_status": "rejected",
       "source_url": "https://sts2.fun/",
       "patch": "pending",
       "card_id": null,
       "captured_at": null,
       "stat_definition": null,
-      "candidate_notes": "Capture exact Necrobinder card stats, patch label, sample size, and metric definition before promoting any row to active empirical data."
+      "candidate_notes": "Closed as stale intake: reviewed Necrobinder All Patches and current-patch rows have already been captured in draft worksheets and promoted to active empirical files. Add a new proposed entry only when a specific new source or coverage gap is identified."
     }
   ]
 }

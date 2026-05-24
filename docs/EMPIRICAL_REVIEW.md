@@ -6,7 +6,7 @@ Deckseer treats empirical card stats as review evidence, not automatic scoring a
 
 - `data/empirical/`: active project review inputs. This directory may contain no active stat files until traceable rows are reviewed and promoted.
 - `data/empirical/triage.json`: active audit-flag triage notes. These records explain review status and next actions; they do not resolve evidence or change scoring by themselves.
-- `data/empirical/intake_queue.json`: pending empirical review notes. These entries are not active stats and are excluded from routine empirical audits.
+- `data/empirical/intake_queue.json`: pending or closed empirical review notes. These entries are not active stats and are excluded from routine empirical audits.
 - `data/empirical/drafts/`: manually captured numeric draft files and incomplete capture worksheets. These are checked explicitly before promotion and are not active stats.
 - `tests/fixtures/empirical/`: artificial audit fixtures. These files intentionally include missing cards, patch mismatches, small samples, and prior/stat conflicts so tests can exercise the audit engine.
 
@@ -25,6 +25,7 @@ Do not place deliberately broken audit examples in `data/empirical/`. Active emp
 - Triage statuses document next review work only; they do not make All Patches evidence equivalent to current-patch evidence.
 - Numeric seed rows without provenance belong in `tests/fixtures/empirical/`, not active project data.
 - Intake entries must not include numeric fields such as `sample_size`, `pick_rate`, `win_rate`, or `impact`; those belong only in active empirical files after review.
+- Use `review_status: "rejected"` for source notes that are closed, superseded, or unsuitable for active empirical promotion. Use `proposed` only for concrete source-review work that is still pending.
 
 ## Intake Checklist
 
@@ -40,7 +41,7 @@ Before adding a real empirical row to `data/empirical/`, capture enough context 
 
 ## Intake Workflow
 
-1. Add a pending entry to `data/empirical/intake_queue.json` when a candidate source or class coverage gap is identified.
+1. Add a pending entry to `data/empirical/intake_queue.json` when a concrete candidate source or class coverage gap is identified. Keep stale or superseded notes closed as `rejected` so `empirical-intake` reflects only real pending review work.
 2. For the first real Necrobinder seed, fill `data/empirical/drafts/necrobinder_sts2fun_capture_batch.json` from specific reviewed STS2.fun pages.
    For the current-patch Forbidden Grimoire follow-up, use `data/empirical/drafts/necrobinder_sts2fun_current_patch_triage_batch.json`, open `https://sts2.fun/cards?character=NECROBINDER`, and select the current-patch dropdown instead of All Patches before copying values.
    For cross-class coverage, use the current-patch worksheets for Ironclad, Silent, Defect, and Regent under `data/empirical/drafts/`. The first screenshot-reviewed current-patch rows for those four classes have been promoted; the same workflow remains available for future rows.
@@ -101,7 +102,7 @@ The active project QA command reports `REVIEW` while active empirical flags rema
 
 `empirical-coverage` reports how much active empirical data exists by class and patch. A `REVIEW` status can be healthy when it is calling out active audit flags or a known coverage gap, such as a class with no reviewed rows yet.
 
-`empirical-intake` reports pending candidate notes. These notes are intentionally excluded from `qa`, `audit-card-priors`, and active `empirical-coverage` scans until promoted.
+`empirical-intake` reports pending and closed candidate notes. A `PASS` result means there are no proposed intake entries waiting for review. These notes are intentionally excluded from `qa`, `audit-card-priors`, and active `empirical-coverage` scans until promoted.
 
 `empirical-triage-report` cross-checks active empirical audit flags against `data/empirical/triage.json`. Missing, stale, open, `needs_current_patch`, `needs_scenario`, or `resolved_change_planned` entries keep the report in `REVIEW`. A report can pass with active flags only when every matched active flag is `resolved_no_change`, meaning reviewed and accepted as non-blocking context. `--fail-on-open` is available when you want open or untriaged flags to fail the command.
 

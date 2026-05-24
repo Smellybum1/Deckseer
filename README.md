@@ -185,7 +185,7 @@ deckseer audit-card-priors tests/fixtures/empirical/legacy_multi_class_card_stat
 deckseer audit-card-priors tests/fixtures/empirical/multi_class_conflict_stats.json --format text
 ```
 
-Review empirical coverage, pending source-review notes, and manual draft promotion:
+Review empirical coverage, intake source-review notes, and manual draft promotion:
 
 ```bash
 deckseer empirical-coverage --format text
@@ -397,7 +397,7 @@ Card priors are optional and intentionally weak. They can help close decisions, 
 
 `effects.extra` is optional and can hold reviewed numeric effect metadata that does not fit the core `damage`, `block`, `draw`, and `energy` fields, such as poison, weak, vulnerable, strength changes, or x-cost markers. These values remain simplified metadata for transparent heuristics, not exact combat simulation rules.
 
-Empirical-style stats under `data/empirical/` are active project review inputs for read-only audits. Active traceable rows now cover all five catalog classes: Necrobinder has All Patches and current-patch STS2.fun rows, and Ironclad, Silent, Defect, and Regent have screenshot-reviewed current-patch rows. Pending source-review notes live in `data/empirical/intake_queue.json` and are not active evidence. Legacy seed rows and artificial conflict rows used to exercise audit behavior live under `tests/fixtures/empirical/`. The audit workflow flags cards for human review; it does not rewrite card data.
+Empirical-style stats under `data/empirical/` are active project review inputs for read-only audits. Active traceable rows now cover all five catalog classes: Necrobinder has All Patches and current-patch STS2.fun rows, and Ironclad, Silent, Defect, and Regent have screenshot-reviewed current-patch rows. Pending or closed source-review notes live in `data/empirical/intake_queue.json` and are not active evidence; `empirical-intake` reports `PASS` when no proposed intake work remains. Legacy seed rows and artificial conflict rows used to exercise audit behavior live under `tests/fixtures/empirical/`. The audit workflow flags cards for human review; it does not rewrite card data.
 Audit output includes summary counts by flag code, severity, and character so review passes can be triaged before touching card priors.
 
 ## Scoring Philosophy

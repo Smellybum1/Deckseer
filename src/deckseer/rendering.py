@@ -128,7 +128,7 @@ def render_empirical_intake(report: dict, output_format: str) -> str:
     if summary["entries_by_review_status"]:
         lines.append(f"Entries by status: {_format_counts(summary['entries_by_review_status'])}")
     if report["entries"]:
-        lines.append("Pending entries:")
+        lines.append("Intake entries:")
         for entry in report["entries"]:
             card_id = entry["card_id"] or "class-level"
             lines.append(f"   {entry['id']}: {entry['character']} {card_id} [{entry['review_status']}]")

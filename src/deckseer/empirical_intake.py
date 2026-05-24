@@ -104,7 +104,7 @@ def build_empirical_intake_report(path: Path) -> dict[str, Any]:
         },
         "entries": [entry.to_dict() for entry in entries],
         "caveats": [
-            "Intake entries are pending notes only; they are not active empirical stats and do not affect scoring.",
+            "Intake entries are review notes only; they are not active empirical stats and do not affect scoring.",
             "Promote an entry to data/empirical/*.json only after exact numeric stats and provenance are reviewed.",
         ],
     }
