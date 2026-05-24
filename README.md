@@ -255,10 +255,10 @@ deckseer inspect-export tests/fixtures/exporter_card_reward_state.json
 Recommend from a proposed Deckseer Exporter JSON file:
 
 ```bash
-deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --format text
+deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
 ```
 
-Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. The Slay the Spire 2 companion mod itself is still not implemented.
+Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. When an export has `requires_user_confirmation: true`, run `inspect-export` first and pass `--confirmed` only after checking the visible state. The Slay the Spire 2 companion mod itself is still not implemented.
 
 ## State Sources
 

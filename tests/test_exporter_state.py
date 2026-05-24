@@ -62,8 +62,19 @@ def test_inspect_export_cli_smoke(capsys) -> None:
     assert payload["card_reward"] == ["pommel_strike", "shrug_it_off", "anger"]
 
 
-def test_recommend_export_cli_smoke_json(capsys) -> None:
+def test_recommend_export_requires_confirmation(capsys) -> None:
     status = main(["recommend-export", str(FIXTURE)])
+
+    captured = capsys.readouterr()
+
+    assert status == 2
+    assert captured.out == ""
+    assert "run inspect-export, verify the visible state" in captured.err
+    assert "--confirmed" in captured.err
+
+
+def test_recommend_export_cli_smoke_json_with_confirmation(capsys) -> None:
+    status = main(["recommend-export", str(FIXTURE), "--confirmed"])
 
     captured = capsys.readouterr()
     payload = json.loads(captured.out)
@@ -74,10 +85,25 @@ def test_recommend_export_cli_smoke_json(capsys) -> None:
 
 
 def test_recommend_export_cli_smoke_text(capsys) -> None:
-    status = main(["recommend-export", str(FIXTURE), "--format", "text"])
+    status = main(["recommend-export", str(FIXTURE), "--confirmed", "--format", "text"])
 
     captured = capsys.readouterr()
 
     assert status == 0
     assert "Card Reward" in captured.out
     assert "Skip" in captured.out
+
+
+def test_recommend_export_allows_unconfirmed_when_confirmation_not_required(tmp_path: Path, capsys) -> None:
+    raw = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    raw["export_metadata"]["requires_user_confirmation"] = False
+    path = tmp_path / "already_confirmed_export.json"
+    path.write_text(json.dumps(raw), encoding="utf-8")
+
+    status = main(["recommend-export", str(path)])
+
+    captured = capsys.readouterr()
+    payload = json.loads(captured.out)
+
+    assert status == 0
+    assert payload["recommendation_type"] == "card_reward"

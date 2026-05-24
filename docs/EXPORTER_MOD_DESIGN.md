@@ -122,7 +122,7 @@ Deckseer should continue to score the same advisor-ready card reward payload it 
 2. Check `game` and `screen_type`.
 3. Preserve `export_metadata` for display or caveats.
 4. Convert the rest into the existing card reward input shape.
-5. Ask the user to confirm or edit the state before recommendation when `requires_user_confirmation` is true.
+5. Require `recommend-export --confirmed` before recommendation when `requires_user_confirmation` is true.
 
 Skip should not appear in `card_reward`; Deckseer adds Skip internally.
 

@@ -26,7 +26,7 @@ from deckseer.empirical_intake import build_empirical_intake_report
 from deckseer.empirical_promotion import build_empirical_promotion_report
 from deckseer.empirical_triage import build_empirical_triage_report
 from deckseer.empirical_worksheet import build_empirical_worksheet_fill_report, build_empirical_worksheet_report
-from deckseer.models import DeckseerError
+from deckseer.models import DeckseerError, ValidationError
 from deckseer.audit.card_priors import audit_card_priors, load_empirical_card_stats
 from deckseer.importers.exporter_state import load_exporter_state
 from deckseer.importers.sts2_save import load_sts2_run
@@ -377,6 +377,11 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "recommend-export":
             exported = load_exporter_state(Path(args.export_json))
+            if exported.metadata.get("requires_user_confirmation") is True and not args.confirmed:
+                raise ValidationError(
+                    "exporter state requires user confirmation; run inspect-export, verify the visible state, "
+                    "then rerun recommend-export with --confirmed"
+                )
             run = exported.current_state.to_run_state()
             data = DeckseerData.load(Path(args.data_dir))
             result = recommend_card_reward(run, data)
@@ -657,6 +662,7 @@ def _build_parser() -> argparse.ArgumentParser:
     recommend_export.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
     recommend_export.add_argument("--format", choices=("json", "text", "markdown"), default="json", help="Output format. Defaults to json.")
     recommend_export.add_argument("--include-diagnosis", action="store_true", help="Include deck profile and prioritized run needs with the recommendation.")
+    recommend_export.add_argument("--confirmed", action="store_true", help="Confirm that you reviewed the exported visible state before recommendation.")
     return parser
 
 

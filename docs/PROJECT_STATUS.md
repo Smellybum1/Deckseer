@@ -113,7 +113,7 @@ deckseer empirical-promote-draft data/empirical/drafts/necrobinder_sts2fun_all_p
 deckseer audit-card-priors tests/fixtures/empirical/legacy_multi_class_card_stats_sample.json --format text
 deckseer audit-card-priors tests/fixtures/empirical/multi_class_conflict_stats.json --format text
 deckseer inspect-export tests/fixtures/exporter_card_reward_state.json
-deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --format text
+deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
 deckseer recommend-card examples/card_reward_basic.json
 deckseer recommend-card examples/card_reward_basic.json --format text
 deckseer recommend-card examples/card_reward_basic.json --format markdown
