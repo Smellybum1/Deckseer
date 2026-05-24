@@ -52,6 +52,8 @@ Reviewed calibration scenarios live in `data/accuracy/scenarios.json`. Each entr
 
 Manifest entries must use unique IDs, include at least one expected reasoning keyword, and use a `review_status` of `proposed`, `accepted`, `implemented`, or `rejected`. Relative scenario paths are resolved from the project working directory; absolute paths are allowed for local review manifests.
 
+Use `docs/ACCURACY_SCENARIO_INTAKE.md` when turning a real-run decision into a new scenario. The intake checklist records the required source context, fixture review steps, and acceptance rules. Scenario intake should not change scoring, card priors, empirical data, recommendation APIs, or baselines by itself.
+
 Use the standalone report when reviewing recommendation drift:
 
 ```bash

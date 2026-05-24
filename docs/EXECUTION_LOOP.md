@@ -49,6 +49,7 @@ Completed:
 - Eighth CLI decomposition slice: empirical worksheet, capture packet, cross-class readiness, and draft promotion command handling now live in `src/deckseer/cli_empirical_workflow.py`, preserving preview/write behavior and public CLI output.
 - Large CLI dispatcher decomposition is complete for the current roadmap; `src/deckseer/cli.py` should remain a thin public entrypoint and command-order facade.
 - Empirical intake cleanup: the stale initial Necrobinder proposed intake note is closed as superseded by reviewed promoted rows, and `empirical-intake` now reflects no pending proposed source-review work.
+- Accuracy scenario intake readiness: `docs/ACCURACY_SCENARIO_INTAKE.md` now defines the evidence checklist, fixture template, review steps, and acceptance rules for future real-run scenario expansion.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -58,6 +59,7 @@ Completed:
 - Likely files: `data/accuracy/scenarios.json`, `tests/fixtures/scenarios/`, and possibly card data only if a scenario reveals a reviewed defect.
 - Validation: `accuracy-report --format text`, `qa --check-accuracy`, full pytest.
 - Effort: medium.
+- Status: blocked until a reviewed real-run state and expected top choice are available.
 
 ### 2. Static Exporter Mod Spike
 
