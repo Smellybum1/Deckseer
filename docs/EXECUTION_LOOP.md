@@ -36,16 +36,11 @@ At the start of each run:
 
 ## Roadmap
 
-### 1. Read-Only Toolchain Preflight Command
+Completed:
 
-- Impact: very high; converts exporter setup docs into repeatable machine-readable status.
-- Risk: medium; adds a public CLI command and must stay read-only.
-- Dependencies: `docs/EXPORTER_TOOLCHAIN_SETUP.md`.
-- Likely files: `src/deckseer/cli.py`, new `src/deckseer/exporter_toolchain.py`, `tests/test_exporter_toolchain.py`.
-- Validation: mocked focused tests, local command reports missing SDK/Godot without destructive side effects, full QA.
-- Effort: medium.
+- Read-only `exporter-toolchain-preflight` CLI command for repeatable local exporter readiness checks. The expected current state is `blocked_missing_toolchain` until `.NET SDK`, STS2 templates, and Megadot/Godot are visible.
 
-### 2. Decompose The Large CLI Dispatcher
+### 1. Decompose The Large CLI Dispatcher
 
 - Impact: high; `src/deckseer/cli.py` is large enough to slow future autonomous changes.
 - Risk: medium; output text and exit-code regressions are possible.
@@ -54,7 +49,7 @@ At the start of each run:
 - Validation: full `pytest`; smoke commands for exporter, QA, empirical, and recommendation paths.
 - Effort: medium.
 
-### 3. Static Exporter Mod Spike
+### 2. Static Exporter Mod Spike
 
 - Impact: high; proves the game-side bridge can write `screen_type: "exporter_status"`.
 - Risk: high; depends on external toolchain, STS2 beta volatility, and local game files.
@@ -63,7 +58,7 @@ At the start of each run:
 - Validation: game shows the mod in settings, written JSON passes `deckseer inspect-export`, no live state exported.
 - Effort: large.
 
-### 4. Exporter Card Reward Contract Spike
+### 3. Exporter Card Reward Contract Spike
 
 - Impact: high; first real low-friction recommendation input.
 - Risk: high; needs safe mod APIs and stable card ID mapping.
@@ -72,7 +67,7 @@ At the start of each run:
 - Validation: `inspect-export`, `recommend-export --confirmed`, scenario winners unchanged, full QA.
 - Effort: large.
 
-### 5. Expand Reviewed Accuracy Scenarios From Real Runs
+### 4. Expand Reviewed Accuracy Scenarios From Real Runs
 
 - Impact: high; improves trust before scoring or exporter-driven workflows expand.
 - Risk: medium; expected top choices require careful review.
@@ -81,7 +76,7 @@ At the start of each run:
 - Validation: `accuracy-report --format text`, `qa --check-accuracy`, full pytest.
 - Effort: medium.
 
-### 6. Empirical Intake Cleanup
+### 5. Empirical Intake Cleanup
 
 - Impact: medium; removes stale proposed intake and clarifies next data capture.
 - Risk: low to medium; must not fabricate stats or change scoring.
@@ -90,7 +85,7 @@ At the start of each run:
 - Validation: `empirical-intake`, `empirical-coverage`, `empirical-triage-report`, QA.
 - Effort: small to medium.
 
-### 7. Relic/Potion Advice Design Packet
+### 6. Relic/Potion Advice Design Packet
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
@@ -99,7 +94,7 @@ At the start of each run:
 - Validation: docs-only first; later focused fixtures and CLI smoke tests.
 - Effort: medium.
 
-### 8. Vision State Extractor Design Packet
+### 7. Vision State Extractor Design Packet
 
 - Impact: medium; useful fallback if exporter tooling remains blocked.
 - Risk: medium-high; OCR/capture can invite complexity and UX ambiguity.
@@ -132,6 +127,7 @@ Use the bundled Python runtime if plain `python` is not on PATH.
 ```bash
 python -m deckseer.cli inspect-export tests/fixtures/exporter_status_state.json
 python -m deckseer.cli recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
+python -m deckseer.cli exporter-toolchain-preflight --format text
 python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage
 python -m deckseer.cli empirical-coverage --format text
 python -m deckseer.cli accuracy-report --format text
@@ -141,6 +137,7 @@ python -m pytest
 Expected healthy state:
 
 - Triage-aware QA: `PASS`.
+- Exporter toolchain preflight: `blocked_missing_toolchain` until external setup is completed.
 - Empirical coverage: `REVIEW`, 18 rows, 14 `patch_mismatch` warnings unless intentionally changed.
 - Accuracy report: `PASS`, 9/9 unless intentionally expanded.
 - Pytest: green.
@@ -174,6 +171,7 @@ Guardrails:
 Default verification:
 - python -m deckseer.cli inspect-export tests/fixtures/exporter_status_state.json
 - python -m deckseer.cli recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
+- python -m deckseer.cli exporter-toolchain-preflight --format text
 - python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage
 - python -m deckseer.cli empirical-coverage --format text
 - python -m deckseer.cli accuracy-report --format text
@@ -181,6 +179,7 @@ Default verification:
 
 Expected healthy state:
 - triage-aware QA PASS
+- exporter toolchain preflight blocked_missing_toolchain until external setup is completed
 - empirical coverage REVIEW with 18 rows and 14 patch_mismatch warnings unless intentionally changed
 - accuracy PASS, 9/9 unless intentionally expanded
 - pytest green

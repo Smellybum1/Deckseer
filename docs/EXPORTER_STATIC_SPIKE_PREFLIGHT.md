@@ -3,6 +3,7 @@
 This preflight checks whether the next Deckseer Exporter packet can safely attempt a static Slay the Spire 2 mod that writes only `screen_type: "exporter_status"` JSON. It does not add mod source, build scripts, dependencies, live capture, or watcher behavior.
 
 See `docs/EXPORTER_TOOLCHAIN_SETUP.md` for the repo-only setup checklist that must pass before adding static mod source.
+Use `deckseer exporter-toolchain-preflight --format text` to refresh the read-only readiness report without creating folders, installing tools, or touching game files.
 
 ## Readiness Result
 

@@ -259,6 +259,12 @@ Recommend from a proposed Deckseer Exporter JSON file:
 deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
 ```
 
+Check whether the local machine is ready for the future static exporter mod spike:
+
+```bash
+deckseer exporter-toolchain-preflight --format text
+```
+
 Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. `inspect-export` also accepts `screen_type: exporter_status` as a harmless static exporter-health contract. When a card reward export has `requires_user_confirmation: true`, run `inspect-export` first and pass `--confirmed` only after checking the visible state. The Slay the Spire 2 companion mod itself is still not implemented.
 
 ## State Sources
@@ -278,7 +284,7 @@ Implemented sources:
 
 - **Manual JSON**: primary v0 workflow, loaded directly from a user-authored run-state file.
 - **Run-history import**: read-only `.run` history parsing that can draft a recommendation input after you manually provide current HP, act, floor, and visible card reward.
-- **Exporter JSON import**: read-only proposed `latest_state.json` contract parsing through `inspect-export` and `recommend-export`. `inspect-export` accepts static exporter status files and card reward files; `recommend-export` remains card-reward only. This consumes local files only; the game mod that would write them is not implemented yet.
+- **Exporter JSON import**: read-only proposed `latest_state.json` contract parsing through `inspect-export` and `recommend-export`. `inspect-export` accepts static exporter status files and card reward files; `recommend-export` remains card-reward only. `exporter-toolchain-preflight` reports whether the local STS2 install and modding tools are ready for the future static status mod spike. These commands consume local files and metadata only; the game mod that would write exporter state is not implemented yet.
 
 Planned sources:
 

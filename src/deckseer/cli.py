@@ -26,6 +26,7 @@ from deckseer.empirical_intake import build_empirical_intake_report
 from deckseer.empirical_promotion import build_empirical_promotion_report
 from deckseer.empirical_triage import build_empirical_triage_report
 from deckseer.empirical_worksheet import build_empirical_worksheet_fill_report, build_empirical_worksheet_report
+from deckseer.exporter_toolchain import build_exporter_toolchain_preflight
 from deckseer.models import DeckseerError, ValidationError
 from deckseer.audit.card_priors import audit_card_priors, load_empirical_card_stats
 from deckseer.importers.exporter_state import inspect_exporter_state, load_exporter_state
@@ -60,6 +61,7 @@ from deckseer.rendering import (
     render_empirical_triage,
     render_empirical_worksheet,
     render_empirical_worksheet_fill,
+    render_exporter_toolchain_preflight,
     render_project_qa,
     render_recommendation,
 )
@@ -345,6 +347,14 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "inspect-export":
             exported = inspect_exporter_state(Path(args.export_json))
             print(json.dumps(exported.to_summary_dict(), indent=2))
+            return 0
+        if args.command == "exporter-toolchain-preflight":
+            report = build_exporter_toolchain_preflight(
+                sts2_install_path=Path(args.sts2_install),
+                steam_manifest_path=Path(args.steam_manifest),
+                export_dir=Path(args.export_dir) if args.export_dir else None,
+            )
+            print(render_exporter_toolchain_preflight(report, args.format))
             return 0
         if args.command == "import-run":
             imported = load_sts2_run(Path(args.save_json), player_index=args.player_index)
@@ -634,6 +644,26 @@ def _build_parser() -> argparse.ArgumentParser:
 
     inspect_export = subparsers.add_parser("inspect-export", help="Summarize a Deckseer Exporter JSON state file.")
     inspect_export.add_argument("export_json", help="Path to a Deckseer Exporter latest_state.json file.")
+
+    exporter_preflight = subparsers.add_parser(
+        "exporter-toolchain-preflight",
+        help="Read-only readiness report for the future static Deckseer Exporter mod spike.",
+    )
+    exporter_preflight.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
+    exporter_preflight.add_argument(
+        "--sts2-install",
+        default=r"D:\Games\Steam\steamapps\common\Slay the Spire 2",
+        help="Slay the Spire 2 install path. Defaults to the documented local Steam install path.",
+    )
+    exporter_preflight.add_argument(
+        "--steam-manifest",
+        default=r"D:\Games\Steam\steamapps\appmanifest_2868840.acf",
+        help="Steam app manifest path. Defaults to the documented local STS2 manifest path.",
+    )
+    exporter_preflight.add_argument(
+        "--export-dir",
+        help="Expected Deckseer exporter output directory. Defaults to %%LOCALAPPDATA%%\\Deckseer\\exports.",
+    )
 
     import_run = subparsers.add_parser("import-run", help="Create a Deckseer recommendation JSON draft from a run-history save.")
     import_run.add_argument("save_json", help="Path to a Slay the Spire 2 .run JSON file.")

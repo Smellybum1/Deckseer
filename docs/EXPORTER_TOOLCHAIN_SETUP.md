@@ -40,6 +40,18 @@ Do not install tools from inside this repo packet. Installation should be an exp
 
 ## Verification Commands
 
+Deckseer now has a read-only wrapper for the local checks below:
+
+```powershell
+deckseer exporter-toolchain-preflight --format text
+```
+
+Expected current state before toolchain setup:
+
+- Status: `blocked_missing_toolchain`.
+- Blockers: `dotnet_sdk`, `sts2_template`, and `megadot_or_godot`.
+- Warnings: `mods_folder_missing` and `deckseer_export_folder_missing`.
+
 Run these commands after setup. They should be read-only except for whatever the external installer or template install already did.
 
 Check .NET SDK visibility:

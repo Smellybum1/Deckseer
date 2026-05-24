@@ -7,9 +7,10 @@ Deckseer is currently a local, manual JSON-first decision-support coach for Slay
 - Manual run-state JSON input for card reward advice.
 - Deterministic card reward scoring with ranked choices, scores, reasoning, confidence, and risks.
 - Run diagnosis helpers for deck shape, prioritized needs, HP pressure, act/floor phase, and region/path context.
-- CLI commands for `recommend-card`, `diagnose-run`, `check-run-data`, `check-runs`, `normalize-run`, `list-cards`, `data-summary`, `data-review`, `data-health`, `qa`, `qa-baseline`, `accuracy-report`, `audit-card-priors`, `empirical-coverage`, `empirical-intake`, `empirical-triage-report`, `empirical-current-patch-review`, `empirical-capture-guide`, `empirical-capture-packet`, `empirical-cross-class-capture-packet`, `empirical-cross-class-apply-packet`, `empirical-cross-class-readiness`, `empirical-cross-class-promotion-preview`, `empirical-worksheet-check`, `empirical-worksheet-fill`, `empirical-worksheet-apply-packet`, `empirical-draft-check`, `empirical-promote-draft`, `inspect-save`, `import-run`, `recommend-save`, `inspect-export`, and `recommend-export`.
+- CLI commands for `recommend-card`, `diagnose-run`, `check-run-data`, `check-runs`, `normalize-run`, `list-cards`, `data-summary`, `data-review`, `data-health`, `qa`, `qa-baseline`, `accuracy-report`, `audit-card-priors`, `empirical-coverage`, `empirical-intake`, `empirical-triage-report`, `empirical-current-patch-review`, `empirical-capture-guide`, `empirical-capture-packet`, `empirical-cross-class-capture-packet`, `empirical-cross-class-apply-packet`, `empirical-cross-class-readiness`, `empirical-cross-class-promotion-preview`, `empirical-worksheet-check`, `empirical-worksheet-fill`, `empirical-worksheet-apply-packet`, `empirical-draft-check`, `empirical-promote-draft`, `inspect-save`, `import-run`, `recommend-save`, `inspect-export`, `recommend-export`, and `exporter-toolchain-preflight`.
 - Read-only import from plain JSON Slay the Spire 2 run-history files, with manual live-state fields supplied by the user.
 - Read-only import from proposed Deckseer Exporter JSON files, with exporter metadata and caveats kept outside scoring. `inspect-export` accepts static exporter status files and card reward files; `recommend-export` remains card-reward only.
+- Read-only exporter toolchain preflight report for checking the local STS2 install, `.NET SDK`, STS2 templates, and Megadot/Godot visibility before any static mod source is added.
 - JSON, text, and Markdown recommendation output.
 - Strategy backlog for reviewed creator claims, tier-list sources, and empirical data ideas.
 - Accuracy scenario manifest and report workflow for reviewed recommendation drift checks.
@@ -57,7 +58,7 @@ Relic and potion data exist as sparse seed files. Empirical data support is inte
 ## Recommended Next Milestones
 
 1. Self-directed execution: use `AGENTS.md` and `docs/EXECUTION_LOOP.md` to choose the highest-impact unblocked packet, run the default gates, and keep handoffs consistent.
-2. Deckseer Exporter Mod implementation readiness: Deckseer can now inspect static exporter status files and recommend from confirmed card reward exporter files. `docs/EXPORTER_MOD_SURFACE_REVIEW.md` documents the modding-surface research, `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` records local install/toolchain findings, and `docs/EXPORTER_TOOLCHAIN_SETUP.md` lists the setup checks that must pass before static mod source is added. The in-game exporter mod and watch mode have not been implemented.
+2. Deckseer Exporter Mod implementation readiness: Deckseer can now inspect static exporter status files, recommend from confirmed card reward exporter files, and run `deckseer exporter-toolchain-preflight --format text` to repeat the read-only local readiness check. `docs/EXPORTER_MOD_SURFACE_REVIEW.md` documents the modding-surface research, `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` records local install/toolchain findings, and `docs/EXPORTER_TOOLCHAIN_SETUP.md` lists the setup checks that must pass before static mod source is added. The in-game exporter mod and watch mode have not been implemented.
 3. Vision State Extractor design remains a future fallback/complement for screenshot-based visible state extraction.
 4. Broader advice modules: relic choice, potion choice, pathing, combat planning, and run-history learning.
 5. Data QA maintenance: keep `data-health` passing as new card metadata, roles, and effects are added.
@@ -117,6 +118,7 @@ deckseer audit-card-priors tests/fixtures/empirical/multi_class_conflict_stats.j
 deckseer inspect-export tests/fixtures/exporter_card_reward_state.json
 deckseer inspect-export tests/fixtures/exporter_status_state.json
 deckseer recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
+deckseer exporter-toolchain-preflight --format text
 deckseer recommend-card examples/card_reward_basic.json
 deckseer recommend-card examples/card_reward_basic.json --format text
 deckseer recommend-card examples/card_reward_basic.json --format markdown
