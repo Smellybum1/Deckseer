@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 import sys
 
-from deckseer.accuracy import build_accuracy_report
 from deckseer.cli_data import handle_data_command, register_data_commands
 from deckseer.cli_exporter import (
     handle_exporter_command,
@@ -17,6 +16,7 @@ from deckseer.cli_run_state import (
     register_run_state_commands,
     register_run_state_normalize_command,
 )
+from deckseer.cli_review import handle_review_command, register_accuracy_report_command, register_card_prior_audit_command
 from deckseer.cli_save import handle_save_command, register_save_inspection_commands, register_save_recommendation_commands
 from deckseer.data_loader import DeckseerData
 from deckseer.diagnostics import check_run_files_data_coverage
@@ -36,7 +36,6 @@ from deckseer.empirical_promotion import build_empirical_promotion_report
 from deckseer.empirical_triage import build_empirical_triage_report
 from deckseer.empirical_worksheet import build_empirical_worksheet_fill_report, build_empirical_worksheet_report
 from deckseer.models import DeckseerError
-from deckseer.audit.card_priors import audit_card_priors, load_empirical_card_stats
 from deckseer.qa import (
     build_project_qa,
     build_recommendation_smoke_baseline,
@@ -45,8 +44,6 @@ from deckseer.qa import (
     write_recommendation_smoke_baseline,
 )
 from deckseer.rendering import (
-    render_accuracy_report,
-    render_card_prior_audit,
     render_empirical_capture_guide,
     render_empirical_capture_packet,
     render_empirical_capture_packet_apply,
@@ -114,13 +111,6 @@ def main(argv: list[str] | None = None) -> int:
             if args.output:
                 write_recommendation_smoke_baseline(baseline, Path(args.output))
             print(json.dumps(baseline, indent=2))
-            return 0
-        if args.command == "accuracy-report":
-            data = DeckseerData.load(Path(args.data_dir))
-            report = build_accuracy_report(data, manifest_path=Path(args.manifest))
-            print(render_accuracy_report(report, args.format))
-            if args.fail_on_mismatch and report["summary"]["failed"] > 0:
-                return 1
             return 0
         if args.command == "empirical-coverage":
             data_dir = Path(args.data_dir)
@@ -280,18 +270,12 @@ def main(argv: list[str] | None = None) -> int:
             paths = _expand_run_paths([Path(path) for path in args.paths])
             print(json.dumps(check_run_files_data_coverage(paths, data), indent=2))
             return 0
-        if args.command == "audit-card-priors":
-            data = DeckseerData.load(Path(args.data_dir))
-            stats_path = Path(args.empirical_stats)
-            stats = load_empirical_card_stats(stats_path)
-            result = audit_card_priors(data, stats, empirical_source=str(stats_path), min_sample_size=args.min_sample_size)
-            print(render_card_prior_audit(result, args.format))
-            if args.fail_on_flags and result.to_dict()["summary"]["flags"] > 0:
-                return 1
-            return 0
         data_status = handle_data_command(args)
         if data_status is not None:
             return data_status
+        review_status = handle_review_command(args)
+        if review_status is not None:
+            return review_status
         save_status = handle_save_command(args)
         if save_status is not None:
             return save_status
@@ -350,11 +334,7 @@ def _build_parser() -> argparse.ArgumentParser:
     qa_baseline.add_argument("--run-paths", nargs="*", help="Run-state JSON files or directories to baseline. Defaults to examples/*.json.")
     qa_baseline.add_argument("--output", help="Optional output path for the baseline JSON. Defaults to printing only.")
 
-    accuracy_report = subparsers.add_parser("accuracy-report", help="Score reviewed accuracy scenarios and report recommendation drift.")
-    accuracy_report.add_argument("--manifest", default="data/accuracy/scenarios.json", help="Accuracy scenario manifest. Defaults to data/accuracy/scenarios.json.")
-    accuracy_report.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    accuracy_report.add_argument("--format", choices=("json", "text"), default="text", help="Output format. Defaults to text.")
-    accuracy_report.add_argument("--fail-on-mismatch", action="store_true", help="Exit with status 1 when any scenario mismatches.")
+    register_accuracy_report_command(subparsers)
 
     empirical_coverage = subparsers.add_parser("empirical-coverage", help="Summarize active empirical review coverage by character and patch.")
     empirical_coverage.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
@@ -494,15 +474,7 @@ def _build_parser() -> argparse.ArgumentParser:
 
     register_run_state_normalize_command(subparsers)
 
-    audit_card_priors_parser = subparsers.add_parser(
-        "audit-card-priors",
-        help="Read-only review of Deckseer card priors against empirical-style card stats.",
-    )
-    audit_card_priors_parser.add_argument("empirical_stats", help="Path to empirical card stats JSON.")
-    audit_card_priors_parser.add_argument("--data-dir", default="data", help="Path to Deckseer data files. Defaults to ./data.")
-    audit_card_priors_parser.add_argument("--min-sample-size", type=int, default=300, help="Minimum sample size before conflict flags are trusted.")
-    audit_card_priors_parser.add_argument("--format", choices=("json", "text"), default="json", help="Output format. Defaults to json.")
-    audit_card_priors_parser.add_argument("--fail-on-flags", action="store_true", help="Exit with status 1 when the audit reports any flags.")
+    register_card_prior_audit_command(subparsers)
 
     register_save_inspection_commands(subparsers)
     register_exporter_inspection_commands(subparsers)
