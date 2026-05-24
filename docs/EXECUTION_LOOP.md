@@ -55,6 +55,7 @@ Completed:
 - Relic metadata seed packet: `docs/RELIC_METADATA_SEED_PLAN.md` documents the tiny V1 seed, and the existing three relic records now carry roles, weak priors, pick context, and source notes without changing card reward behavior.
 - Private relic choice scorer packet: `src/deckseer/relic_choice.py` can load manual `screen_type: "relic_reward"` JSON and rank the three seed relics with focused fixtures, without adding public CLI behavior.
 - Relic choice CLI packet: `recommend-relic` now ranks manual relic reward JSON using JSON, text, or Markdown output, while card reward/exporter behavior remains unchanged.
+- Relic exporter contract packet: `docs/EXPORTER_MOD_DESIGN.md` now documents a proposed future `screen_type: "relic_reward"` JSON shape and fixture without enabling live capture or scoring from exporter relic files.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -88,11 +89,11 @@ Completed:
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
-- Dependencies: manual relic advice is available; exporter relic support should wait for a contract-only packet.
-- Likely files: exporter design docs and fixtures only at first.
-- Validation: `recommend-relic` smoke commands and standard QA.
+- Dependencies: manual relic advice and the relic exporter contract are available.
+- Likely files: `src/deckseer/importers/exporter_state.py`, exporter fixture tests, and docs.
+- Validation: `inspect-export` accepts `screen_type: "relic_reward"`; `recommend-export` still rejects it until the confirmed recommendation packet.
 - Effort: medium.
-- Status: manual relic choice CLI complete; next unblocked packet is a relic exporter contract design note for `screen_type: "relic_reward"` without live capture.
+- Status: relic exporter contract complete; next unblocked packet is inspect-only relic export adapter support.
 
 ### 5. Vision State Extractor Design Packet
 

@@ -46,7 +46,7 @@ The implementation should write to a temporary file first, then atomically repla
 
 ## Export Contracts
 
-The first harmless export target is `screen_type: "exporter_status"` because it proves the exporter loaded and wrote a local file without exposing live run state. The first recommendation export target is `screen_type: "card_reward"` because it maps directly to Deckseer's current advisor.
+The first harmless export target is `screen_type: "exporter_status"` because it proves the exporter loaded and wrote a local file without exposing live run state. The first recommendation export target is `screen_type: "card_reward"` because it maps directly to Deckseer's original advisor. A proposed follow-on target is `screen_type: "relic_reward"`, matching the manual `recommend-relic` surface after card reward export is proven.
 
 ## Static Status Export Contract
 
@@ -132,13 +132,66 @@ The static exporter status contract is the required bridge before live run-state
 }
 ```
 
+## Relic Reward Export Contract
+
+This is a proposed future source format for visible relic reward screens. It is not live capture, watch mode, mod code, or a requirement that the current exporter mod can already read relic rewards. Deckseer-side support should remain human-confirmation-first.
+
+```json
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "relic_reward",
+  "character": "ironclad",
+  "act": 1,
+  "floor": 7,
+  "ascension": 0,
+  "gold": 112,
+  "hp": {
+    "current": 63,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 3
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "relic_reward": [
+    "akabeko",
+    "kunai"
+  ],
+  "run_context": {
+    "act_region": "overgrowth",
+    "upcoming_elites": [
+      "berdonis"
+    ],
+    "path_pressure": "elite_soon",
+    "notes": []
+  },
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.1.0",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": true,
+    "confidence": "medium",
+    "caveats": [
+      "User should confirm visible relic reward before using this state."
+    ]
+  }
+}
+```
+
 ### Field Notes
 
 - `game` should stay `slay_the_spire_2` to match current Deckseer run-state files.
-- `screen_type` identifies the decision surface and should be `card_reward` for the first export.
-- `character`, `act`, `floor`, `ascension`, `gold`, `hp`, `deck`, `relics`, `potions`, and `card_reward` should use the same logical meanings as the manual input shape.
+- `screen_type` identifies the decision surface and should be `card_reward` for card reward export or `relic_reward` for relic reward export.
+- `character`, `act`, `floor`, `ascension`, `gold`, `hp`, `deck`, `relics`, `potions`, `card_reward`, and `relic_reward` should use the same logical meanings as the manual input shapes.
 - `deck` entries should be normalized to Deckseer card IDs where safely possible, with `upgraded` and `count`.
-- `relics`, `potions`, and `card_reward` should use Deckseer IDs. Unknown IDs should be left visible with caveats rather than silently guessed.
+- `relics`, `potions`, `card_reward`, and `relic_reward` should use Deckseer IDs. Unknown IDs should be left visible with caveats rather than silently guessed.
 - `run_context` is optional and should only include fields that can be safely derived from normal mod-accessible state.
 - `export_metadata` is for adapter and UI review only. It must not affect scoring directly.
 
@@ -149,8 +202,8 @@ Deckseer should continue to score the same advisor-ready card reward payload it 
 1. Read `latest_state.json`.
 2. Check `game` and `screen_type`.
 3. For `exporter_status`, inspect metadata and status only.
-4. For `card_reward`, preserve `export_metadata` for display or caveats.
-5. Convert card reward exports into the existing card reward input shape.
+4. For `card_reward` and `relic_reward`, preserve `export_metadata` for display or caveats.
+5. Convert recommendation exports into the existing manual input shape for that decision surface.
 6. Require `recommend-export --confirmed` before recommendation when `requires_user_confirmation` is true.
 
 Skip should not appear in `card_reward`; Deckseer adds Skip internally.
@@ -161,6 +214,7 @@ The exporter should prefer explicit caveats over guessing. Examples:
 
 - Unsupported or unknown screen type.
 - Reward card ID could not be normalized.
+- Reward relic ID could not be normalized.
 - Deck, relic, or potion item is unknown to Deckseer.
 - Optional path context is unavailable.
 - Export is stale or was produced by an older game patch.
@@ -175,7 +229,8 @@ Deckseer should treat these as review warnings for the user, not as scoring inpu
 3. **Card Reward Export**: export the card reward contract above.
 4. **Deckseer Import Adapter**: read exporter JSON and convert it into the existing manual input shape after user confirmation.
 5. **Optional Watch Mode**: add a CLI helper only after the static export and adapter are stable.
-6. **Broader Decision Exports**: consider relic, potion, pathing, shop, and combat surfaces after the card reward path is proven.
+6. **Relic Reward Export**: export the visible relic reward contract after manual relic advice and card reward exporter support are stable.
+7. **Broader Decision Exports**: consider potion, pathing, shop, and combat surfaces after simpler reward paths are proven.
 
 ## Acceptance Criteria for Exporter 1
 

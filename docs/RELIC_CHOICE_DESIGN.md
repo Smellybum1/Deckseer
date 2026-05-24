@@ -1,6 +1,6 @@
 # Deckseer Relic Choice Design
 
-This document defines the first broader advice surface after card rewards: deterministic, manual JSON relic choice advice. The design, metadata seed, private scorer, and public `recommend-relic` CLI packets are now complete. There is still no exporter expansion, card reward behavior change, or baseline change.
+This document defines the first broader advice surface after card rewards: deterministic, manual JSON relic choice advice. The design, metadata seed, private scorer, and public `recommend-relic` CLI packets are now complete. A proposed exporter-side `screen_type: "relic_reward"` contract is documented, but there is still no live capture, mod code, card reward behavior change, or baseline change.
 
 ## Goal
 
@@ -198,7 +198,7 @@ CLI validation:
 2. **Metadata review packet**: define a tiny reviewed relic metadata seed plan without changing advice behavior. Completed in `docs/RELIC_METADATA_SEED_PLAN.md`.
 3. **Private scorer packet**: implement a non-public relic choice scorer with tests and fixtures. Completed in `src/deckseer/relic_choice.py`.
 4. **CLI packet**: add a public command such as `recommend-relic` now that private scorer output is covered by focused tests. Completed with `recommend-relic`.
-5. **Exporter contract packet**: document `screen_type: "relic_reward"` only after manual relic advice works.
+5. **Exporter contract packet**: document `screen_type: "relic_reward"` only after manual relic advice works. Completed in `docs/EXPORTER_MOD_DESIGN.md`.
 
 ## Stop Rules
 
@@ -214,4 +214,4 @@ Stop and ask before:
 
 ## Recommended Next Packet
 
-The next implementation packet should be **Exporter Contract Packet**: document how a future exporter would represent `screen_type: "relic_reward"` for `inspect-export`, without adding live capture, watcher mode, or mod code.
+The next implementation packet should be **Inspect-Only Relic Export Adapter**: allow `inspect-export` to summarize proposed `screen_type: "relic_reward"` files without scoring them yet.
