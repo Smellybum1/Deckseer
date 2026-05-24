@@ -161,23 +161,25 @@ def _check_dotnet_sdk(runner: CommandRunner) -> dict:
 
 
 def _check_sts2_template(runner: CommandRunner, dotnet_check: dict) -> dict:
+    command = ("dotnet", "new", "list", "alchyrsts2mod")
+    command_text = "dotnet new list alchyrsts2mod"
     if not dotnet_check["ok"]:
         return {
             "ok": False,
-            "command": "dotnet new list Alchyr.Sts2.Templates",
+            "command": command_text,
             "skipped": True,
             "message": "Skipped because no .NET SDK is visible.",
         }
 
-    result = runner(("dotnet", "new", "list", "Alchyr.Sts2.Templates"))
+    result = runner(command)
     combined = f"{result.stdout}\n{result.stderr}"
     lowered = combined.lower()
     ok = result.returncode == 0 and (
-        "alchyr.sts2.templates" in lowered or "slay the spire" in lowered or "sts2" in lowered
+        "alchyrsts2mod" in lowered or "empty slay the spire 2 mod" in lowered
     )
     return {
         "ok": ok,
-        "command": "dotnet new list Alchyr.Sts2.Templates",
+        "command": command_text,
         "returncode": result.returncode,
         "skipped": False,
         "message": _first_relevant_line(combined),

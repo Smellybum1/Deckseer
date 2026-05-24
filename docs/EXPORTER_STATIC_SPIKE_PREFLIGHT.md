@@ -12,7 +12,7 @@ Status: `blocked_missing_toolchain`
 The local Slay the Spire 2 install was found and its current build metadata is readable, but the static mod spike should not start yet because the required C# modding toolchain is incomplete:
 
 - `.NET` host/runtime is installed, but `dotnet --info` reports no installed SDKs.
-- `dotnet new list Alchyr.Sts2.Templates` cannot run because no SDK is available.
+- `dotnet new list alchyrsts2mod` cannot run because no SDK is available.
 - `godot` is not available on PATH.
 - `megadot` is not available on PATH.
 
@@ -88,7 +88,7 @@ Reviewed on 2026-05-24. Treat these details as volatile while STS2 is in Early A
 
 1. Install or expose a supported `.NET SDK` on PATH, then confirm `dotnet --info` lists at least one SDK.
 2. Install or expose the current Megadot/Godot executable on PATH, or document its absolute path before adding a project file.
-3. Install or verify `Alchyr.Sts2.Templates` with `dotnet new list Alchyr.Sts2.Templates`.
+3. Install or verify `Alchyr.Sts2.Templates` with `dotnet new list alchyrsts2mod`.
 4. Decide whether the static status mod can avoid BaseLib; if it can, keep the first spike dependency-free.
 5. After toolchain readiness, create only the smallest `DeckseerExporter` mod package needed to write:
 

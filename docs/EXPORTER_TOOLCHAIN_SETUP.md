@@ -18,7 +18,7 @@ Deckseer can already inspect `screen_type: "exporter_status"` fixture files, and
 The static mod spike remains blocked because the local modding toolchain is incomplete:
 
 - `.NET` host/runtime exists, but `dotnet --info` reports `No SDKs were found.`
-- `dotnet new list Alchyr.Sts2.Templates` cannot run without a .NET SDK.
+- `dotnet new list alchyrsts2mod` cannot run without a .NET SDK.
 - `godot` is not available on PATH.
 - `megadot` is not available on PATH.
 
@@ -65,22 +65,22 @@ Expected ready state:
 - Output includes at least one entry under `.NET SDKs installed`.
 - Output no longer says `No SDKs were found.`
 
-Check template visibility:
+Check template visibility by the installed template short name:
 
 ```powershell
-dotnet new list Alchyr.Sts2.Templates
+dotnet new list alchyrsts2mod
 ```
 
 Expected ready state:
 
 - Command exits successfully.
-- Output lists the Slay the Spire 2 templates, including the mostly blank mod template.
+- Output lists `Empty Slay the Spire 2 Mod` with short name `alchyrsts2mod`.
 
 If templates are not installed yet, install them after SDK readiness:
 
 ```powershell
 dotnet new install Alchyr.Sts2.Templates
-dotnet new list Alchyr.Sts2.Templates
+dotnet new list alchyrsts2mod
 ```
 
 Check Megadot/Godot visibility:

@@ -129,8 +129,12 @@ def _ready_command_runner(command) -> CommandResult:
             stdout=".NET SDKs installed:\n  9.0.100 [C:\\Program Files\\dotnet\\sdk]\n.NET runtimes installed:\n",
             stderr="",
         )
-    if tuple(command) == ("dotnet", "new", "list", "Alchyr.Sts2.Templates"):
-        return CommandResult(returncode=0, stdout="Alchyr.Sts2.Templates  sts2mod\n", stderr="")
+    if tuple(command) == ("dotnet", "new", "list", "alchyrsts2mod"):
+        return CommandResult(
+            returncode=0,
+            stdout="Empty Slay the Spire 2 Mod  alchyrsts2mod  [C#]\n",
+            stderr="",
+        )
     return CommandResult(returncode=1, stdout="", stderr="unexpected command")
 
 
