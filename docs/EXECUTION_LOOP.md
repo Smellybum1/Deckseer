@@ -53,6 +53,7 @@ Completed:
 - Advice module decision brief: `docs/ADVICE_MODULES_DECISION_BRIEF.md` now compares relic choice, potion usage, pathing, and combat planning, and recommends relic choice as the lowest-risk first broader advice target after explicit approval.
 - Relic choice design packet: `docs/RELIC_CHOICE_DESIGN.md` now defines the proposed manual JSON input shape, output shape, metadata fields, scoring philosophy, confidence rules, validation plan, and stop rules without runtime changes.
 - Relic metadata seed packet: `docs/RELIC_METADATA_SEED_PLAN.md` documents the tiny V1 seed, and the existing three relic records now carry roles, weak priors, pick context, and source notes without changing card reward behavior.
+- Private relic choice scorer packet: `src/deckseer/relic_choice.py` can load manual `screen_type: "relic_reward"` JSON and rank the three seed relics with focused fixtures, without adding public CLI behavior.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -86,11 +87,11 @@ Completed:
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
-- Dependencies: user approved relic choice as the first target; next packet should still avoid runtime behavior unless explicitly authorized.
-- Likely files: `data/relics`, relic metadata docs, and later advice modules.
-- Validation: data-health, focused relic metadata tests when code/data changes, and standard QA.
+- Dependencies: user approved relic choice as the first target and explicitly approved the CLI packet.
+- Likely files: `src/deckseer/cli.py`, a small CLI helper module, `src/deckseer/rendering.py`, README/docs, and CLI tests.
+- Validation: focused relic choice CLI tests, `recommend-relic` smoke commands, and standard QA.
 - Effort: medium.
-- Status: relic metadata seed plan complete; next unblocked packet is a private relic choice scorer.
+- Status: private scorer complete; next unblocked packet is the public `recommend-relic` CLI.
 
 ### 5. Vision State Extractor Design Packet
 

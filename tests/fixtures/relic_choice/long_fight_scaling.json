@@ -1,0 +1,54 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "relic_reward",
+  "character": "ironclad",
+  "act": 2,
+  "floor": 24,
+  "ascension": 0,
+  "gold": 174,
+  "hp": {
+    "current": 61,
+    "max": 82
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "bash",
+      "upgraded": true,
+      "count": 1
+    },
+    {
+      "id": "pommel_strike",
+      "upgraded": false,
+      "count": 2
+    },
+    {
+      "id": "anger",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [
+    "akabeko"
+  ],
+  "potions": [],
+  "relic_reward": [
+    "kunai",
+    "burning_blood"
+  ],
+  "run_context": {
+    "path_pressure": "boss_soon",
+    "notes": [
+      "Fixture for Relic Choice V1 attack-density scaling."
+    ]
+  }
+}

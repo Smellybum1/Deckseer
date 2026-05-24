@@ -1,0 +1,46 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "relic_reward",
+  "character": "ironclad",
+  "act": 1,
+  "floor": 7,
+  "ascension": 0,
+  "gold": 112,
+  "hp": {
+    "current": 63,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 3
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "bash",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "relic_reward": [
+    "akabeko",
+    "kunai"
+  ],
+  "run_context": {
+    "act_region": "overgrowth",
+    "upcoming_elites": [
+      "berdonis"
+    ],
+    "path_pressure": "elite_soon",
+    "notes": [
+      "Fixture for Relic Choice V1 frontload pressure."
+    ]
+  }
+}

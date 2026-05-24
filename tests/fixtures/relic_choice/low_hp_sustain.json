@@ -1,0 +1,49 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "relic_reward",
+  "character": "ironclad",
+  "act": 1,
+  "floor": 13,
+  "ascension": 0,
+  "gold": 86,
+  "hp": {
+    "current": 28,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 2
+    },
+    {
+      "id": "bash",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "pommel_strike",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "relic_reward": [
+    "burning_blood",
+    "akabeko"
+  ],
+  "run_context": {
+    "act_region": "underdocks",
+    "path_pressure": "high",
+    "recent_damage": 22,
+    "notes": [
+      "Fixture for Relic Choice V1 sustain pressure."
+    ]
+  }
+}
