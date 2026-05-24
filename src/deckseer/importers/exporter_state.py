@@ -7,6 +7,7 @@ from typing import Any
 
 from deckseer.current_state import CurrentState
 from deckseer.models import DataError, ValidationError
+from deckseer.relic_choice import RelicChoiceState
 
 
 @dataclass(frozen=True)
@@ -41,6 +42,8 @@ class InspectedExport:
     metadata: dict[str, Any]
     status: str | None = None
     current_state: CurrentState | None = None
+    relic_state: RelicChoiceState | None = None
+    caveats: tuple[str, ...] = ()
 
     def to_summary_dict(self) -> dict[str, Any]:
         payload = self.current_state.to_recommendation_input() if self.current_state is not None else None
@@ -54,7 +57,7 @@ class InspectedExport:
             "exported_at": self.metadata.get("exported_at"),
             "requires_user_confirmation": self.metadata.get("requires_user_confirmation", False),
             "valid": True,
-            "caveats": _metadata_caveats(self.metadata),
+            "caveats": list(self.caveats) if self.caveats else _metadata_caveats(self.metadata),
         }
         if self.status is not None:
             summary["status"] = self.status
@@ -62,6 +65,9 @@ class InspectedExport:
             summary["character"] = payload["character"]
             summary["card_reward"] = list(payload["card_reward"])
             summary["caveats"] = list(self.current_state.caveats)
+        if self.relic_state is not None:
+            summary["character"] = self.relic_state.character
+            summary["relic_reward"] = list(self.relic_state.relic_reward)
         return summary
 
 
@@ -89,6 +95,8 @@ def inspect_exporter_state(path: Path) -> InspectedExport:
             metadata=metadata,
             status=_require_str(data.get("status"), "status"),
         )
+    if screen_type == "relic_reward":
+        return _inspect_relic_reward_export(data, metadata, source_type)
     raise ValidationError(f"unsupported exporter screen_type: {screen_type}")
 
 
@@ -120,6 +128,22 @@ def _load_card_reward_export(data: dict[str, Any], metadata: dict[str, Any], sou
         screen_type="card_reward",
         metadata=metadata,
         current_state=state,
+    )
+
+
+def _inspect_relic_reward_export(data: dict[str, Any], metadata: dict[str, Any], source_type: str) -> InspectedExport:
+    caveats = _metadata_caveats(metadata)
+    if metadata.get("requires_user_confirmation") is True:
+        caveats.append("Exporter state requires user confirmation before recommendation.")
+
+    payload = _canonical_payload(data)
+    relic_state = RelicChoiceState.from_dict(payload)
+    return InspectedExport(
+        source_type=source_type,
+        screen_type="relic_reward",
+        metadata=metadata,
+        relic_state=relic_state,
+        caveats=tuple(caveats),
     )
 
 

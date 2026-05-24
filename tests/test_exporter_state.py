@@ -12,6 +12,7 @@ from deckseer.models import ValidationError
 
 FIXTURE = Path("tests/fixtures/exporter_card_reward_state.json")
 STATUS_FIXTURE = Path("tests/fixtures/exporter_status_state.json")
+RELIC_FIXTURE = Path("tests/fixtures/exporter_relic_reward_state.json")
 
 
 def test_exporter_state_loads_through_current_state_adapter() -> None:
@@ -83,6 +84,22 @@ def test_inspect_export_accepts_status_fixture(capsys) -> None:
     assert payload["caveats"] == ["Static exporter status only; no live run state is present."]
 
 
+def test_inspect_export_accepts_relic_reward_fixture(capsys) -> None:
+    status = main(["inspect-export", str(RELIC_FIXTURE)])
+
+    captured = capsys.readouterr()
+    payload = json.loads(captured.out)
+
+    assert status == 0
+    assert payload["source_type"] == "deckseer_exporter_mod"
+    assert payload["screen_type"] == "relic_reward"
+    assert payload["character"] == "ironclad"
+    assert payload["relic_reward"] == ["akabeko", "kunai"]
+    assert payload["valid"] is True
+    assert "User should confirm visible relic reward before using this state." in payload["caveats"]
+    assert "Exporter state requires user confirmation before recommendation." in payload["caveats"]
+
+
 def test_recommend_export_cli_rejects_status_fixture(capsys) -> None:
     status = main(["recommend-export", str(STATUS_FIXTURE)])
 
@@ -91,6 +108,16 @@ def test_recommend_export_cli_rejects_status_fixture(capsys) -> None:
     assert status == 2
     assert captured.out == ""
     assert "recommend-export only supports card_reward exports" in captured.err
+
+
+def test_recommend_export_cli_rejects_relic_fixture_until_recommendation_packet(capsys) -> None:
+    status = main(["recommend-export", str(RELIC_FIXTURE), "--confirmed"])
+
+    captured = capsys.readouterr()
+
+    assert status == 2
+    assert captured.out == ""
+    assert "recommend-export only supports card_reward exports; got relic_reward" in captured.err
 
 
 def test_recommend_export_requires_confirmation(capsys) -> None:

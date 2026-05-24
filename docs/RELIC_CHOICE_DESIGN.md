@@ -214,4 +214,4 @@ Stop and ask before:
 
 ## Recommended Next Packet
 
-The next implementation packet should be **Inspect-Only Relic Export Adapter**: allow `inspect-export` to summarize proposed `screen_type: "relic_reward"` files without scoring them yet.
+The next implementation packet should be **Confirmed Relic Export Recommendation**: allow confirmed `recommend-export` calls to score proposed `screen_type: "relic_reward"` files through the existing relic choice scorer.

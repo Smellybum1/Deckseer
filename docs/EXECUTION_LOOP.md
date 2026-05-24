@@ -56,6 +56,7 @@ Completed:
 - Private relic choice scorer packet: `src/deckseer/relic_choice.py` can load manual `screen_type: "relic_reward"` JSON and rank the three seed relics with focused fixtures, without adding public CLI behavior.
 - Relic choice CLI packet: `recommend-relic` now ranks manual relic reward JSON using JSON, text, or Markdown output, while card reward/exporter behavior remains unchanged.
 - Relic exporter contract packet: `docs/EXPORTER_MOD_DESIGN.md` now documents a proposed future `screen_type: "relic_reward"` JSON shape and fixture without enabling live capture or scoring from exporter relic files.
+- Inspect-only relic export adapter packet: `inspect-export` now accepts `screen_type: "relic_reward"` files and summarizes visible relic choices while `recommend-export` still rejects them.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -89,11 +90,11 @@ Completed:
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
-- Dependencies: manual relic advice and the relic exporter contract are available.
-- Likely files: `src/deckseer/importers/exporter_state.py`, exporter fixture tests, and docs.
-- Validation: `inspect-export` accepts `screen_type: "relic_reward"`; `recommend-export` still rejects it until the confirmed recommendation packet.
+- Dependencies: manual relic advice and inspect-only relic exporter support are available.
+- Likely files: exporter adapter, `src/deckseer/cli_exporter.py`, README/docs, and exporter/relic tests.
+- Validation: `recommend-export <relic_export> --confirmed --format text` returns `Relic Choice`; missing `--confirmed` fails when required.
 - Effort: medium.
-- Status: relic exporter contract complete; next unblocked packet is inspect-only relic export adapter support.
+- Status: inspect-only relic export support complete; next unblocked packet is confirmed relic export recommendation.
 
 ### 5. Vision State Extractor Design Packet
 
