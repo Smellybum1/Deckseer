@@ -276,7 +276,7 @@ Check whether the local machine is ready for the future static exporter mod spik
 deckseer exporter-toolchain-preflight --format text
 ```
 
-Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward` and `screen_type: relic_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. `inspect-export` also accepts `screen_type: exporter_status` as a harmless static exporter-health contract. When a recommendation export has `requires_user_confirmation: true`, run `inspect-export` first and pass `--confirmed` only after checking the visible state. The Slay the Spire 2 companion mod itself is still not implemented.
+Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward` and `screen_type: relic_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. `inspect-export` also accepts `screen_type: exporter_status` as a harmless static exporter-health contract. When a recommendation export has `requires_user_confirmation: true`, run `inspect-export` first and pass `--confirmed` only after checking the visible state. The first Slay the Spire 2 companion mod spike now writes only a static `exporter_status` file; live run-state export is not implemented.
 
 ## State Sources
 
@@ -295,11 +295,11 @@ Implemented sources:
 
 - **Manual JSON**: primary v0 workflow, loaded directly from a user-authored run-state file.
 - **Run-history import**: read-only `.run` history parsing that can draft a recommendation input after you manually provide current HP, act, floor, and visible card reward.
-- **Exporter JSON import**: read-only proposed `latest_state.json` contract parsing through `inspect-export` and `recommend-export`. `inspect-export` accepts static exporter status files, card reward files, and relic reward files; `recommend-export` supports confirmed card reward and relic reward files. `exporter-toolchain-preflight` reports whether the local STS2 install and modding tools are ready for the future static status mod spike. These commands consume local files and metadata only; the game mod that would write exporter state is not implemented yet.
+- **Exporter JSON import**: read-only `latest_state.json` contract parsing through `inspect-export` and `recommend-export`. `inspect-export` accepts static exporter status files, card reward files, and relic reward files; `recommend-export` supports confirmed card reward and relic reward files. `exporter-toolchain-preflight` reports whether the local STS2 install and modding tools are ready for exporter mod work. These commands consume local files and metadata only.
 
 Planned sources:
 
-- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The initial design contract lives in `docs/EXPORTER_MOD_DESIGN.md`; the in-game exporter mod is not implemented yet.
+- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The static status spike lives under `exporter_mod/DeckseerExporter` and is documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`. It writes only `screen_type: "exporter_status"`; card reward and relic reward live-state export are not implemented yet.
 - **Vision State Extractor**: screenshot/OCR fallback or complement when an exporter mod is unavailable, unwanted, or unreliable.
 
 Source metadata and caveats stay outside the scorer. The recommendation engine receives the same validated card reward payload regardless of where the state came from.
@@ -469,7 +469,7 @@ The core recommendation engine should remain usable without an LLM. Future expla
 
 The preferred long-term live-state path is a small Slay the Spire 2 companion mod that exports the current run and decision state to local JSON. Deckseer would read that exported JSON using the same decision engine and schemas as the manual v0 workflow.
 
-This milestone is not implemented yet. The initial design is documented in `docs/EXPORTER_MOD_DESIGN.md`. It should stay read-only and export-only:
+The first static status spike is implemented under `exporter_mod/DeckseerExporter` and documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`. Live run-state export is not implemented yet. The exporter path should stay read-only and export-only:
 
 - no mouse or keyboard automation
 - no gameplay control
@@ -529,7 +529,7 @@ Example future exporter output shape:
 Exporter milestone breakdown:
 
 - **Exporter 1: Modding Surface Research**: use `docs/EXPORTER_MOD_DESIGN.md` as the boundary and contract, then document how STS2 mods are packaged, loaded, and allowed to access current run state. Confirm whether a read-only exporter is viable before writing mod code.
-- **Exporter 2: Static JSON Export Spike**: create the smallest possible companion mod that writes a harmless `screen_type: "exporter_status"` local JSON file with build/version metadata only.
+- **Exporter 2: Static JSON Export Spike**: implemented. The local companion mod writes a harmless `screen_type: "exporter_status"` JSON file only.
 - **Exporter 3: Card Reward Export**: export visible/current card reward state, character, act, floor, HP, gold, deck, relics, and potions into Deckseer's existing input shape.
 - **Exporter 4: Deckseer Watch Mode**: add an optional Deckseer CLI mode that reads the latest exported JSON and prints recommendations after user confirmation.
 - **Exporter 5: Broader Decision Export**: extend exported state for relic choices, potion choices, pathing, shop, combat basics, and other advisor modules as they are added.

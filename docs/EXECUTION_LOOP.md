@@ -38,7 +38,7 @@ At the start of each run:
 
 Completed:
 
-- Read-only `exporter-toolchain-preflight` CLI command for repeatable local exporter readiness checks. The expected current state is `blocked_missing_toolchain` until `.NET SDK`, STS2 templates, and Megadot/Godot are visible.
+- Read-only `exporter-toolchain-preflight` CLI command for repeatable local exporter readiness checks. The expected current state is `ready_for_static_spike` when `.NET SDK`, STS2 templates, and Megadot/Godot are visible.
 - First CLI decomposition slice: exporter command handling and registration now live in `src/deckseer/cli_exporter.py`, with `src/deckseer/cli.py` still preserving the public entrypoint.
 - Second CLI decomposition slice: run-history save command handling and registration now live in `src/deckseer/cli_save.py`, preserving `inspect-save`, `import-run`, and `recommend-save`.
 - Third CLI decomposition slice: single-file manual run-state command handling and registration now live in `src/deckseer/cli_run_state.py`, preserving `recommend-card`, `diagnose-run`, `check-run-data`, and `normalize-run`.
@@ -60,6 +60,7 @@ Completed:
 - Confirmed relic export recommendation packet: `recommend-export` now dispatches confirmed `screen_type: "relic_reward"` files through the relic choice scorer.
 - Relic choice regression manifest packet: `relic-accuracy-report` checks three accepted Relic Choice V1 scenarios before relic metadata expands further.
 - Relic metadata expansion readiness packet: `docs/RELIC_METADATA_EXPANSION_READINESS.md` defines the safe intake workflow for future tiny reviewed relic batches without changing data yet.
+- Exporter static mod spike: `exporter_mod/DeckseerExporter` now builds a local STS2 mod that writes only `screen_type: "exporter_status"` JSON, and the real mod-written file passes `inspect-export`.
 
 ### 1. Expand Reviewed Accuracy Scenarios From Real Runs
 
@@ -71,16 +72,7 @@ Completed:
 - Effort: medium.
 - Status: blocked until a reviewed real-run state and expected top choice are available.
 
-### 2. Static Exporter Mod Spike
-
-- Impact: high; proves the game-side bridge can write `screen_type: "exporter_status"`.
-- Risk: high; depends on external toolchain, STS2 beta volatility, and local game files.
-- Dependencies: `.NET SDK`, Megadot/Godot, and STS2 templates verified; explicit approval for local mod/game-file work.
-- Likely files: future C# mod project files and exporter docs.
-- Validation: game shows the mod in settings, written JSON passes `deckseer inspect-export`, no live state exported.
-- Effort: large.
-
-### 3. Exporter Card Reward Contract Spike
+### 2. Exporter Card Reward Contract Spike
 
 - Impact: high; first real low-friction recommendation input.
 - Risk: high; needs safe mod APIs and stable card ID mapping.
@@ -89,7 +81,7 @@ Completed:
 - Validation: `inspect-export`, `recommend-export --confirmed`, scenario winners unchanged, full QA.
 - Effort: large.
 
-### 4. Relic/Potion Advice Design Packet
+### 3. Relic/Potion Advice Design Packet
 
 - Impact: medium; broadens Deckseer beyond card rewards while keeping deterministic advice.
 - Risk: medium; could sprawl into combat simulation if not bounded.
@@ -99,7 +91,7 @@ Completed:
 - Effort: medium.
 - Status: readiness complete; next data-changing packet is blocked until a tiny reviewed relic candidate batch is available.
 
-### 5. Vision State Extractor Design Packet
+### 4. Vision State Extractor Design Packet
 
 - Impact: medium; useful fallback if exporter tooling remains blocked.
 - Risk: medium-high; OCR/capture can invite complexity and UX ambiguity.
@@ -145,7 +137,7 @@ python -m pytest
 Expected healthy state:
 
 - Triage-aware QA: `PASS`.
-- Exporter toolchain preflight: `blocked_missing_toolchain` until external setup is completed.
+- Exporter toolchain preflight: `ready_for_static_spike` when `.NET SDK`, STS2 templates, and Megadot/Godot are visible.
 - Empirical coverage: `REVIEW`, 18 rows, 14 `patch_mismatch` warnings unless intentionally changed.
 - Accuracy report: `PASS`, 9/9 unless intentionally expanded.
 - Relic accuracy report: `PASS`, 3/3 unless intentionally expanded.
@@ -191,7 +183,7 @@ Default verification:
 
 Expected healthy state:
 - triage-aware QA PASS
-- exporter toolchain preflight blocked_missing_toolchain until external setup is completed
+- exporter toolchain preflight ready_for_static_spike when local toolchain remains visible
 - empirical coverage REVIEW with 18 rows and 14 patch_mismatch warnings unless intentionally changed
 - accuracy PASS, 9/9 unless intentionally expanded
 - relic accuracy PASS, 3/3 unless intentionally expanded

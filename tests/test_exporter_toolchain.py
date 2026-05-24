@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from deckseer.cli import main
-from deckseer.exporter_toolchain import CommandResult, build_exporter_toolchain_preflight
+from deckseer.exporter_toolchain import CommandResult, _check_folder, build_exporter_toolchain_preflight
 
 
 def test_exporter_toolchain_preflight_ready_when_game_and_tools_are_visible(tmp_path: Path) -> None:
@@ -55,6 +55,15 @@ def test_exporter_toolchain_preflight_reports_missing_game(tmp_path: Path) -> No
 
     assert report["status"] == "blocked_missing_game"
     assert "sts2_install" in report["summary"]["blockers"]
+
+
+def test_exporter_toolchain_preflight_reports_inaccessible_folder() -> None:
+    check = _check_folder(_DeniedPath())
+
+    assert check["ok"] is False
+    assert check["path"] == "C:\\denied"
+    assert check["exists"] is None
+    assert "Access is denied" in check["error"]
 
 
 def test_exporter_toolchain_preflight_cli_text_smoke(monkeypatch, capsys) -> None:
@@ -120,6 +129,17 @@ def _write_fake_manifest(tmp_path: Path) -> Path:
         encoding="utf-8",
     )
     return manifest
+
+
+class _DeniedPath:
+    def exists(self) -> bool:
+        raise PermissionError("Access is denied")
+
+    def is_dir(self) -> bool:
+        raise AssertionError("is_dir should not be called when exists fails")
+
+    def __str__(self) -> str:
+        return "C:\\denied"
 
 
 def _ready_command_runner(command) -> CommandResult:

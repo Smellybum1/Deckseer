@@ -82,7 +82,7 @@ def build_exporter_toolchain_preflight(
         },
         "caveats": [
             "Read-only preflight; no tools are installed and no folders are created.",
-            "The future static exporter spike must still avoid live run-state export, gameplay automation, and game-file modification outside its approved mod package.",
+            "Exporter mod work must still avoid unapproved live run-state export, gameplay automation, and game-file modification outside its approved mod package.",
         ],
     }
 
@@ -196,10 +196,20 @@ def _check_executable(name: str, which: WhichRunner) -> dict:
 
 
 def _check_folder(path: Path) -> dict:
+    try:
+        exists = path.exists()
+        is_dir = path.is_dir()
+    except OSError as exc:
+        return {
+            "ok": False,
+            "path": str(path),
+            "exists": None,
+            "error": str(exc),
+        }
     return {
-        "ok": path.exists() and path.is_dir(),
+        "ok": exists and is_dir,
         "path": str(path),
-        "exists": path.exists(),
+        "exists": exists,
     }
 
 

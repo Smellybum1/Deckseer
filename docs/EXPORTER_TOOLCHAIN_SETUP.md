@@ -2,7 +2,7 @@
 
 This checklist prepares the local Windows machine for the future Deckseer Exporter static mod spike. It is repo-only documentation: do not add mod source, build files, generated template output, dependencies, live capture, or watch mode as part of this packet.
 
-## Current Blocker
+## Current Status
 
 Checked on 2026-05-24.
 
@@ -15,12 +15,15 @@ Deckseer can already inspect `screen_type: "exporter_status"` fixture files, and
 - Steam build ID: `23372702`
 - Release commit: `d3584805`
 
-The static mod spike remains blocked because the local modding toolchain is incomplete:
+The static status mod spike is no longer blocked. The local toolchain is now visible:
 
-- `.NET` host/runtime exists, but `dotnet --info` reports `No SDKs were found.`
-- `dotnet new list alchyrsts2mod` cannot run without a .NET SDK.
-- `godot` is not available on PATH.
+- `.NET SDK 9.0.314` is installed and supports the STS2 template's `net9.0` target.
+- `.NET SDK 8.0.421` is also installed.
+- `dotnet new list alchyrsts2mod` reports the `Empty Slay the Spire 2 Mod` template.
+- `godot` is available through `D:\Codex\Godot\godot.cmd`.
 - `megadot` is not available on PATH.
+
+The accepted static spike is documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`.
 
 ## Required External Tools
 
@@ -46,11 +49,11 @@ Deckseer now has a read-only wrapper for the local checks below:
 deckseer exporter-toolchain-preflight --format text
 ```
 
-Expected current state before toolchain setup:
+Expected ready state after toolchain setup:
 
-- Status: `blocked_missing_toolchain`.
-- Blockers: `dotnet_sdk`, `sts2_template`, and `megadot_or_godot`.
-- Warnings: `mods_folder_missing` and `deckseer_export_folder_missing`.
+- Status: `ready_for_static_spike`.
+- Blockers: none.
+- Warnings: none after the accepted static spike has created the local mod and export folders.
 
 Run these commands after setup. They should be read-only except for whatever the external installer or template install already did.
 
@@ -115,8 +118,8 @@ Test-Path -LiteralPath 'D:\Games\Steam\steamapps\common\Slay the Spire 2\mods'
 
 Expected current state:
 
-- `False` is acceptable before the static spike.
-- The future static spike may create this folder only when it starts adding the local mod package.
+- `True` is expected after the accepted static spike.
+- The folder should contain only approved local mod package files.
 
 Check expected Deckseer export folder:
 
@@ -126,12 +129,12 @@ Test-Path -LiteralPath "$env:LOCALAPPDATA\Deckseer\exports"
 
 Expected current state:
 
-- `False` is acceptable before the static spike.
-- The future static spike may create this folder only when it writes the harmless status export.
+- `True` is expected after the accepted static spike has loaded once.
+- The folder should contain the user-visible `latest_state.json` export.
 
 ## Future Mod Project Values
 
-When the static mod spike is unblocked, use these local values:
+The accepted static mod spike uses these local values:
 
 - Project/mod ID: `DeckseerExporter`
 - STS2 install path: `D:\Games\Steam\steamapps\common\Slay the Spire 2`
@@ -142,7 +145,7 @@ When the static mod spike is unblocked, use these local values:
 - Manifest intent: `affects_gameplay: false`
 - First export only: `screen_type: "exporter_status"`
 
-The future static spike should write only this contract shape:
+The accepted static spike writes only this contract shape:
 
 ```json
 {
@@ -181,7 +184,7 @@ Reviewed on 2026-05-24. Treat these details as volatile while Slay the Spire 2 i
 
 ## Safety Boundary
 
-Allowed after setup, in the future static spike:
+Allowed after setup:
 
 - Create the smallest local `DeckseerExporter` mod package.
 - Write a user-visible static status JSON file under `%LOCALAPPDATA%\Deckseer\exports\`.

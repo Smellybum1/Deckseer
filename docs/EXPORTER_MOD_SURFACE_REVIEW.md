@@ -1,8 +1,9 @@
 # Deckseer Exporter Modding Surface Review
 
-This review prepares the next Deckseer Exporter packet: a static, harmless Slay the Spire 2 mod spike that writes only `screen_type: "exporter_status"` JSON. It is not approval to export live run state yet.
+This review prepared the first Deckseer Exporter packet: a static, harmless Slay the Spire 2 mod spike that writes only `screen_type: "exporter_status"` JSON. That spike is now accepted; this document is not approval to export live run state yet.
 
 See `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` for local Windows install, mod-folder, log-folder, and toolchain findings before attempting the static spike.
+See `docs/EXPORTER_STATIC_MOD_SPIKE.md` for the accepted static mod result.
 
 ## Source Snapshot
 
@@ -81,14 +82,13 @@ deckseer inspect-export "%LOCALAPPDATA%\Deckseer\exports\latest_state.json"
 
 ## Static Spike Build Plan
 
-The next code-bearing packet should:
+The accepted static spike:
 
-- Verify local STS2 install, mods folder, and log path without changing saves or profiles.
-- Create the smallest possible `DeckseerExporter` mod package from the current template surface.
-- Use an informational manifest with `affects_gameplay: false` when supported.
-- Write `latest_state.json` via a temporary file plus replace/rename when the mod loads.
-- Include exporter version, game patch/build when safely available, and a timestamp.
-- Load the game once, confirm the mod appears in the mod list, and inspect the exported JSON with Deckseer.
+- verifies the local STS2 install and toolchain through `exporter-toolchain-preflight`
+- creates the smallest local `DeckseerExporter` mod package from the current template surface
+- uses an informational manifest with `affects_gameplay: false`
+- writes `latest_state.json` via a temporary file plus replace/rename when the mod loads
+- loads in-game as one mod and passes `deckseer inspect-export`
 
 The static spike should not read the current run, deck, reward screen, relics, potions, HP, gold, map, save history, screen pixels, process memory, network traffic, or user input.
 
@@ -120,4 +120,4 @@ Forbidden:
 
 ## Next Handoff
 
-The next implementation packet should be named **Exporter Static Mod Spike**. It should stop after Deckseer can inspect a real `exporter_status` file written by the mod. Card reward export starts only after that static file-writing path is proven.
+The next implementation packet should be named **Exporter Card Reward API Recon**. It should identify safe normal mod-accessible APIs for visible card reward state before writing any live card reward export. Card reward export starts only after that API surface is understood and documented.

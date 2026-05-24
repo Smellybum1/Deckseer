@@ -12,3 +12,4 @@ htmlcov/
 .qa/
 .vscode/
 .idea/
+exporter_mod/local_mods/

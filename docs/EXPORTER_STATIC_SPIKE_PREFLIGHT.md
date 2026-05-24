@@ -7,16 +7,16 @@ Use `deckseer exporter-toolchain-preflight --format text` to refresh the read-on
 
 ## Readiness Result
 
-Status: `blocked_missing_toolchain`
+Status: `ready_for_static_spike`
 
-The local Slay the Spire 2 install was found and its current build metadata is readable, but the static mod spike should not start yet because the required C# modding toolchain is incomplete:
+The local Slay the Spire 2 install was found, current build metadata is readable, and the required C# modding toolchain is now visible:
 
-- `.NET` host/runtime is installed, but `dotnet --info` reports no installed SDKs.
-- `dotnet new list alchyrsts2mod` cannot run because no SDK is available.
-- `godot` is not available on PATH.
+- `.NET SDK 9.0.314` is installed, alongside `.NET SDK 8.0.421`.
+- `dotnet new list alchyrsts2mod` reports the `Empty Slay the Spire 2 Mod` template.
+- `godot` is available through `D:\Codex\Godot\godot.cmd`, backed by `Godot_v4.5.1-stable_mono_win64.exe`.
 - `megadot` is not available on PATH.
 
-Secondary check still needed after toolchain setup: confirm the log directory is readable after a fresh game launch, because the app data root denied directory listing during this preflight.
+The static exporter status mod spike has now passed. See `docs/EXPORTER_STATIC_MOD_SPIKE.md` for the accepted result.
 
 ## Local Game Findings
 
@@ -72,7 +72,7 @@ Expected log target:
 - `C:\Users\moxhe\AppData\Roaming\SlayTheSpire2\logs`
 - Current state: path exists according to `Test-Path`, but listing the app data root returned access denied and direct log enumeration did not produce readable log entries in this preflight.
 
-The static spike may create its own mod package and export directory in a later code-bearing packet, but this preflight intentionally did not create either folder.
+The static spike created its own local mod package and export directory during the accepted implementation packet. The preflight command itself remains read-only and does not create either folder.
 
 ## Public Reference Snapshot
 
@@ -86,11 +86,11 @@ Reviewed on 2026-05-24. Treat these details as volatile while STS2 is in Early A
 
 ## Next Actions Before Mod Source
 
-1. Install or expose a supported `.NET SDK` on PATH, then confirm `dotnet --info` lists at least one SDK.
-2. Install or expose the current Megadot/Godot executable on PATH, or document its absolute path before adding a project file.
-3. Install or verify `Alchyr.Sts2.Templates` with `dotnet new list alchyrsts2mod`.
-4. Decide whether the static status mod can avoid BaseLib; if it can, keep the first spike dependency-free.
-5. After toolchain readiness, create only the smallest `DeckseerExporter` mod package needed to write:
+1. Keep `.NET SDK 9`, the STS2 template, and Godot/Megadot visibility checked with `deckseer exporter-toolchain-preflight --format text`.
+2. Keep the static status mod dependency-free unless a later reviewed packet proves a dependency is necessary.
+3. For the next exporter packet, identify safe normal mod-accessible APIs before exporting any live decision state.
+
+The accepted `DeckseerExporter` static spike writes:
 
 ```json
 {
@@ -112,7 +112,7 @@ Reviewed on 2026-05-24. Treat these details as volatile while STS2 is in Early A
 }
 ```
 
-Acceptance command for the later static spike:
+Acceptance command for the static spike:
 
 ```bash
 deckseer inspect-export "%LOCALAPPDATA%\Deckseer\exports\latest_state.json"
