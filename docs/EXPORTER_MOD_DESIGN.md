@@ -32,6 +32,8 @@ Before writing mod code, the first implementation packet must confirm:
 
 If these checks show that a field is not safely available through normal mod APIs, the exporter should omit it or mark it with a caveat rather than use unsafe techniques.
 
+See `docs/EXPORTER_MOD_SURFACE_REVIEW.md` for the current modding-surface research handoff before attempting the static `exporter_status` spike.
+
 ## Proposed Local Output
 
 The exporter should write a single latest-state JSON file plus optional rotated debug snapshots after users opt into them. The proposed default path is:

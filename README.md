@@ -286,6 +286,7 @@ Planned sources:
 - **Vision State Extractor**: screenshot/OCR fallback or complement when an exporter mod is unavailable, unwanted, or unreliable.
 
 Source metadata and caveats stay outside the scorer. The recommendation engine receives the same validated card reward payload regardless of where the state came from.
+Exporter mod implementation readiness notes live in `docs/EXPORTER_MOD_SURFACE_REVIEW.md`; the first in-game spike should write only `screen_type: "exporter_status"`.
 
 ## Input Shape
 
