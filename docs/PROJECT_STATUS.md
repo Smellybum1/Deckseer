@@ -28,7 +28,7 @@ Deckseer is currently a local, manual JSON-first decision-support coach for Slay
 - Empirical promotion preview for explicitly activating promotion-ready draft rows.
 - Necrobinder STS2.fun capture worksheets for the first real traceable empirical seed.
 - Current-patch STS2.fun capture worksheets and reviewed active empirical files for Ironclad, Silent, Defect, and Regent.
-- Repo-native self-directed execution loop and ranked roadmap in `docs/EXECUTION_LOOP.md`.
+- Project-local agent guidance in `AGENTS.md`, plus the repo-native self-directed execution loop and ranked roadmap in `docs/EXECUTION_LOOP.md`.
 
 ## Current Data Coverage
 
@@ -56,7 +56,7 @@ Relic and potion data exist as sparse seed files. Empirical data support is inte
 
 ## Recommended Next Milestones
 
-1. Self-directed execution: use `docs/EXECUTION_LOOP.md` to choose the highest-impact unblocked packet, run the default gates, and keep handoffs consistent.
+1. Self-directed execution: use `AGENTS.md` and `docs/EXECUTION_LOOP.md` to choose the highest-impact unblocked packet, run the default gates, and keep handoffs consistent.
 2. Deckseer Exporter Mod implementation readiness: Deckseer can now inspect static exporter status files and recommend from confirmed card reward exporter files. `docs/EXPORTER_MOD_SURFACE_REVIEW.md` documents the modding-surface research, `docs/EXPORTER_STATIC_SPIKE_PREFLIGHT.md` records local install/toolchain findings, and `docs/EXPORTER_TOOLCHAIN_SETUP.md` lists the setup checks that must pass before static mod source is added. The in-game exporter mod and watch mode have not been implemented.
 3. Vision State Extractor design remains a future fallback/complement for screenshot-based visible state extraction.
 4. Broader advice modules: relic choice, potion choice, pathing, combat planning, and run-history learning.
