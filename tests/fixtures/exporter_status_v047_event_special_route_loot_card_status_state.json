@@ -1,0 +1,155 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.4.7",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-25T14:39:34.4774535+00:00",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Game patch/build metadata is not exported in this diagnostic spike.",
+      "Card identity review diagnostics may include public model IDs for visible reward choices, but no recommendation-ready run state is exported.",
+      "Live card_reward export is available only when every validation gate passes; this status payload is not recommendation-ready.",
+      "Event/special route diagnostics report active or cleared state and option counts only; no option IDs, option names, selected outcomes, or recommendation-ready state are exported."
+    ],
+    "diagnostics": {
+      "event_special_route_compile_probe": "compiled_not_registered",
+      "event_special_route_verified_symbol_count": 30,
+      "event_special_route_writes_recommendation_state": false,
+      "event_special_route": {
+        "probe_status": "event_special_options_cleared",
+        "last_event": "event_layout_options_cleared",
+        "active": true,
+        "route_family": "event_special_choice",
+        "route_label": null,
+        "observation_source": "public_event_layout_options",
+        "visible_option_count": 0,
+        "clear_state": "unknown",
+        "exports_recommendation_state": false,
+        "blockers": [
+          "event_special_route_status_only"
+        ],
+        "error": null
+      },
+      "card_reward_live_export_candidate": "refused",
+      "card_reward_live_export_refusal_reasons": [
+        "unknown_reward_card",
+        "unknown_deck_card",
+        "unmapped_relic"
+      ],
+      "card_reward_live_export_missing_fields": [],
+      "card_reward_live_export_unmapped_reward_count": 1,
+      "card_reward_live_export_unmapped_deck_count": 9,
+      "card_reward_live_export_unmapped_relic_count": 1,
+      "card_reward_live_export_unmapped_potion_count": 0,
+      "card_reward_live_export_candidate_writes_recommendation_state": false,
+      "screen_observation_probe": "registered",
+      "screen_observation_verified_symbol_count": 30,
+      "visible_reward_probe_status": "card_reward_model_seen",
+      "visible_reward_probe_last_event": "rewards_screen_shown",
+      "visible_reward_count": 2,
+      "visible_card_reward_count": 2,
+      "visible_relic_reward_count": 0,
+      "visible_card_reward_option_count": 6,
+      "visible_relic_reward_option_count": 0,
+      "visible_card_choice_option_count": 0,
+      "visible_reward_skip_disallowed": false,
+      "visible_reward_all_selected": false,
+      "card_identity_review_probe": "ids_revealed_for_review",
+      "card_identity_review_last_event": "rewards_screen_shown",
+      "card_identity_review_option_count": 6,
+      "card_identity_review_items": [
+        {
+          "position": 0,
+          "public_model_id": "PAGESTORM",
+          "normalized_candidate_id": "pagestorm",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "pagestorm",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 1,
+          "public_model_id": "PIERCING_WAIL",
+          "normalized_candidate_id": "piercing_wail",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "piercing_wail",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 2,
+          "public_model_id": "REFINE_BLADE",
+          "normalized_candidate_id": "refine_blade",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "refine_blade",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 3,
+          "public_model_id": "PARTICLE_WALL",
+          "normalized_candidate_id": "particle_wall",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "particle_wall",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 4,
+          "public_model_id": "CHARGE_BATTERY",
+          "normalized_candidate_id": "charge_battery",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "charge_battery",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 5,
+          "public_model_id": "CLEANSE",
+          "normalized_candidate_id": "cleanse",
+          "deckseer_mapping_status": "unknown",
+          "deckseer_id": null,
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        }
+      ],
+      "deck_identity_review_probe": "ids_revealed_for_review",
+      "deck_identity_review_card_count": 10,
+      "deck_identity_review_mapping_known_count": 1,
+      "deck_identity_review_mapping_unknown_count": 9,
+      "relic_potion_identity_review_probe": "ids_revealed_for_review",
+      "relic_identity_review_count": 2,
+      "relic_identity_review_mapping_known_count": 1,
+      "relic_identity_review_mapping_unknown_count": 1,
+      "relic_identity_review_items": [
+        {
+          "position": 0,
+          "public_model_id": "BURNING_BLOOD",
+          "normalized_candidate_id": "burning_blood",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "burning_blood"
+        },
+        {
+          "position": 1,
+          "public_model_id": "KALEIDOSCOPE",
+          "normalized_candidate_id": "kaleidoscope",
+          "deckseer_mapping_status": "unknown",
+          "deckseer_id": null
+        }
+      ],
+      "screen_observation_error": null
+    }
+  }
+}

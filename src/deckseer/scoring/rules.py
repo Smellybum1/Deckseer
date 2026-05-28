@@ -136,6 +136,7 @@ def score_card_rules(
     rules.extend(_need_fit_rules(card, run, profile, needs))
     rules.extend(_run_context_rules(card, run, profile))
     rules.extend(_synergy_rules(card, run, profile, relics_by_id))
+    rules.extend(_copy_shape_rules(card, run, profile))
     rules.extend(_risk_rules(card, run, profile, needs))
     return rules
 
@@ -464,7 +465,35 @@ def _synergy_rules(
         labels = ", ".join(sorted(relic_overlap))
         rules.append(RuleScore("relic_synergy", min(len(relic_overlap) * 4, 10), f"Matches current relic themes: {labels}."))
 
+    if "attack_payoff" in card.tags and profile.damage_cards >= 8:
+        delta = min(profile.damage_cards * 1.2, 16)
+        rules.append(RuleScore("attack_payoff_density", delta, "Attack density gives this payoff enough triggers."))
+    if (
+        "attack_payoff" in card.tags
+        and "shiv" in card.pick_context
+        and ("shiv" in profile.tags or "shiv" in profile.roles)
+    ):
+        rules.append(RuleScore("shiv_payoff_support", 15, "Existing Shiv support makes attack-triggered payoff more credible."))
+
     return rules
+
+
+def _copy_shape_rules(card: CardData, run: RunState, profile: DeckProfile) -> list[RuleScore]:
+    owned_count = sum(deck_card.count for deck_card in run.deck if deck_card.id == card.id)
+    if owned_count == 0:
+        return []
+    if profile.size < 18:
+        return []
+    if card.roles.intersection({"scaling", "deck_control", "energy"}):
+        return []
+    return [
+        RuleScore(
+            "duplicate_copy_pressure",
+            -8,
+            None,
+            "The deck already owns this card; another copy needs a clearer reason in a larger deck.",
+        )
+    ]
 
 
 def _risk_rules(

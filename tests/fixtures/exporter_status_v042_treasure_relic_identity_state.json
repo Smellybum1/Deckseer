@@ -1,0 +1,83 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.4.2",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-25T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Live relic_reward export is available only when every validation gate passes; this status payload is not recommendation-ready."
+    ],
+    "diagnostics": {
+      "screen_observation_probe": "registered",
+      "screen_observation_verified_symbol_count": 19,
+      "screen_observation_verified_symbols": [
+        "MegaCrit.Sts2.Core.Nodes.Screens.NRewardsScreen.ShowScreen",
+        "MegaCrit.Sts2.Core.Nodes.Screens.NRewardsScreen.RewardCollectedFrom",
+        "MegaCrit.Sts2.Core.Nodes.Screens.NRewardsScreen.RewardSkippedFrom",
+        "MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NCardRewardSelectionScreen._ExitTree",
+        "MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen.ShowScreen",
+        "MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen._ExitTree",
+        "MegaCrit.Sts2.Core.Rewards.RewardsSet.Rewards",
+        "MegaCrit.Sts2.Core.Rewards.RewardsSet.DisallowSkipping",
+        "MegaCrit.Sts2.Core.Rewards.RewardsSet.AllRewardsSuccessfullySelected",
+        "MegaCrit.Sts2.Core.Rewards.CardReward.Cards",
+        "MegaCrit.Sts2.Core.Rewards.RelicReward.Relic",
+        "MegaCrit.Sts2.Core.Models.RelicModel.CanonicalInstance",
+        "MegaCrit.Sts2.Core.Models.RelicModel.ToSerializable",
+        "MegaCrit.Sts2.Core.Nodes.Screens.TreasureRoomRelic.NTreasureRoomRelicCollection.Initialize",
+        "MegaCrit.Sts2.Core.Nodes.Screens.TreasureRoomRelic.NTreasureRoomRelicCollection._ExitTree",
+        "MegaCrit.Sts2.Core.Nodes.Screens.TreasureRoomRelic.NTreasureRoomRelicHolder.Initialize",
+        "MegaCrit.Sts2.Core.Multiplayer.Game.TreasureRoomRelicSynchronizer.PickRelicLocally",
+        "MegaCrit.Sts2.Core.Multiplayer.Game.TreasureRoomRelicSynchronizer.SkipRelicLocally",
+        "MegaCrit.Sts2.Core.Multiplayer.Game.TreasureRoomRelicSynchronizer.OnRoomExited"
+      ],
+      "visible_reward_probe_status": "treasure_relic_model_seen",
+      "visible_reward_probe_last_event": "treasure_relic_holder_initialized",
+      "visible_reward_count": 1,
+      "visible_card_reward_count": 0,
+      "visible_relic_reward_count": 1,
+      "visible_card_reward_option_count": 0,
+      "visible_relic_reward_option_count": 1,
+      "visible_card_choice_option_count": 0,
+      "visible_card_choice_can_skip": null,
+      "visible_reward_skip_disallowed": false,
+      "visible_reward_all_selected": null,
+      "relic_reward_live_export_candidate": "refused",
+      "relic_reward_live_export_refusal_reasons": [
+        "treasure_relic_route_status_only"
+      ],
+      "relic_reward_live_export_missing_fields": [],
+      "relic_reward_live_export_unmapped_reward_relic_count": 0,
+      "relic_reward_live_export_unmapped_deck_count": 0,
+      "relic_reward_live_export_unmapped_owned_relic_count": 0,
+      "relic_reward_live_export_unmapped_potion_count": 0,
+      "relic_reward_live_export_candidate_writes_recommendation_state": false,
+      "relic_reward_identity_review_probe": "ids_revealed_for_review",
+      "relic_reward_identity_review_last_event": "treasure_relic_holder_initialized",
+      "relic_reward_identity_review_option_count": 1,
+      "relic_reward_identity_review_mapping_known_count": 1,
+      "relic_reward_identity_review_mapping_unknown_count": 0,
+      "relic_reward_identity_review_duplicate_normalized_count": 0,
+      "relic_reward_identity_review_items": [
+        {
+          "position": 0,
+          "public_model_id": "AKABEKO",
+          "normalized_candidate_id": "akabeko",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "akabeko"
+        }
+      ],
+      "relic_reward_identity_review_error": null,
+      "card_reward_run_state_runtime_probe": "complete",
+      "card_reward_run_state_runtime_last_event": "treasure_relic_holder_initialized",
+      "card_reward_run_state_writes_recommendation_state": false
+    }
+  }
+}

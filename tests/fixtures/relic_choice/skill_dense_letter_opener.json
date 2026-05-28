@@ -1,0 +1,51 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "relic_reward",
+  "character": "silent",
+  "act": 1,
+  "floor": 7,
+  "ascension": 0,
+  "gold": 112,
+  "hp": {
+    "current": 61,
+    "max": 70
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "neutralize",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "survivor",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "relic_reward": [
+    "letter_opener",
+    "lead_paperweight",
+    "burning_blood"
+  ],
+  "run_context": {
+    "upcoming_elites": [
+      "berdonis"
+    ],
+    "path_pressure": "elite_soon",
+    "notes": [
+      "Reviewed v0.106.1 relic metadata fixture: skill-dense Silent deck with elite pressure can use Letter Opener as an AoE frontload payoff."
+    ]
+  }
+}

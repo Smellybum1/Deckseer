@@ -9,7 +9,7 @@ Deckseer already accepts `relics` and `potions` in the manual run-state shape, b
 Current local data is intentionally sparse:
 
 - Relics: `burning_blood`, `akabeko`, and `kunai`.
-- Potions: `fire_potion` and `block_potion`.
+- Potions: `fire_potion`, `block_potion`, and `colorless_potion`.
 - The card reward scorer uses simple relic tag overlap for card synergy.
 - There is no relic choice, potion usage, pathing, shop, or combat planner yet.
 

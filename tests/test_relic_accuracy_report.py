@@ -43,10 +43,13 @@ def _scenario(**overrides) -> dict:
 def test_relic_accuracy_manifest_loads_reviewed_scenarios() -> None:
     scenarios = load_relic_accuracy_scenarios(Path("data/relic_accuracy/scenarios.json"))
 
-    assert len(scenarios) == 3
+    assert len(scenarios) == 6
     assert scenarios[0].id == "elite_frontload"
     assert scenarios[0].expected_top_choice == "akabeko"
     assert scenarios[0].expected_reason_keywords == ("frontload", "elite_prep")
+    assert scenarios[-3].id == "early_consistency_ring"
+    assert scenarios[-2].id == "colorless_deck_quality"
+    assert scenarios[-1].id == "skill_dense_letter_opener"
 
 
 def test_relic_accuracy_report_scores_all_scenarios() -> None:
@@ -54,15 +57,18 @@ def test_relic_accuracy_report_scores_all_scenarios() -> None:
 
     assert report["report_type"] == "relic_accuracy_report"
     assert report["status"] == "pass"
-    assert report["summary"]["scenarios"] == 3
-    assert report["summary"]["passed"] == 3
+    assert report["summary"]["scenarios"] == 6
+    assert report["summary"]["passed"] == 6
     assert report["summary"]["failed"] == 0
     assert report["summary"]["failed_scenario_ids"] == []
-    assert report["summary"]["review_status_counts"] == {"accepted": 3}
-    assert report["summary"]["passed_by_review_status"] == {"accepted": 3}
+    assert report["summary"]["review_status_counts"] == {"accepted": 6}
+    assert report["summary"]["passed_by_review_status"] == {"accepted": 6}
     assert report["summary"]["failed_by_review_status"] == {}
     assert report["scenarios"][0]["actual_top_choice"] == "akabeko"
     assert report["scenarios"][0]["matched_reason_keywords"] == ["frontload", "elite_prep"]
+    assert report["scenarios"][-3]["actual_top_choice"] == "ring_of_the_snake"
+    assert report["scenarios"][-2]["actual_top_choice"] == "lead_paperweight"
+    assert report["scenarios"][-1]["actual_top_choice"] == "letter_opener"
 
 
 def test_relic_accuracy_report_cli_text_smoke(capsys) -> None:
@@ -72,9 +78,11 @@ def test_relic_accuracy_report_cli_text_smoke(capsys) -> None:
 
     assert status == 0
     assert "Relic Accuracy Report: PASS" in captured.out
-    assert "Scenarios: 3 | Passed: 3 | Failed: 0" in captured.out
-    assert "Review statuses: accepted=3" in captured.out
+    assert "Scenarios: 6 | Passed: 6 | Failed: 0" in captured.out
+    assert "Review statuses: accepted=6" in captured.out
     assert "PASS elite_frontload: expected akabeko, got akabeko" in captured.out
+    assert "PASS early_consistency_ring: expected ring_of_the_snake, got ring_of_the_snake" in captured.out
+    assert "PASS skill_dense_letter_opener: expected letter_opener, got letter_opener" in captured.out
 
 
 def test_relic_accuracy_report_cli_json_smoke(capsys) -> None:
@@ -85,9 +93,9 @@ def test_relic_accuracy_report_cli_json_smoke(capsys) -> None:
 
     assert status == 0
     assert payload["report_type"] == "relic_accuracy_report"
-    assert payload["summary"]["scenarios"] == 3
+    assert payload["summary"]["scenarios"] == 6
     assert payload["summary"]["failed"] == 0
-    assert payload["summary"]["review_status_counts"] == {"accepted": 3}
+    assert payload["summary"]["review_status_counts"] == {"accepted": 6}
     assert payload["scenarios"][0]["expected_reason_keywords"] == ["frontload", "elite_prep"]
 
 

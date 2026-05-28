@@ -99,6 +99,18 @@
       "source": "Bulwark empirical calibration: STS2.fun current-patch high-prior weak-empirical triage",
       "review_status": "accepted",
       "notes": "Calibration guard: Bulwark should not be over-picked when early Act 1 frontload is the clearer urgent need."
+    },
+    {
+      "id": "silent_v047_envenom_attack_payoff_guard",
+      "path": "tests/fixtures/scenarios/silent_v047_envenom_predator_memento_mori_review.json",
+      "expected_top_choice": "envenom",
+      "expected_reason_keywords": [
+        "attack",
+        "Shiv"
+      ],
+      "source": "Installed DeckseerExporter v0.4.7 live card reward proof plus reviewed user intent",
+      "review_status": "accepted",
+      "notes": "Calibration guard: attack/Shiv-density payoff should let Envenom beat a duplicate Predator and low-fit Memento Mori in the reviewed late Act 1 Silent state. This scenario accepts the user-reviewed Envenom pick and guards the narrow attack-payoff scoring calibration."
     }
   ]
 }

@@ -43,7 +43,7 @@ def _scenario(**overrides) -> dict:
 def test_accuracy_manifest_loads_reviewed_scenarios() -> None:
     scenarios = load_accuracy_scenarios(Path("data/accuracy/scenarios.json"))
 
-    assert len(scenarios) == 9
+    assert len(scenarios) == 10
     assert scenarios[0].id == "early_act1_low_frontload"
     assert scenarios[0].expected_top_choice == "pommel_strike"
     assert scenarios[0].expected_reason_keywords == ("frontload",)
@@ -54,12 +54,12 @@ def test_accuracy_report_scores_all_scenarios() -> None:
 
     assert report["report_type"] == "accuracy_report"
     assert report["status"] == "pass"
-    assert report["summary"]["scenarios"] == 9
-    assert report["summary"]["passed"] == 9
+    assert report["summary"]["scenarios"] == 10
+    assert report["summary"]["passed"] == 10
     assert report["summary"]["failed"] == 0
     assert report["summary"]["failed_scenario_ids"] == []
-    assert report["summary"]["review_status_counts"] == {"accepted": 9}
-    assert report["summary"]["passed_by_review_status"] == {"accepted": 9}
+    assert report["summary"]["review_status_counts"] == {"accepted": 10}
+    assert report["summary"]["passed_by_review_status"] == {"accepted": 10}
     assert report["summary"]["failed_by_review_status"] == {}
     assert report["scenarios"][0]["actual_top_choice"] == "pommel_strike"
     assert report["scenarios"][0]["matched_reason_keywords"] == ["frontload"]
@@ -72,8 +72,8 @@ def test_accuracy_report_cli_text_smoke(capsys) -> None:
 
     assert status == 0
     assert "Accuracy Report: PASS" in captured.out
-    assert "Scenarios: 9 | Passed: 9 | Failed: 0" in captured.out
-    assert "Review statuses: accepted=9" in captured.out
+    assert "Scenarios: 10 | Passed: 10 | Failed: 0" in captured.out
+    assert "Review statuses: accepted=10" in captured.out
     assert "PASS early_act1_low_frontload: expected pommel_strike, got pommel_strike" in captured.out
     assert "PASS necrobinder_forbidden_grimoire_frontload_guard: expected unleash, got unleash" in captured.out
 
@@ -86,9 +86,9 @@ def test_accuracy_report_cli_json_smoke(capsys) -> None:
 
     assert status == 0
     assert payload["report_type"] == "accuracy_report"
-    assert payload["summary"]["scenarios"] == 9
+    assert payload["summary"]["scenarios"] == 10
     assert payload["summary"]["failed"] == 0
-    assert payload["summary"]["review_status_counts"] == {"accepted": 9}
+    assert payload["summary"]["review_status_counts"] == {"accepted": 10}
     assert payload["scenarios"][0]["expected_reason_keywords"] == ["frontload"]
 
 

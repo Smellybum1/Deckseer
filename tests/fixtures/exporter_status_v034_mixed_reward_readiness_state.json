@@ -1,0 +1,80 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.3.4",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Runtime run-state readiness diagnostics report booleans and counts only; no live run-state values are exported."
+    ],
+    "diagnostics": {
+      "screen_observation_probe": "registered",
+      "screen_observation_verified_symbols": [
+        "MegaCrit.Sts2.Core.Nodes.Screens.NRewardsScreen.ShowScreen",
+        "MegaCrit.Sts2.Core.Nodes.Screens.NRewardsScreen.RewardCollectedFrom",
+        "MegaCrit.Sts2.Core.Nodes.Screens.NRewardsScreen.RewardSkippedFrom"
+      ],
+      "visible_reward_probe_status": "card_reward_model_seen",
+      "visible_reward_probe_last_event": "reward_collected",
+      "visible_reward_count": 3,
+      "visible_card_reward_count": 1,
+      "visible_card_reward_option_count": 3,
+      "visible_card_choice_option_count": 0,
+      "card_reward_live_export_candidate": "refused",
+      "card_reward_live_export_refusal_reasons": [
+        "mixed_reward_screen_state_may_change",
+        "missing_required_run_state_field",
+        "unmapped_potion"
+      ],
+      "card_reward_live_export_missing_fields": [
+        "run_state",
+        "visible_reward_player"
+      ],
+      "card_reward_live_export_unmapped_reward_count": 0,
+      "card_reward_live_export_unmapped_deck_count": 0,
+      "card_reward_live_export_unmapped_relic_count": 0,
+      "card_reward_live_export_unmapped_potion_count": 1,
+      "card_reward_live_export_mixed_reward_freshness_status": "reward_collected_serializable_counts_seen",
+      "card_reward_live_export_mixed_reward_freshness_blockers": [
+        "run_state_not_aligned",
+        "visible_reward_player_not_aligned",
+        "potion_identity_not_mapped_after_refresh",
+        "mixed_reward_live_export_not_approved"
+      ],
+      "card_reward_live_export_mixed_reward_freshness_writes_recommendation_state": false,
+      "card_reward_live_export_candidate_writes_recommendation_state": false,
+      "card_reward_run_state_runtime_probe": "serializable_run_seen",
+      "card_reward_run_state_runtime_last_event": "reward_collected",
+      "card_reward_run_state_run_in_progress": true,
+      "card_reward_run_state_available": false,
+      "card_reward_run_state_serializable_run_available": true,
+      "card_reward_run_state_player_count": 1,
+      "card_reward_run_state_single_player_available": true,
+      "card_reward_run_state_character_present": true,
+      "card_reward_run_state_act_present": true,
+      "card_reward_run_state_floor_present": true,
+      "card_reward_run_state_ascension_present": true,
+      "card_reward_run_state_gold_present": true,
+      "card_reward_run_state_hp_present": true,
+      "card_reward_run_state_deck_present": true,
+      "card_reward_run_state_relics_present": true,
+      "card_reward_run_state_potions_present": true,
+      "card_reward_run_state_deck_card_count": 14,
+      "card_reward_run_state_deck_card_id_read_count": 14,
+      "card_reward_run_state_deck_card_mapping_known_count": 14,
+      "card_reward_run_state_deck_card_mapping_unknown_count": 0,
+      "card_reward_run_state_relic_count": 2,
+      "card_reward_run_state_potion_count": 1,
+      "card_reward_run_state_visible_reward_player_present": false,
+      "card_reward_run_state_writes_recommendation_state": false,
+      "card_reward_run_state_error": null
+    }
+  }
+}

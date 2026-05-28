@@ -121,4 +121,4 @@ Forbidden:
 
 ## Next Handoff
 
-The card reward API recon and compile probe packets are complete. The next implementation packet should either install-check the `v0.2.0` diagnostic status build with explicit approval to update the local STS2 mod package, or stay repo-only and design how to prove public reward model data corresponds to the visible card reward screen before writing any live card reward export.
+The card reward API recon, compile probe, visibility diagnostics, mapping reviews, ADR 3 ID-reveal diagnostic, and ADR 4 live-export boundary are complete. Installed exporter `v0.4.7` live-proves human-confirmed mixed reward `card_reward` export after clean freshness and mapping gates, then downgrades to `exporter_status` after card reward selection closes. Watch mode, OCR, input automation, save/profile modification, and broader decision exports remain out of scope without separate approval.

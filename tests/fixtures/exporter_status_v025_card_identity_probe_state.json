@@ -1,0 +1,73 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.2.5",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Game patch/build metadata is not exported in this diagnostic spike.",
+      "Card reward API probe compiled against public STS2 reward/run-state symbols, but no live reward data is exported."
+    ],
+    "diagnostics": {
+      "card_reward_api_probe": "compiled",
+      "verified_symbol_count": 44,
+      "verified_symbols": [
+        "RewardsSet.Rewards",
+        "CardReward.Cards"
+      ],
+      "hook_model_compile_probe": "compiled_not_registered",
+      "hook_model_verified_symbol_count": 8,
+      "hook_model_verified_symbols": [
+        "RunHookSubscriptionDelegate.Invoke",
+        "ModHelper.SubscribeForRunStateHooks",
+        "ModHelper.IterateAllRunStateSubscribers",
+        "ModelDb.Contains",
+        "ModelDb.Inject",
+        "ModelDb.Singleton",
+        "AbstractModel.IsCanonical",
+        "AbstractModel.AssertCanonical"
+      ],
+      "card_identity_mapping_probe": "compiled_not_exported",
+      "card_identity_mapping_verified_symbol_count": 7,
+      "card_identity_mapping_verified_symbols": [
+        "CardModel.Id",
+        "CardModel.CurrentUpgradeLevel",
+        "CardModel.IsUpgraded",
+        "CardModel.ToSerializable",
+        "CardCreationResult.Card",
+        "SerializableCard.Id",
+        "SerializableCard.CurrentUpgradeLevel"
+      ],
+      "screen_observation_probe": "registered",
+      "screen_observation_verified_symbol_count": 9,
+      "screen_observation_verified_symbols": [
+        "NRewardsScreen.ShowScreen",
+        "NRewardsScreen.RewardCollectedFrom",
+        "NRewardsScreen.RewardSkippedFrom",
+        "NChooseACardSelectionScreen.ShowScreen",
+        "NChooseACardSelectionScreen._ExitTree",
+        "RewardsSet.Rewards",
+        "RewardsSet.DisallowSkipping",
+        "RewardsSet.AllRewardsSuccessfullySelected",
+        "CardReward.Cards"
+      ],
+      "visible_reward_probe_status": "not_observed",
+      "visible_reward_probe_last_event": "startup",
+      "visible_reward_count": 0,
+      "visible_card_reward_count": 0,
+      "visible_card_reward_option_count": 0,
+      "visible_card_choice_option_count": 0,
+      "visible_card_choice_can_skip": null,
+      "visible_reward_skip_disallowed": null,
+      "visible_reward_all_selected": null,
+      "screen_observation_error": null
+    }
+  }
+}

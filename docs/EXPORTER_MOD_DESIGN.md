@@ -1,6 +1,6 @@
 # Deckseer Exporter Mod Design
 
-Deckseer Exporter is a Slay the Spire 2 companion mod path that writes local JSON for Deckseer to inspect. The first in-game spike is implemented and writes only a static `screen_type: "exporter_status"` file; current visible decision-state export, watch mode, and schema enforcement are not implemented yet.
+Deckseer Exporter is a Slay the Spire 2 companion mod path that writes local JSON for Deckseer to inspect. The first in-game spike is implemented, and installed `v0.4.7` can write human-confirmed live `screen_type: "card_reward"` files after clean post-pickup freshness and mapping gates, then downgrade to `exporter_status` after the card reward selection screen closes. Installed `v0.4.0` implements the ADR 7 live `screen_type: "relic_reward"` boundary for normal reward-screen relics. Installed `v0.4.1` proves treasure chest relic observation and clear-state as status-only. Installed `v0.4.2` fixes the treasure relic identity exception but reports a null public ID. Installed `v0.4.3` uses public `RelicModel.Id` directly for that diagnostic and reveals `LETTER_OPENER` as an unmapped review-only treasure relic ID. Installed `v0.4.4` maps reviewed `letter_opener` while keeping treasure relics status-only, and installed `v0.4.6` live-proves a fully mapped treasure `relic_reward` export with post-pickup downgrade. Watch mode and broader decision exports are not implemented.
 
 ## Goals
 
@@ -32,7 +32,7 @@ Before writing mod code, the first implementation packet must confirm:
 
 If these checks show that a field is not safely available through normal mod APIs, the exporter should omit it or mark it with a caveat rather than use unsafe techniques.
 
-See `docs/EXPORTER_MOD_SURFACE_REVIEW.md` for the current modding-surface research handoff before attempting the static `exporter_status` spike.
+See `docs/EXPORTER_MOD_SURFACE_REVIEW.md`, `docs/EXPORTER_CARD_REWARD_VISIBILITY_DESIGN.md`, and `docs/EXPORTER_CARD_REWARD_MAPPING_REVIEW_DESIGN.md` for the current exporter handoff before attempting recommendation-ready card reward export.
 
 ## Proposed Local Output
 
@@ -134,7 +134,7 @@ The static exporter status contract is the required bridge before live run-state
 
 ## Relic Reward Export Contract
 
-This is a proposed future source format for visible relic reward screens. It is not live capture, watch mode, mod code, or a requirement that the current exporter mod can already read relic rewards. Deckseer-side support should remain human-confirmation-first.
+This is the Deckseer-side source format for visible relic reward screens. Installed exporter `v0.4.0` can build this shape when normal reward-screen relic candidate gates pass. Treasure chest relics use a separate public route: installed `v0.4.1` observed that route as status-only, `v0.4.2` removed the identity exception but did not recover a public ID, `v0.4.3` switched the diagnostic to public `RelicModel.Id`, `v0.4.4` proved reviewed `letter_opener` mapping coverage, and installed `v0.4.6` live-proved fully mapped treasure `relic_reward` export with post-pickup downgrade. Deckseer-side support remains human-confirmation-first.
 
 ```json
 {
@@ -226,10 +226,10 @@ Deckseer should treat these as review warnings for the user, not as scoring inpu
 
 1. **Modding Surface Research**: confirm packaging, load path, accessible state APIs, local file write path, and safe identifier mapping.
 2. **Static JSON Export Spike**: implemented. Write a harmless `screen_type: "exporter_status"` file only.
-3. **Card Reward Export**: export the card reward contract above.
-4. **Deckseer Import Adapter**: read exporter JSON and convert it into the existing manual input shape after user confirmation.
-5. **Optional Watch Mode**: add a CLI helper only after the static export and adapter are stable.
-6. **Relic Reward Export**: export the visible relic reward contract after manual relic advice and card reward exporter support are stable.
+3. **Card Reward Export**: installed `v0.4.7` live-proves the card reward contract above on a fully mapped mixed reward screen after non-card reward pickup, with confirmation required and post-selection downgrade.
+4. **Deckseer Import Adapter**: implemented for confirmed card and relic exporter JSON, converting into the existing manual input shapes after user confirmation.
+5. **Relic Reward Export**: installed `v0.4.0` implements the visible relic reward contract for normal reward screens after manual relic advice and card reward exporter support became stable. Installed `v0.4.1` adds status-only treasure relic route observation after chest proof showed a separate route. Installed `v0.4.2` removes the canonical identity exception but leaves the public ID null. Installed `v0.4.3` uses public `RelicModel.Id` directly for that route and live-proves clear-state after pickup. Installed `v0.4.4` adds reviewed `letter_opener` mapping coverage before treasure promotion. Installed `v0.4.6` maps the remaining observed deck/potion gaps and live-proves a fully mapped treasure `relic_reward` export with confirmation and post-pickup downgrade.
+6. **Optional Watch Mode**: add a CLI helper only after the static export and adapter are stable.
 7. **Broader Decision Exports**: consider potion, pathing, shop, and combat surfaces after simpler reward paths are proven.
 
 ## Acceptance Criteria for Exporter 1

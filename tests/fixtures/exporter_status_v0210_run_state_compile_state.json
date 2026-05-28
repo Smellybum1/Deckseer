@@ -1,0 +1,70 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.2.10",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Game patch/build metadata is not exported in this diagnostic spike.",
+      "Card identity review diagnostics may include public model IDs for visible reward choices, but no recommendation-ready run state is exported.",
+      "Public run-state symbols required for future card_reward export compile, but live card_reward export is not implemented."
+    ],
+    "diagnostics": {
+      "card_reward_live_export_probe": "run_state_symbols_compiled_not_exported",
+      "card_reward_live_export_required_field_count": 12,
+      "card_reward_live_export_required_fields": [
+        "character",
+        "act",
+        "floor",
+        "ascension",
+        "gold",
+        "hp.current",
+        "hp.max",
+        "deck",
+        "deck.id",
+        "deck.upgraded",
+        "relics",
+        "potions"
+      ],
+      "card_reward_live_export_verified_symbol_count": 21,
+      "card_reward_live_export_verified_symbols": [
+        "MegaCrit.Sts2.Core.Runs.RunManager.Instance",
+        "MegaCrit.Sts2.Core.Runs.RunManager.IsInProgress",
+        "MegaCrit.Sts2.Core.Runs.RunManager.ToSave",
+        "MegaCrit.Sts2.Core.Runs.IRunState.ActFloor",
+        "MegaCrit.Sts2.Core.Runs.IRunState.TotalFloor",
+        "MegaCrit.Sts2.Core.Runs.IRunState.AscensionLevel",
+        "MegaCrit.Sts2.Core.Runs.RunState.Players",
+        "MegaCrit.Sts2.Core.Saves.SerializableRun.Players",
+        "MegaCrit.Sts2.Core.Saves.SerializableRun.Ascension",
+        "MegaCrit.Sts2.Core.Saves.SerializableRun.FloorReached",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializablePlayer.CharacterId",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializablePlayer.CurrentHp",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializablePlayer.MaxHp",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializablePlayer.Gold",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializablePlayer.Deck",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializablePlayer.Relics",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializablePlayer.Potions",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializableCard.Id",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializableCard.CurrentUpgradeLevel",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializableRelic.Id",
+        "MegaCrit.Sts2.Core.Saves.Runs.SerializablePotion.Id"
+      ],
+      "card_reward_live_export_writes_recommendation_state": false,
+      "screen_observation_probe": "registered",
+      "visible_reward_probe_status": "not_observed",
+      "visible_card_reward_option_count": 0,
+      "card_identity_review_probe": "not_observed",
+      "card_identity_review_option_count": 0,
+      "card_identity_review_items": [],
+      "screen_observation_error": null
+    }
+  }
+}

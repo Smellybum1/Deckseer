@@ -53,10 +53,10 @@ python -m pytest
 Expected current state:
 
 - `data-health`: `PASS`.
-- `relic-accuracy-report`: `PASS`, 3/3.
+- `relic-accuracy-report`: `PASS`, 6/6.
 - Triage-aware QA: `PASS`.
 - Empirical coverage: `REVIEW` with 18 rows and 14 `patch_mismatch` warnings.
-- Card accuracy: `PASS`, 9/9.
+- Card accuracy: `PASS`, 10/10.
 
 ## Recommended Next Packet
 

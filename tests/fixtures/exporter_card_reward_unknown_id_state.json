@@ -1,0 +1,63 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "card_reward",
+  "character": "ironclad",
+  "act": 1,
+  "floor": 7,
+  "ascension": 0,
+  "gold": 123,
+  "hp": {
+    "current": 52,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 4
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 2
+    },
+    {
+      "id": "bash",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [
+    "burning_blood"
+  ],
+  "potions": [],
+  "card_reward": [
+    "pommel_strike",
+    "unknown_exported_card"
+  ],
+  "run_context": {
+    "recent_damage": 12,
+    "next_node_type": "unknown",
+    "act_region": "underdocks",
+    "upcoming_elites": [],
+    "fought_elites": [],
+    "next_nodes": [],
+    "fire_before_elite": null,
+    "shop_before_elite": null,
+    "path_pressure": "unknown",
+    "boss": null,
+    "notes": []
+  },
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "contract_fixture",
+    "game_build": null,
+    "game_patch": "main_v0.103_current",
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": true,
+    "confidence": "low",
+    "caveats": [
+      "Fixture intentionally contains an unknown exported card ID."
+    ]
+  }
+}

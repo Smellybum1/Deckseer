@@ -92,11 +92,28 @@ def test_data_loader_reports_unknown_reward_card() -> None:
 def test_expanded_ironclad_cards_load_with_priors_and_roles() -> None:
     data = DeckseerData.load(data_dir=Path("data"))
 
-    assert len([card for card in data.cards_by_id.values() if card.character == "ironclad"]) >= 20
+    assert len([card for card in data.cards_by_id.values() if card.character == "ironclad"]) >= 30
     assert data.cards_by_id["offering"].quality_prior == 5.0
     assert {"draw", "energy", "burst"}.issubset(data.cards_by_id["offering"].roles)
     assert data.cards_by_id["barricade"].quality_prior < 0
     assert "niche" in data.cards_by_id["body_slam"].roles
+    assert data.cards_by_id["armaments"].source_patch == "v0.106.1"
+    assert {"block", "deck_quality"}.issubset(data.cards_by_id["armaments"].roles)
+    assert data.cards_by_id["armaments"].effects.extra["upgrade_card_in_hand"] == 1
+    assert data.cards_by_id["perfected_strike"].source_patch == "v0.106.1"
+    assert {"frontload", "strike_payoff"}.issubset(data.cards_by_id["perfected_strike"].roles)
+    assert data.cards_by_id["perfected_strike"].effects.extra["strike_bonus_damage"] == 2
+    assert data.cards_by_id["thunderclap"].source_patch == "v0.106.1"
+    assert {"frontload", "aoe", "debuff"}.issubset(data.cards_by_id["thunderclap"].roles)
+    assert data.cards_by_id["thunderclap"].effects.extra["vulnerable"] == 1
+    assert data.cards_by_id["dominate"].source_patch == "v0.106.1"
+    assert {"debuff", "scaling", "strength"}.issubset(data.cards_by_id["dominate"].roles)
+    assert data.cards_by_id["dominate"].effects.extra["vulnerable"] == 1
+    assert data.cards_by_id["dominate"].effects.extra["strength_per_vulnerable"] == 1
+    assert data.cards_by_id["setup_strike"].source_patch == "v0.106.1"
+    assert {"frontload", "strength", "burst"}.issubset(data.cards_by_id["setup_strike"].roles)
+    assert data.cards_by_id["setup_strike"].effects.damage == 8
+    assert data.cards_by_id["setup_strike"].effects.extra["temporary_strength"] == 1
 
 
 def test_silent_cards_load_with_priors_and_roles() -> None:
@@ -105,10 +122,69 @@ def test_silent_cards_load_with_priors_and_roles() -> None:
     silent_cards = [card for card in data.cards_by_id.values() if card.character == "silent"]
 
     assert len(silent_cards) >= 25
-    assert {"neutralize", "survivor", "backflip", "dagger_throw", "footwork"}.issubset(data.cards_by_id)
+    assert {
+        "neutralize",
+        "survivor",
+        "accuracy",
+        "envenom",
+        "fasten",
+        "finisher",
+        "memento_mori",
+        "murder",
+        "pinpoint",
+        "ricochet",
+        "tools_of_the_trade",
+        "backflip",
+        "dagger_throw",
+        "footwork",
+        "infinite_blades",
+    }.issubset(data.cards_by_id)
+    assert data.cards_by_id["accuracy"].quality_prior == 0.0
+    assert data.cards_by_id["accuracy"].source_patch == "v0.106.1"
+    assert {"scaling", "shiv", "power"}.issubset(data.cards_by_id["accuracy"].roles)
+    assert data.cards_by_id["envenom"].quality_prior == 0.0
+    assert data.cards_by_id["envenom"].source_patch == "v0.106.1"
+    assert {"scaling", "poison", "power"}.issubset(data.cards_by_id["envenom"].roles)
+    assert data.cards_by_id["fasten"].source_patch == "v0.106.1"
+    assert {"block", "defense", "power"}.issubset(data.cards_by_id["fasten"].roles)
+    assert data.cards_by_id["memento_mori"].source_patch == "v0.106.1"
+    assert {"frontload", "discard", "burst"}.issubset(data.cards_by_id["memento_mori"].roles)
+    assert data.cards_by_id["finisher"].quality_prior == 0.0
+    assert {"frontload", "burst"}.issubset(data.cards_by_id["finisher"].roles)
+    assert data.cards_by_id["ricochet"].effects.damage == 12
+    assert data.cards_by_id["murder"].cost == 3
+    assert data.cards_by_id["murder"].effects.extra["drawn_card_damage_bonus"] == 1
+    assert {"draw", "discard", "power"}.issubset(data.cards_by_id["tools_of_the_trade"].roles)
+    assert data.cards_by_id["pinpoint"].effects.damage == 15
     assert data.cards_by_id["backflip"].quality_prior == 5.0
     assert {"block", "draw", "consistency"}.issubset(data.cards_by_id["backflip"].roles)
+    assert data.cards_by_id["infinite_blades"].quality_prior == 3.5
+    assert {"scaling", "shiv", "power"}.issubset(data.cards_by_id["infinite_blades"].roles)
     assert data.cards_by_id["poisoned_stab"].quality_prior < 0
+
+
+def test_neutral_cards_load_with_reviewed_seed_metadata() -> None:
+    data = DeckseerData.load(data_dir=Path("data"))
+
+    dramatic_entrance = data.cards_by_id["dramatic_entrance"]
+
+    assert dramatic_entrance.character == "neutral"
+    assert dramatic_entrance.type == "attack"
+    assert dramatic_entrance.rarity == "uncommon"
+    assert dramatic_entrance.cost == 0
+    assert dramatic_entrance.quality_prior == 0.0
+    assert dramatic_entrance.source_patch == "v0.106.1"
+    assert {"damage", "aoe", "free", "innate", "exhaust"}.issubset(dramatic_entrance.tags)
+    assert {"frontload", "aoe", "burst"}.issubset(dramatic_entrance.roles)
+    assert dramatic_entrance.effects.damage == 11
+    assert dramatic_entrance.effects.extra["upgraded_damage"] == 15
+
+    ultimate_defend = data.cards_by_id["ultimate_defend"]
+    assert ultimate_defend.character == "neutral"
+    assert ultimate_defend.type == "skill"
+    assert ultimate_defend.quality_prior == 0.0
+    assert {"block", "defense"}.issubset(ultimate_defend.roles)
+    assert ultimate_defend.source_patch == "v0.106.1"
 
 
 def test_defect_cards_load_with_priors_and_roles() -> None:
@@ -263,3 +339,34 @@ def test_relic_seed_metadata_loads_for_relic_choice_v1() -> None:
     assert {"early", "elite_prep", "attack_dense"}.issubset(data.relics_by_id["akabeko"].pick_context)
     assert {"defense", "scaling"}.issubset(data.relics_by_id["kunai"].roles)
     assert data.relics_by_id["kunai"].source_patch == "deckseer_relic_seed_v1"
+    assert {"draw", "consistency"}.issubset(data.relics_by_id["ring_of_the_snake"].roles)
+    assert data.relics_by_id["ring_of_the_snake"].source_patch == "v0.106.1"
+    assert {"deck_quality", "consistency"}.issubset(data.relics_by_id["lead_paperweight"].roles)
+    assert data.relics_by_id["lead_paperweight"].source_patch == "v0.106.1"
+    assert {"frontload", "aoe"}.issubset(data.relics_by_id["letter_opener"].roles)
+    assert {"damage", "skill_payoff"}.issubset(data.relics_by_id["letter_opener"].tags)
+    assert data.relics_by_id["letter_opener"].source_patch == "v0.106.1"
+    assert {"sustain"}.issubset(data.relics_by_id["blood_vial"].roles)
+    assert {"hp", "healing"}.issubset(data.relics_by_id["blood_vial"].tags)
+    assert data.relics_by_id["blood_vial"].source_patch == "v0.106.1"
+    assert {"draw", "consistency"}.issubset(data.relics_by_id["centennial_puzzle"].roles)
+    assert {"frontload", "aoe", "scaling"}.issubset(data.relics_by_id["mr_struggles"].roles)
+    assert {"defense", "block"}.issubset(data.relics_by_id["orichalcum"].roles)
+    assert {"scaling", "deck_control"}.issubset(data.relics_by_id["paels_eye"].roles)
+    assert {"scaling", "frontload"}.issubset(data.relics_by_id["shuriken"].roles)
+    assert {"frontload"}.issubset(data.relics_by_id["strike_dummy"].roles)
+    assert {"status", "dazed", "drawback", "event_relic"}.issubset(data.relics_by_id["tea_of_discourtesy"].tags)
+    assert data.relics_by_id["tea_of_discourtesy"].roles == frozenset()
+    assert data.relics_by_id["tea_of_discourtesy"].source_patch == "v0.106.1"
+    assert {"deck_quality", "consumable"}.issubset(data.relics_by_id["lost_coffer"].roles)
+    assert {"card_reward", "potion", "pickup"}.issubset(data.relics_by_id["lost_coffer"].tags)
+    assert data.relics_by_id["lost_coffer"].source_patch == "v0.106.1"
+
+
+def test_reviewed_potion_mapping_seed_metadata_loads() -> None:
+    data = DeckseerData.load(data_dir=Path("data"))
+
+    assert {"card_generation", "attack"}.issubset(data.potions_by_id["attack_potion"].tags)
+    assert data.potions_by_id["colorless_potion"].tags == frozenset({"card_generation"})
+    assert {"block", "plating"}.issubset(data.potions_by_id["heart_of_iron"].tags)
+    assert {"upgrade", "combat"}.issubset(data.potions_by_id["blessing_of_the_forge"].tags)

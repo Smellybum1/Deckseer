@@ -254,6 +254,8 @@ Use `check-run-data` when adding new examples or imported runs. Missing reward-c
 
 Use `check-runs` to batch-audit a directory like `examples/` or a list of run-state JSON files. Coverage reports include suggestions when a missing card looks like a known card with different spacing, punctuation, or casing.
 
+Shared Deckseer vocabulary lives in `docs/CONTEXT.md`. Hard-to-reverse or surprising project decisions live in `docs/adr/`. Keep these docs updated when a packet sharpens language such as exporter status, status-only diagnostics, visible reward screens, boundary decisions, or human-confirmation-first behavior.
+
 Relic choice advice is a manual JSON-first V1 surface. `recommend-relic` accepts `screen_type: "relic_reward"`, validates visible reward relic IDs against `data/relics/relics.json`, ranks the offered relics, and returns the same JSON/text/Markdown recommendation shape used by card rewards. Unknown reward relics block scoring; unknown owned relics become recommendation risks and lower confidence. Relic Choice V1 is tag-based and does not simulate combat, exact trigger timing, boss relic special rules, or pathing.
 
 Inspect a proposed Deckseer Exporter JSON file:
@@ -262,6 +264,46 @@ Inspect a proposed Deckseer Exporter JSON file:
 deckseer inspect-export tests/fixtures/exporter_card_reward_state.json
 deckseer inspect-export tests/fixtures/exporter_status_state.json
 ```
+
+Run a read-only alert pass over the latest exporter file:
+
+```bash
+deckseer export-alert
+deckseer export-alert --once
+```
+
+`export-alert` watches by default. Use `--once` for a single check. It never recommends or chooses for you. It reads the exporter JSON and prints a loud terminal alert for recommendation-ready exports, true choose-relic overlay proof, unexpected special-route shapes, post-collection mapping gaps, unsupported reward shapes, or exporter diagnostic errors. Proven status-only routes such as deck-enchant grids and pre-collection mixed reward screens stay quiet by default. It is meant as a pause-and-call-Codex aid while playing, not as gameplay automation.
+Alert output includes `Codex attention: yes/no`. Mapping gaps already present in the current local repo data are suppressed by default, which keeps the older installed exporter from repeatedly asking for already-reviewed IDs.
+
+## Local MVP Daily Use
+
+For normal play, start Slay the Spire 2 with the already-installed Deckseer Exporter, then start the repo-local play helper in another terminal:
+
+```powershell
+.\tools\deckseer-play.cmd
+```
+
+You can also double-click `start-deckseer-exporter.cmd` from the repo root. It starts the same read-only helper and keeps the window open if startup fails.
+
+The helper starts `deckseer export-alert`, which watches by default. When it prints an important alert, pause in-game and inspect the exported state first:
+
+```bash
+deckseer inspect-export "%LOCALAPPDATA%\Deckseer\exports\latest_state.json"
+```
+
+Only after the visible game state matches the export, ask for advice with manual confirmation:
+
+```bash
+deckseer recommend-export "%LOCALAPPDATA%\Deckseer\exports\latest_state.json" --confirmed --format text
+```
+
+Tiny troubleshooting:
+
+- No exporter file found: make sure STS2 is running with the installed exporter, then wait for `%LOCALAPPDATA%\Deckseer\exports\latest_state.json` to appear.
+- Alert says no important state: Deckseer sees an idle or cleared exporter state; keep playing.
+- Exporter status instead of card/relic reward: inspect the status only if the alert asks you to pause. Many status-only screens are expected and stay quiet.
+- Mapping gap alert with `Codex attention: yes`: pause and ask Codex to inspect it. Do not use `recommend-export --confirmed` until the gap has a reviewed mapping/data follow-up. Pre-collection mixed reward screens wait until the non-card reward has been collected before alerting.
+- Recommendation-ready alert with `Codex attention: no`: inspect the export, confirm it matches the visible screen, then run `recommend-export --confirmed --format text`.
 
 Recommend from a proposed Deckseer Exporter JSON file:
 
@@ -276,7 +318,7 @@ Check whether the local machine is ready for the future static exporter mod spik
 deckseer exporter-toolchain-preflight --format text
 ```
 
-Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward` and `screen_type: relic_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. `inspect-export` also accepts `screen_type: exporter_status` as a harmless static exporter-health contract. When a recommendation export has `requires_user_confirmation: true`, run `inspect-export` first and pass `--confirmed` only after checking the visible state. The first Slay the Spire 2 companion mod spike now writes only a static `exporter_status` file; live run-state export is not implemented.
+Exporter JSON imports are read-only and human-confirmation-first. Deckseer validates `screen_type: card_reward` and `screen_type: relic_reward`, preserves exporter caveats outside the scorer, and drops exporter metadata before ranking choices. `inspect-export` also accepts `screen_type: exporter_status` as a harmless static exporter-health contract. When a recommendation export has `requires_user_confirmation: true`, run `inspect-export` first and pass `--confirmed` only after checking the visible state. Installed `v0.3.10` exports mixed reward `card_reward` state after clean post-pickup freshness gates and downgrades after the card reward selection screen closes. Installed `v0.4.0` adds ADR 7 human-confirmed live `relic_reward` export for normal reward-screen relics. Installed `v0.4.1` observes treasure chest relics as status-only and clears after pickup. Installed `v0.4.2` fixes the treasure relic identity exception but reports a null public ID. Installed `v0.4.3` uses public `RelicModel.Id` directly and reveals `LETTER_OPENER` as an unmapped review-only treasure relic ID. Installed `v0.4.4` maps reviewed `letter_opener` and verifies mapped treasure clear-state while still refusing treasure export. Installed `v0.4.5` verifies the ADR 8 treasure route refusal contract when `ACCURACY` and `HEART_OF_IRON` are unmapped. Installed `v0.4.6` maps those gaps and live-proves confirmed treasure `relic_reward` export plus post-pickup downgrade. Installed `v0.4.7` adds reviewed mapping coverage for the Envenom card reward gaps, live-proves confirmed `card_reward` export after mixed reward gold pickup, and live-proves post-selection downgrade. Repo-local data and status-diagnostic mapping snapshots now also cover the later `v0.4.7` Finisher/Ricochet/Murder/Tea mapping subset; the real installed mod package was not changed. Event/special route classifier work is design-only in `docs/EXPORTER_EVENT_SPECIAL_ROUTE_CLASSIFIER_DESIGN.md` and proposed ADR 9; those routes remain `exporter_status` diagnostics, not recommendation input.
 
 ## State Sources
 
@@ -285,7 +327,7 @@ Deckseer keeps one advisor-ready card reward shape and lets different sources ad
 ```text
 manual JSON
 run-history import
-future exporter mod JSON
+exporter mod JSON
 future OCR scan JSON
   -> current-state adapter
   -> card reward advisor
@@ -295,15 +337,15 @@ Implemented sources:
 
 - **Manual JSON**: primary v0 workflow, loaded directly from a user-authored run-state file.
 - **Run-history import**: read-only `.run` history parsing that can draft a recommendation input after you manually provide current HP, act, floor, and visible card reward.
-- **Exporter JSON import**: read-only `latest_state.json` contract parsing through `inspect-export` and `recommend-export`. `inspect-export` accepts static exporter status files, card reward files, and relic reward files; `recommend-export` supports confirmed card reward and relic reward files. `exporter-toolchain-preflight` reports whether the local STS2 install and modding tools are ready for exporter mod work. These commands consume local files and metadata only.
+- **Exporter JSON import**: read-only `latest_state.json` contract parsing through `inspect-export`, `export-alert`, and `recommend-export`. `inspect-export` accepts static exporter status files, card reward files, and relic reward files; `export-alert` can warn on important or unexpected exported states without recommending; `recommend-export` supports confirmed card reward and relic reward files. `exporter-toolchain-preflight` reports whether the local STS2 install and modding tools are ready for exporter mod work. These commands consume local files and metadata only.
+- **Deckseer Exporter Mod**: preferred live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The static status spike lives under `exporter_mod/DeckseerExporter` and is documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`. The card reward API recon lives in `docs/EXPORTER_CARD_REWARD_API_RECON.md`, with compile and install-check results in `docs/EXPORTER_CARD_REWARD_COMPILE_PROBE.md` and the visibility proof sequence in `docs/EXPORTER_CARD_REWARD_VISIBILITY_DESIGN.md`. Installed `v0.3.0` startup fallback passed but mixed reward human confirmation failed because exported gold and potions were stale after non-card reward pickup. Installed `v0.3.1` refuses mixed reward screens with `mixed_reward_screen_state_may_change`; startup, mixed reward-screen, and clear-state verification pass. Installed `v0.3.2` startup passed but did not observe a post-pickup card-choice route in the mixed reward flow. Installed `v0.3.3` adds status-only `RewardCollectedFrom` serializable-run freshness diagnostics; startup, post-gold/potion pickup, and clear-state verification pass while remaining `exporter_status`. Installed `v0.3.4` adds a status-only mixed reward freshness readiness contract with blocker codes, without exporting live scalar values or recommendation-ready state. Installed `v0.3.5` refreshes relic/potion identity review from the post-pickup serializable run while still staying status-only; the live proof revealed `COLORLESS_POTION` -> `colorless_potion` as an unknown mapping. Installed `v0.3.6` adds reviewed `colorless_potion` seed data and status-diagnostic mapping coverage; live proof maps `COLORLESS_POTION` as known while still refusing mixed reward export on alignment/approval blockers. Installed `v0.3.7` retains active visible reward context across `reward_collected` so visible reward player context remains true in status diagnostics. Installed `v0.3.8` retains active run-state context across `reward_collected` as diagnostics only. Installed `v0.3.9` enables mixed reward `card_reward` export after clean post-pickup freshness gates. Installed `v0.3.10` adds the missing card reward selection clear-state hook and verifies closed card reward screens downgrade to `exporter_status`. Installed `v0.4.0` adds ADR 7 human-confirmed live `relic_reward` export for normal reward-screen relics. Installed `v0.4.1` observes treasure chest relics as status-only, refuses live export with `treasure_relic_route_status_only`, and clears after pickup; the live identity probe found a canonical model issue. Installed `v0.4.2` removes that exception but still reports a null public ID. Installed `v0.4.3` switches the diagnostic to public `RelicModel.Id`, reveals `LETTER_OPENER` as unknown review evidence, and clears after pickup. Installed `v0.4.4` maps reviewed `letter_opener` in status diagnostics, verifies the live mapped treasure clear-state path, and still refuses treasure relic live export. Installed `v0.4.5` safely refuses treasure export when deck or potion mappings are incomplete. Installed `v0.4.6` maps `ACCURACY` and `HEART_OF_IRON`, writes confirmed treasure `relic_reward` state on the observed fully mapped run, rejects unconfirmed recommendation, scores `letter_opener` after confirmation, and downgrades after pickup. Installed `v0.4.7` adds reviewed seed data and mapping coverage for `ENVENOM`, `MEMENTO_MORI`, `FASTEN`, and `BLOOD_VIAL`, writes valid startup `exporter_status`, live-proves confirmed `card_reward` export after 15-gold mixed reward pickup, and live-proves post-selection clear-state downgrade. Repo-local data and status-diagnostic mapping snapshots now additionally cover `FINISHER`, `RICOCHET`, `MURDER`, `TOOLS_OF_THE_TRADE`, `PINPOINT`, `ULTIMATE_DEFEND`, `PAELS_EYE`, `TEA_OF_DISCOURTESY`, `CENTENNIAL_PUZZLE`, `MR_STRUGGLES`, `SHURIKEN`, `ORICHALCUM`, `STRIKE_DUMMY`, and `BLESSING_OF_THE_FORGE` without changing the installed real mod package. Adapter contract fixtures cover unknown IDs, upgraded deck cards, confirmation gating, caveats, unsupported upgraded reward-object shape, live card and relic reward fixtures, closed-state fixtures, v0.4.1-v0.4.7 treasure/card reward fixtures, and v0.3.2-v0.3.8 freshness fixtures.
 
 Planned sources:
 
-- **Deckseer Exporter Mod**: preferred future live-state path, read-only/export-only, writing local JSON for Deckseer to inspect. The static status spike lives under `exporter_mod/DeckseerExporter` and is documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`. The card reward API recon lives in `docs/EXPORTER_CARD_REWARD_API_RECON.md`, with compile results in `docs/EXPORTER_CARD_REWARD_COMPILE_PROBE.md`. The mod currently writes only `screen_type: "exporter_status"`; card reward and relic reward live-state export are not implemented yet.
 - **Vision State Extractor**: screenshot/OCR fallback or complement when an exporter mod is unavailable, unwanted, or unreliable.
 
 Source metadata and caveats stay outside the scorer. The recommendation engine receives the same validated card reward payload regardless of where the state came from.
-Exporter mod implementation readiness notes live in `docs/EXPORTER_MOD_SURFACE_REVIEW.md`; the first in-game spike writes only `screen_type: "exporter_status"`, and card reward API recon is documented before live reward export begins.
+Exporter mod implementation readiness notes live in `docs/EXPORTER_MOD_SURFACE_REVIEW.md`; the first in-game spike wrote only `screen_type: "exporter_status"`, and later guarded packets added confirmed card and relic reward exports.
 
 ## Input Shape
 
@@ -469,7 +511,7 @@ The core recommendation engine should remain usable without an LLM. Future expla
 
 The preferred long-term live-state path is a small Slay the Spire 2 companion mod that exports the current run and decision state to local JSON. Deckseer would read that exported JSON using the same decision engine and schemas as the manual v0 workflow.
 
-The first static status spike is implemented under `exporter_mod/DeckseerExporter` and documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`. Live run-state export is not implemented yet. The exporter path should stay read-only and export-only:
+The first static status spike is implemented under `exporter_mod/DeckseerExporter` and documented in `docs/EXPORTER_STATIC_MOD_SPIKE.md`. Installed `v0.4.7` contains the current guarded live card reward implementation, refuses mixed reward screens before non-card reward pickup, exports confirmed mixed reward `card_reward` state after freshness and mapping gates are clean, and downgrades back to `exporter_status` after the card reward selection screen closes. The exporter path should stay read-only and export-only:
 
 - no mouse or keyboard automation
 - no gameplay control
@@ -532,10 +574,13 @@ Exporter milestone breakdown:
 - **Exporter 2: Static JSON Export Spike**: implemented. The local companion mod writes a harmless `screen_type: "exporter_status"` JSON file only.
 - **Exporter 3: Card Reward API Recon**: completed. `docs/EXPORTER_CARD_REWARD_API_RECON.md` identifies likely public STS2 reward/run-state surfaces from local metadata before live export.
 - **Exporter 4: Card Reward Compile Probe**: completed. The mod source compile-checks a narrower public API set while continuing to write only status/diagnostic JSON.
-- **Exporter 5: Status Diagnostic Install Check**: install-check the `v0.2.0` diagnostic status build only after explicit approval to update the local STS2 mod package.
-- **Exporter 6: Card Reward Export**: export visible/current card reward state, character, act, floor, HP, gold, deck, relics, and potions into Deckseer's existing input shape.
-- **Exporter 7: Deckseer Watch Mode**: add an optional Deckseer CLI mode that reads the latest exported JSON and prints recommendations after user confirmation.
-- **Exporter 8: Broader Decision Export**: extend exported state for relic choices, potion choices, pathing, shop, combat basics, and other advisor modules as they are added.
+- **Exporter 5: Status Diagnostic Install Check**: completed after explicit approval. The installed `v0.2.0` build writes valid `exporter_status` JSON with compile-probe diagnostics only.
+- **Exporter 6: Safe Hook-Model Compile Probe**: completed in repo-local `v0.2.1` source. The dormant probe proves the `SingletonModel` + `ModelDb.Inject` + `ModelDb.Singleton<T>()` path without registering a live hook or exporting live state.
+- **Exporter 7: Card Reward Visibility Diagnostic**: installed `v0.2.8` verified, adapter contract hardening complete, and status-only ID diagnostics remain outside recommendation input. Rejected `v0.3.x` attempts, the active reward stack compile blocker, the follow-up active reward source research, and the ADR 2 public screen observation decision are documented in `docs/EXPORTER_CARD_REWARD_VISIBILITY_DESIGN.md`. Installed `v0.2.8` reports ID-shape counts for both public routes and observed a visible three-card reward with 2 known and 1 unknown mapping by count only. Installed `v0.2.9` implements the accepted ADR 3 ID-revealing status diagnostic for mapping review and passed visible-screen verification; installed `v0.2.10` adds the accepted ADR 4 status-only public run-state compile probe; installed `v0.2.11` adds a status-only runtime presence diagnostic and passes startup/visible/clear verification; installed `v0.2.12` adds the accepted ADR 5 status-only deck ID review diagnostic and passes startup verification; installed `v0.2.13` adds reviewed Silent starter aliases and passes startup/visible/clear verification; installed `v0.2.14` maps reviewed `dramatic_entrance` and passes startup/visible/clear verification; installed `v0.2.16` reveals relic/potion IDs under the accepted ADR 6 status-only boundary; installed `v0.2.17` maps the two reviewed relic IDs and reports a ready status-only candidate on the visible reward screen.
+- **Exporter 8: Card Reward Export**: installed `v0.3.0` startup fallback passed but mixed reward confirmation failed on stale gold/potions. Installed `v0.3.1` refuses mixed reward screens and passes startup, mixed reward-screen, and clear-state verification. Installed `v0.3.2` startup passed but did not observe a post-pickup card-choice route in the mixed reward flow. Installed `v0.3.3` adds status-only reward-collected freshness diagnostics and passes startup, post-gold/potion pickup, and clear-state verification while staying non-recommendation-ready. Installed `v0.3.4` adds mixed reward freshness blocker diagnostics and passes startup, post-gold/potion pickup, and clear-state verification while staying non-recommendation-ready. Installed `v0.3.5` refreshes post-pickup potion identity review diagnostics and passes startup, post-gold/potion pickup, and clear-state verification while staying non-recommendation-ready. Installed `v0.3.6` maps reviewed `COLORLESS_POTION` -> `colorless_potion` in status diagnostics only and still refuses mixed reward export on alignment/approval blockers. Installed `v0.3.7` removes the visible reward player blocker in status diagnostics only. Installed `v0.3.8` removes the run-state context blocker in status diagnostics only. Installed `v0.3.9` enables mixed reward `card_reward` export only after clean post-pickup freshness gates and still requires confirmation. Installed `v0.3.10` fixes and verifies clear-state downgrade after card reward selection. Installed `v0.4.7` maps the Envenom/Predator/Memento Mori Silent gaps and live-proves confirmed mixed reward card export plus post-selection downgrade. Repo-local mapping data now covers the later Finisher/Ricochet/Murder/Tea status-only subset; no live install was changed.
+- **Exporter 9: Relic Reward Export**: installed `v0.4.0` implements ADR 7 human-confirmed live `screen_type: "relic_reward"` export using the existing confirmed relic exporter adapter for normal reward-screen relics. Installed `v0.4.1` proves treasure chest relic observation and clear-state as status-only. Installed `v0.4.2` fixes the treasure relic identity exception but leaves public ID null in live proof. Installed `v0.4.3` uses public `RelicModel.Id`, proves `LETTER_OPENER` identity review as status-only, and clears after pickup. Installed `v0.4.4` adds reviewed `letter_opener` mapping coverage and live-verifies mapped treasure clear-state before treasure promotion. Installed `v0.4.5` accepts ADR 8's treasure readiness contract but safely refuses the observed run because `ACCURACY` and `HEART_OF_IRON` are unmapped. Installed `v0.4.6` maps those gaps and live-proves successful treasure `relic_reward` export with confirmation and post-pickup downgrade.
+- **Exporter 10: Deckseer Watch Mode**: add an optional Deckseer CLI mode that reads the latest exported JSON and prints recommendations after user confirmation. A narrower read-only `export-alert` command now watches by default for pause-worthy state notifications only; it does not recommend.
+- **Exporter 11: Broader Decision Export**: extend exported state for potion choices, pathing, shop, combat basics, and other advisor modules as they are added.
 
 ### Future Milestone: Vision State Extractor
 
@@ -642,4 +687,4 @@ Vision milestone breakdown:
 
 Other future recommendation areas can include relic advice, potion advice, pathing, combat advice, run history, outcome learning, and optional LLM explanation.
 
-Relic choice is the approved first broader advice surface after card rewards. The design boundary lives in `docs/RELIC_CHOICE_DESIGN.md`; `recommend-relic` supports manual JSON relic rewards, `recommend-export --confirmed` supports proposed relic exporter files, and `relic-accuracy-report` checks reviewed relic-choice drift scenarios.
+Relic choice is the approved first broader advice surface after card rewards. The design boundary lives in `docs/RELIC_CHOICE_DESIGN.md`; `recommend-relic` supports manual JSON relic rewards, `recommend-export --confirmed` supports proposed relic exporter files, and `relic-accuracy-report` checks six reviewed relic-choice drift scenarios.

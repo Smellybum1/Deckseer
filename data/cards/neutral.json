@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "id": "dramatic_entrance",
+    "name": "Dramatic Entrance",
+    "character": "neutral",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 0,
+    "tags": ["damage", "aoe", "free", "innate", "exhaust"],
+    "roles": ["frontload", "aoe", "burst"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload", "aoe"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Installed STS2 v0.106.1 pck localization: DRAMATIC_ENTRANCE title/description; colorless asset path.",
+      "Installed STS2 v0.106.1 pck changelog: damage changed to 11(15).",
+      "Untapped.gg STS2 card page cross-check: Colorless Uncommon Attack, cost 0, Innate, Exhaust.",
+      "Seed metadata only; no reviewed tier, empirical prior, or accuracy scenario yet."
+    ],
+    "upgrades_to": "dramatic_entrance_plus",
+    "effects": {
+      "damage": 11,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "upgraded_damage": 15
+      }
+    }
+  },
+  {
+    "id": "ultimate_defend",
+    "name": "Ultimate Defend",
+    "character": "neutral",
+    "type": "skill",
+    "rarity": "special",
+    "cost": 1,
+    "tags": ["block"],
+    "roles": ["block", "defense"],
+    "quality_prior": 0.0,
+    "pick_context": ["defense"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: ULTIMATE_DEFEND title is Ultimate Defend; description says it gains Block.",
+      "Installed v0.4.7 card reward proof revealed ULTIMATE_DEFEND as an unmapped deck card in a Silent run; treated as neutral/special seed metadata only."
+    ],
+    "upgrades_to": "ultimate_defend_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "block_gain_marker": 1
+      }
+    }
+  }
+]

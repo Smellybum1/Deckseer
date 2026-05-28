@@ -1,6 +1,6 @@
 # Deckseer Relic Choice Design
 
-This document defines the first broader advice surface after card rewards: deterministic, manual JSON relic choice advice. The design, metadata seed, private scorer, public `recommend-relic` CLI, confirmed exporter recommendation, and relic accuracy report packets are now complete. There is still no live capture, mod code, card reward behavior change, or baseline change.
+This document defines the first broader advice surface after card rewards: deterministic, manual JSON relic choice advice. The design, metadata seed, private scorer, public `recommend-relic` CLI, confirmed exporter recommendation, and relic accuracy report packets are now complete. Later ADR 7 and ADR 8 packets added human-confirmed live exporter support for normal and treasure relic rewards without changing card reward behavior or baselines.
 
 ## Goal
 
@@ -17,7 +17,7 @@ The first implementation should answer:
 
 Relic Choice V1 must not include:
 
-- Live game capture, watcher mode, OCR, screenshots, or exporter expansion.
+- Watcher mode, OCR, screenshots, or unapproved exporter expansion.
 - Gameplay automation, input control, memory/process tricks, packet inspection, stealth, or evasion.
 - Combat simulation or exact relic trigger simulation.
 - Path optimization or map branch ranking.
@@ -208,10 +208,10 @@ Stop and ask before:
 - Adding or changing relic data beyond a tiny reviewed seed packet.
 - Introducing new schema requirements for existing card reward inputs.
 - Changing card reward scoring or run diagnosis behavior.
-- Adding exporter, OCR, vision, live capture, watcher, or game mod behavior.
+- Adding unapproved exporter behavior, OCR, vision, live capture, watcher, or game mod behavior.
 - Adding dependencies.
 - Making boss relic choice use a different input/output surface from normal relic rewards.
 
 ## Recommended Next Packet
 
-The relic choice regression manifest is complete with `relic-accuracy-report`, and relic metadata expansion readiness is documented in `docs/RELIC_METADATA_EXPANSION_READINESS.md`. The next data-changing packet should add only a tiny reviewed relic batch with matching relic accuracy scenarios.
+The relic choice regression manifest is complete with `relic-accuracy-report`, and relic metadata expansion readiness is documented in `docs/RELIC_METADATA_EXPANSION_READINESS.md`. Reviewed expansion batches have added `ring_of_the_snake`, `lead_paperweight`, and `letter_opener`; installed exporter `v0.4.6` has live-proven confirmed treasure relic export for `letter_opener`. Future data-changing packets should remain tiny reviewed batches with matching relic accuracy scenarios.

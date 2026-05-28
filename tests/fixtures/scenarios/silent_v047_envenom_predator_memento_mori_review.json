@@ -1,0 +1,111 @@
+{
+  "game": "slay_the_spire_2",
+  "character": "silent",
+  "act": 1,
+  "floor": 13,
+  "ascension": 0,
+  "gold": 52,
+  "hp": {
+    "current": 63,
+    "max": 70
+  },
+  "deck": [
+    {
+      "id": "accuracy",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "cloak_and_dagger",
+      "upgraded": true,
+      "count": 1
+    },
+    {
+      "id": "dagger_spray",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "dagger_throw",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "dramatic_entrance",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "fasten",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "neutralize",
+      "upgraded": true,
+      "count": 1
+    },
+    {
+      "id": "predator",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "slice",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "survivor",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [
+    "ring_of_the_snake",
+    "lead_paperweight",
+    "letter_opener",
+    "blood_vial"
+  ],
+  "potions": [
+    "colorless_potion",
+    "heart_of_iron"
+  ],
+  "card_reward": [
+    "envenom",
+    "predator",
+    "memento_mori"
+  ],
+  "run_context": {
+    "recent_damage": 0,
+    "next_node_type": "unknown",
+    "act_region": null,
+    "upcoming_elites": [],
+    "fought_elites": [],
+    "next_nodes": [
+      "event",
+      "elite"
+    ],
+    "fire_before_elite": null,
+    "shop_before_elite": null,
+    "path_pressure": "elite_soon",
+    "boss": null,
+    "notes": [
+      "Accepted accuracy scenario from installed DeckseerExporter v0.4.7 live proof.",
+      "Visible card reward was Envenom / Predator / Memento Mori after the 15-gold mixed reward pickup.",
+      "Exporter mapping was complete for reward cards, deck cards, owned relics, and potions.",
+      "User intended Envenom because Predator was already owned, Memento Mori looked weak, Envenom had worked well with Shivs, Envenom is rare, and the path showed an event before an elite.",
+      "The original exporter fixture with unknown path context ranked Skip first; this manual intake fixture adds reviewed event-before-elite path context and accepts Envenom as the expected top choice after the attack/Shiv payoff calibration."
+    ]
+  }
+}

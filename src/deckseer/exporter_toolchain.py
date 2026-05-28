@@ -12,6 +12,7 @@ from typing import Callable, Sequence
 
 DEFAULT_STS2_INSTALL = Path(r"D:\Games\Steam\steamapps\common\Slay the Spire 2")
 DEFAULT_STEAM_MANIFEST = Path(r"D:\Games\Steam\steamapps\appmanifest_2868840.acf")
+DEFAULT_GODOT_DIR = Path(r"D:\Codex\Godot")
 
 
 @dataclass(frozen=True)
@@ -32,20 +33,22 @@ def build_exporter_toolchain_preflight(
     export_dir: Path | None = None,
     command_runner: CommandRunner | None = None,
     which_runner: WhichRunner | None = None,
+    known_tool_paths: Sequence[Path] | None = None,
 ) -> dict:
     """Build a read-only status report for the future static exporter mod spike."""
 
     runner = command_runner or _run_command
     which = which_runner or shutil.which
     export_path = export_dir or _default_export_dir()
+    tool_paths = tuple(known_tool_paths) if known_tool_paths is not None else _default_known_tool_paths(which_runner)
 
     install_check = _check_sts2_install(sts2_install_path)
     release_check = _read_release_info(sts2_install_path / "release_info.json")
     manifest_check = _read_steam_manifest(steam_manifest_path)
     dotnet_check = _check_dotnet_sdk(runner)
     template_check = _check_sts2_template(runner, dotnet_check)
-    megadot_check = _check_executable("megadot", which)
-    godot_check = _check_executable("godot", which)
+    megadot_check = _check_executable("megadot", which, tool_paths)
+    godot_check = _check_executable("godot", which, tool_paths)
     mods_folder_check = _check_folder(sts2_install_path / "mods")
     export_folder_check = _check_folder(export_path)
 
@@ -186,12 +189,17 @@ def _check_sts2_template(runner: CommandRunner, dotnet_check: dict) -> dict:
     }
 
 
-def _check_executable(name: str, which: WhichRunner) -> dict:
+def _check_executable(name: str, which: WhichRunner, known_tool_paths: Sequence[Path] = ()) -> dict:
     path = which(name)
+    source = "path" if path is not None else None
+    if path is None:
+        path = _known_tool_path(name, known_tool_paths)
+        source = "known_path" if path is not None else None
     return {
         "ok": path is not None,
         "command": name,
-        "path": path,
+        "path": str(path) if path is not None else None,
+        "source": source,
     }
 
 
@@ -248,6 +256,29 @@ def _default_export_dir() -> Path:
     if local_app_data:
         return Path(local_app_data) / "Deckseer" / "exports"
     return Path.home() / "AppData" / "Local" / "Deckseer" / "exports"
+
+
+def _default_known_tool_paths(which_runner: WhichRunner | None) -> tuple[Path, ...]:
+    if which_runner is not None:
+        return ()
+    return (
+        DEFAULT_GODOT_DIR / "godot.cmd",
+        DEFAULT_GODOT_DIR / "Godot_v4.5.1-stable_mono_win64.exe",
+        DEFAULT_GODOT_DIR / "Godot_v4.5.1-stable_mono_win64_console.exe",
+    )
+
+
+def _known_tool_path(name: str, known_tool_paths: Sequence[Path]) -> Path | None:
+    lowered_name = name.lower()
+    for path in known_tool_paths:
+        try:
+            exists = path.exists()
+            is_file = path.is_file()
+        except OSError:
+            continue
+        if exists and is_file and lowered_name in path.name.lower():
+            return path
+    return None
 
 
 def _run_command(command: Sequence[str]) -> CommandResult:

@@ -1,0 +1,88 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.2.11",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Game patch/build metadata is not exported in this diagnostic spike.",
+      "Card identity review diagnostics may include public model IDs for visible reward choices, but no recommendation-ready run state is exported.",
+      "Public run-state symbols required for future card_reward export compile, but live card_reward export is not implemented.",
+      "Runtime run-state readiness diagnostics report booleans and counts only; no live run-state values are exported."
+    ],
+    "diagnostics": {
+      "card_reward_live_export_probe": "run_state_symbols_compiled_not_exported",
+      "card_reward_live_export_writes_recommendation_state": false,
+      "card_reward_run_state_runtime_probe": "run_state_seen",
+      "card_reward_run_state_runtime_last_event": "rewards_screen_shown",
+      "card_reward_run_state_run_in_progress": true,
+      "card_reward_run_state_available": true,
+      "card_reward_run_state_serializable_run_available": true,
+      "card_reward_run_state_player_count": 1,
+      "card_reward_run_state_single_player_available": true,
+      "card_reward_run_state_character_present": true,
+      "card_reward_run_state_act_present": true,
+      "card_reward_run_state_floor_present": true,
+      "card_reward_run_state_ascension_present": true,
+      "card_reward_run_state_gold_present": true,
+      "card_reward_run_state_hp_present": true,
+      "card_reward_run_state_deck_present": true,
+      "card_reward_run_state_relics_present": true,
+      "card_reward_run_state_potions_present": true,
+      "card_reward_run_state_deck_card_count": 7,
+      "card_reward_run_state_deck_card_id_read_count": 7,
+      "card_reward_run_state_deck_card_mapping_known_count": 7,
+      "card_reward_run_state_deck_card_mapping_unknown_count": 0,
+      "card_reward_run_state_relic_count": 1,
+      "card_reward_run_state_potion_count": 0,
+      "card_reward_run_state_visible_reward_player_present": true,
+      "card_reward_run_state_writes_recommendation_state": false,
+      "card_reward_run_state_error": null,
+      "visible_reward_probe_status": "card_reward_model_seen",
+      "visible_reward_probe_last_event": "rewards_screen_shown",
+      "visible_card_reward_option_count": 3,
+      "card_identity_review_probe": "ids_revealed_for_review",
+      "card_identity_review_option_count": 3,
+      "card_identity_review_items": [
+        {
+          "position": 0,
+          "public_model_id": "CLOAK_AND_DAGGER",
+          "normalized_candidate_id": "cloak_and_dagger",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "cloak_and_dagger",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 1,
+          "public_model_id": "BOUNCING_FLASK",
+          "normalized_candidate_id": "bouncing_flask",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "bouncing_flask",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 2,
+          "public_model_id": "INFINITE_BLADES",
+          "normalized_candidate_id": "infinite_blades",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "infinite_blades",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        }
+      ],
+      "screen_observation_error": null
+    }
+  }
+}

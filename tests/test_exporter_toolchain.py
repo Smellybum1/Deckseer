@@ -45,6 +45,29 @@ def test_exporter_toolchain_preflight_reports_missing_toolchain(tmp_path: Path) 
     assert report["summary"]["warnings"] == ["mods_folder_missing", "deckseer_export_folder_missing"]
 
 
+def test_exporter_toolchain_preflight_finds_known_godot_path(tmp_path: Path) -> None:
+    install = _write_fake_install(tmp_path)
+    manifest = _write_fake_manifest(tmp_path)
+    godot = tmp_path / "Godot_v4.5.1-stable_mono_win64.exe"
+    godot.write_text("", encoding="utf-8")
+
+    report = build_exporter_toolchain_preflight(
+        sts2_install_path=install,
+        steam_manifest_path=manifest,
+        export_dir=tmp_path / "exports",
+        command_runner=_ready_command_runner,
+        which_runner=lambda _name: None,
+        known_tool_paths=(godot,),
+    )
+
+    assert report["status"] == "ready_for_static_spike"
+    assert report["ready"] is True
+    assert report["summary"]["blockers"] == []
+    assert report["checks"]["godot"]["ok"] is True
+    assert report["checks"]["godot"]["path"] == str(godot)
+    assert report["checks"]["godot"]["source"] == "known_path"
+
+
 def test_exporter_toolchain_preflight_reports_missing_game(tmp_path: Path) -> None:
     report = build_exporter_toolchain_preflight(
         sts2_install_path=tmp_path / "missing",

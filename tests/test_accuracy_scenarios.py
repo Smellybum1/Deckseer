@@ -24,6 +24,7 @@ SCENARIOS = Path("tests/fixtures/scenarios")
         ("defect_cold_snap_scaling_guard.json", "defragment", "scaling"),
         ("regent_astral_pulse_scaling_guard.json", "spectrum_shift", "scaling"),
         ("regent_bulwark_frontload_guard.json", "astral_pulse", "frontload"),
+        ("silent_v047_envenom_predator_memento_mori_review.json", "envenom", "Shiv"),
     ],
 )
 def test_accuracy_scenario_top_choice_and_reasoning(

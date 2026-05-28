@@ -186,7 +186,7 @@ def test_qa_cli_can_include_accuracy_summary(capsys) -> None:
 
     assert status == 0
     assert "Project QA: REVIEW" in captured.out
-    assert "Accuracy scenarios: 9 passed | 0 failed" in captured.out
+    assert "Accuracy scenarios: 10 passed | 0 failed" in captured.out
 
 
 def test_qa_cli_can_include_empirical_coverage_summary(capsys) -> None:

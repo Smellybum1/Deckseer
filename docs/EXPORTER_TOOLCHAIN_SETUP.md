@@ -49,6 +49,8 @@ Deckseer now has a read-only wrapper for the local checks below:
 deckseer exporter-toolchain-preflight --format text
 ```
 
+The preflight checks `PATH` for `megadot` or `godot`, then falls back to the known local Godot paths under `D:\Codex\Godot`. It does not install tools or create folders.
+
 Expected ready state after toolchain setup:
 
 - Status: `ready_for_static_spike`.

@@ -27,7 +27,7 @@ dotnet run --project tools\sts2_metadata_probe -- "D:\Games\Steam\steamapps\comm
 
 The probe reads `sts2.dll` with `System.Reflection.Metadata` and does not load or execute game code. It exists to make future patch-sensitive API reviews repeatable before changing the in-game mod.
 
-Important limitation: metadata confirms type and member names, but not enough behavioral detail to start exporting live state. The next packet should compile against the candidate APIs and, if needed, log only diagnostic availability.
+Important limitation: metadata confirms type and member names, but not enough behavioral detail by itself to start exporting live state. The follow-up compile and diagnostic packets are complete; later live export work still depends on the installed visibility, mapping, freshness, and stale-state proofs recorded in the exporter handoff docs.
 
 ## Confirmed Candidate Surfaces
 
@@ -147,7 +147,7 @@ Likely Deckseer mapping helpers:
   - `CardPoolIds`
   - `OptionCount`
 
-These save-like structures are attractive because their property names already match Deckseer's manual JSON needs. The next packet should verify whether `RunManager.ToSave()` or related serializers can be called safely from the exporter without changing game state.
+These save-like structures are attractive because their property names already match Deckseer's manual JSON needs. Later status-only and live-export packets verified safe use of public serialization surfaces under the human-confirmation-first exporter boundary.
 
 ### Hook And Modding Surfaces
 

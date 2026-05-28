@@ -1,0 +1,99 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.3.8",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-25T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Relic and potion identity review diagnostics may include public model IDs for current relics and potions, but no recommendation-ready run state is exported."
+    ],
+    "diagnostics": {
+      "visible_reward_probe_status": "card_reward_model_seen",
+      "visible_reward_probe_last_event": "reward_collected",
+      "visible_reward_count": 3,
+      "visible_card_reward_count": 1,
+      "visible_card_reward_option_count": 3,
+      "card_reward_live_export_candidate": "refused",
+      "card_reward_live_export_refusal_reasons": [
+        "mixed_reward_screen_state_may_change"
+      ],
+      "card_reward_live_export_missing_fields": [],
+      "card_reward_live_export_unmapped_reward_count": 0,
+      "card_reward_live_export_unmapped_deck_count": 0,
+      "card_reward_live_export_unmapped_relic_count": 0,
+      "card_reward_live_export_unmapped_potion_count": 0,
+      "card_reward_live_export_mixed_reward_freshness_status": "reward_collected_serializable_counts_seen",
+      "card_reward_live_export_mixed_reward_freshness_blockers": [
+        "mixed_reward_live_export_not_approved"
+      ],
+      "card_reward_live_export_mixed_reward_freshness_writes_recommendation_state": false,
+      "card_reward_live_export_candidate_writes_recommendation_state": false,
+      "card_reward_run_state_runtime_probe": "run_state_seen",
+      "card_reward_run_state_runtime_last_event": "reward_collected",
+      "card_reward_run_state_run_in_progress": true,
+      "card_reward_run_state_available": true,
+      "card_reward_run_state_serializable_run_available": true,
+      "card_reward_run_state_player_count": 1,
+      "card_reward_run_state_single_player_available": true,
+      "card_reward_run_state_character_present": true,
+      "card_reward_run_state_act_present": true,
+      "card_reward_run_state_floor_present": true,
+      "card_reward_run_state_ascension_present": true,
+      "card_reward_run_state_gold_present": true,
+      "card_reward_run_state_hp_present": true,
+      "card_reward_run_state_deck_present": true,
+      "card_reward_run_state_relics_present": true,
+      "card_reward_run_state_potions_present": true,
+      "card_reward_run_state_deck_card_count": 14,
+      "card_reward_run_state_deck_card_id_read_count": 14,
+      "card_reward_run_state_deck_card_mapping_known_count": 14,
+      "card_reward_run_state_deck_card_mapping_unknown_count": 0,
+      "card_reward_run_state_relic_count": 2,
+      "card_reward_run_state_potion_count": 1,
+      "card_reward_run_state_visible_reward_player_present": true,
+      "card_reward_run_state_writes_recommendation_state": false,
+      "card_reward_run_state_error": null,
+      "relic_potion_identity_review_probe": "ids_revealed_for_review",
+      "relic_potion_identity_review_last_event": "reward_collected",
+      "relic_identity_review_count": 2,
+      "relic_identity_review_mapping_known_count": 2,
+      "relic_identity_review_mapping_unknown_count": 0,
+      "relic_identity_review_items": [
+        {
+          "position": 0,
+          "public_model_id": "RING_OF_THE_SNAKE",
+          "normalized_candidate_id": "ring_of_the_snake",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "ring_of_the_snake"
+        },
+        {
+          "position": 1,
+          "public_model_id": "LEAD_PAPERWEIGHT",
+          "normalized_candidate_id": "lead_paperweight",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "lead_paperweight"
+        }
+      ],
+      "potion_identity_review_count": 1,
+      "potion_identity_review_mapping_known_count": 1,
+      "potion_identity_review_mapping_unknown_count": 0,
+      "potion_identity_review_items": [
+        {
+          "position": 0,
+          "public_model_id": "COLORLESS_POTION",
+          "normalized_candidate_id": "colorless_potion",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "colorless_potion"
+        }
+      ],
+      "relic_potion_identity_review_error": null
+    }
+  }
+}

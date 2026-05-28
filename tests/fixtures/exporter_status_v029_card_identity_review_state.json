@@ -1,0 +1,67 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.2.9",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Game patch/build metadata is not exported in this diagnostic spike.",
+      "Card identity review diagnostics may include public model IDs for visible reward choices, but no recommendation-ready run state is exported."
+    ],
+    "diagnostics": {
+      "screen_observation_probe": "registered",
+      "visible_reward_probe_status": "card_reward_model_seen",
+      "visible_reward_probe_last_event": "rewards_screen_shown",
+      "visible_card_reward_option_count": 3,
+      "card_identity_runtime_probe": "card_choice_ids_seen",
+      "card_identity_runtime_last_event": "rewards_screen_shown",
+      "visible_card_identity_read_count": 3,
+      "visible_card_identity_mapping_known_count": 3,
+      "visible_card_identity_mapping_unknown_count": 0,
+      "card_identity_review_probe": "ids_revealed_for_review",
+      "card_identity_review_last_event": "rewards_screen_shown",
+      "card_identity_review_option_count": 3,
+      "card_identity_review_items": [
+        {
+          "position": 0,
+          "public_model_id": "cloak_and_dagger",
+          "normalized_candidate_id": "cloak_and_dagger",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "cloak_and_dagger",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 1,
+          "public_model_id": "bouncing_flask",
+          "normalized_candidate_id": "bouncing_flask",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "bouncing_flask",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 2,
+          "public_model_id": "infinite_blades",
+          "normalized_candidate_id": "infinite_blades",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "infinite_blades",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        }
+      ],
+      "card_identity_review_error": null,
+      "screen_observation_error": null
+    }
+  }
+}

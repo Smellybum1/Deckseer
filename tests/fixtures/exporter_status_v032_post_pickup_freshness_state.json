@@ -1,0 +1,101 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.3.2",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Runtime run-state readiness diagnostics report booleans and counts only; no live run-state values are exported."
+    ],
+    "diagnostics": {
+      "screen_observation_probe": "registered",
+      "visible_reward_probe_status": "card_choice_screen_seen",
+      "visible_reward_probe_last_event": "choose_card_screen_shown",
+      "visible_reward_count": 0,
+      "visible_card_reward_count": 1,
+      "visible_card_reward_option_count": 3,
+      "visible_card_choice_option_count": 3,
+      "visible_card_choice_can_skip": true,
+      "card_reward_live_export_candidate": "refused",
+      "card_reward_live_export_refusal_reasons": [
+        "no_visible_reward",
+        "missing_required_run_state_field"
+      ],
+      "card_reward_live_export_missing_fields": [
+        "run_state",
+        "visible_reward_player"
+      ],
+      "card_reward_live_export_unmapped_reward_count": 0,
+      "card_reward_live_export_unmapped_deck_count": 0,
+      "card_reward_live_export_unmapped_relic_count": 0,
+      "card_reward_live_export_unmapped_potion_count": 0,
+      "card_reward_live_export_candidate_writes_recommendation_state": false,
+      "card_reward_run_state_runtime_probe": "serializable_run_seen",
+      "card_reward_run_state_runtime_last_event": "choose_card_screen_shown",
+      "card_reward_run_state_run_in_progress": true,
+      "card_reward_run_state_available": false,
+      "card_reward_run_state_serializable_run_available": true,
+      "card_reward_run_state_player_count": 1,
+      "card_reward_run_state_single_player_available": true,
+      "card_reward_run_state_character_present": true,
+      "card_reward_run_state_act_present": true,
+      "card_reward_run_state_floor_present": true,
+      "card_reward_run_state_ascension_present": true,
+      "card_reward_run_state_gold_present": true,
+      "card_reward_run_state_hp_present": true,
+      "card_reward_run_state_deck_present": true,
+      "card_reward_run_state_relics_present": true,
+      "card_reward_run_state_potions_present": true,
+      "card_reward_run_state_deck_card_count": 14,
+      "card_reward_run_state_deck_card_id_read_count": 14,
+      "card_reward_run_state_deck_card_mapping_known_count": 14,
+      "card_reward_run_state_deck_card_mapping_unknown_count": 0,
+      "card_reward_run_state_relic_count": 2,
+      "card_reward_run_state_potion_count": 1,
+      "card_reward_run_state_visible_reward_player_present": false,
+      "card_reward_run_state_writes_recommendation_state": false,
+      "card_reward_run_state_error": null,
+      "card_identity_review_probe": "ids_revealed_for_review",
+      "card_identity_review_option_count": 3,
+      "card_identity_review_items": [
+        {
+          "position": 0,
+          "public_model_id": "CLOAK_AND_DAGGER",
+          "normalized_candidate_id": "cloak_and_dagger",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "cloak_and_dagger",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 1,
+          "public_model_id": "BOUNCING_FLASK",
+          "normalized_candidate_id": "bouncing_flask",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "bouncing_flask",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        },
+        {
+          "position": 2,
+          "public_model_id": "INFINITE_BLADES",
+          "normalized_candidate_id": "infinite_blades",
+          "deckseer_mapping_status": "known",
+          "deckseer_id": "infinite_blades",
+          "upgraded": false,
+          "upgrade_level": 0,
+          "serialized_id_matches_direct_id": true
+        }
+      ]
+    }
+  }
+}

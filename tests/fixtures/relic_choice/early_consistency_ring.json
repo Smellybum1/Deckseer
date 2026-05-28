@@ -1,0 +1,51 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "relic_reward",
+  "character": "silent",
+  "act": 1,
+  "floor": 6,
+  "ascension": 0,
+  "gold": 99,
+  "hp": {
+    "current": 54,
+    "max": 70
+  },
+  "deck": [
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "neutralize",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "survivor",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [],
+  "potions": [],
+  "relic_reward": [
+    "ring_of_the_snake",
+    "lead_paperweight",
+    "burning_blood"
+  ],
+  "run_context": {
+    "upcoming_elites": [
+      "berdonis"
+    ],
+    "path_pressure": "elite_soon",
+    "notes": [
+      "Reviewed v0.106.1 relic metadata fixture: early Silent deck wants card access before elite pressure."
+    ]
+  }
+}

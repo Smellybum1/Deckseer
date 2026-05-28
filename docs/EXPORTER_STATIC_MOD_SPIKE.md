@@ -90,4 +90,4 @@ Still forbidden:
 
 ## Next Packet
 
-The card reward API recon packet is complete in `docs/EXPORTER_CARD_REWARD_API_RECON.md`, and the compile probe is documented in `docs/EXPORTER_CARD_REWARD_COMPILE_PROBE.md`. The next exporter packet should either install-check the `v0.2.0` diagnostic status build with explicit approval, or design how to prove public reward model data corresponds to the visible card reward screen before exporting any live card reward state.
+The card reward API recon packet is complete in `docs/EXPORTER_CARD_REWARD_API_RECON.md`, and the compile/install-check sequence is documented in `docs/EXPORTER_CARD_REWARD_COMPILE_PROBE.md` and `docs/EXPORTER_CARD_REWARD_VISIBILITY_DESIGN.md`. Later packets advanced beyond the static spike: installed `v0.4.7` live-proves human-confirmed mixed reward `card_reward` export after clean freshness and mapping gates, then downgrades to `exporter_status` after card reward selection closes. Watch mode and broader decision exports remain out of scope without separate approval.

@@ -1,0 +1,71 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "exporter_status",
+  "status": "ok",
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.4.7",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-26T04:34:33.7199126+00:00",
+    "requires_user_confirmation": false,
+    "confidence": "high",
+    "caveats": [
+      "Exporter status diagnostics only; no live run state is present.",
+      "Game patch/build metadata is not exported in this diagnostic spike.",
+      "Live card_reward export is available only when every validation gate passes; this status payload is not recommendation-ready.",
+      "Live relic_reward export is available only when every validation gate passes; this status payload is not recommendation-ready.",
+      "Event/special route diagnostics report active or cleared state and option counts only; no option IDs, option names, selected outcomes, or recommendation-ready state are exported."
+    ],
+    "diagnostics": {
+      "event_special_route_compile_probe": "compiled_not_registered",
+      "event_special_route_verified_symbol_count": 30,
+      "event_special_route_writes_recommendation_state": false,
+      "event_special_route": {
+        "probe_status": "event_special_route_seen",
+        "last_event": "event_layout_options_added",
+        "active": true,
+        "route_family": "event_special_choice",
+        "route_label": null,
+        "observation_source": "public_event_layout_options",
+        "visible_option_count": 3,
+        "clear_state": "active",
+        "exports_recommendation_state": false,
+        "blockers": [
+          "event_special_route_status_only"
+        ],
+        "error": null
+      },
+      "card_reward_live_export_candidate": "refused",
+      "card_reward_live_export_refusal_reasons": [
+        "stale_reward_screen",
+        "missing_required_run_state_field"
+      ],
+      "card_reward_live_export_candidate_writes_recommendation_state": false,
+      "relic_reward_live_export_candidate": "refused",
+      "relic_reward_live_export_refusal_reasons": [
+        "stale_reward_screen",
+        "missing_required_run_state_field"
+      ],
+      "relic_reward_live_export_candidate_writes_recommendation_state": false,
+      "screen_observation_probe": "registered",
+      "screen_observation_verified_symbol_count": 30,
+      "visible_reward_probe_status": "reward_screen_completed",
+      "visible_reward_probe_last_event": "card_reward_selection_screen_closed",
+      "visible_reward_count": 0,
+      "visible_card_reward_count": 0,
+      "visible_relic_reward_count": 0,
+      "visible_card_reward_option_count": 0,
+      "visible_relic_reward_option_count": 0,
+      "visible_card_choice_option_count": 0,
+      "card_reward_run_state_runtime_probe": "cleared",
+      "card_reward_run_state_runtime_last_event": "card_reward_selection_screen_closed",
+      "card_reward_run_state_writes_recommendation_state": false,
+      "deck_identity_review_probe": "cleared",
+      "relic_potion_identity_review_probe": "cleared",
+      "card_identity_review_probe": "cleared",
+      "relic_reward_identity_review_probe": "cleared",
+      "screen_observation_error": null
+    }
+  }
+}

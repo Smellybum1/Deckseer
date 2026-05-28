@@ -35,6 +35,41 @@
       "source": "Relic Choice V1 reviewed fixture",
       "review_status": "accepted",
       "notes": "Act 2 attack-dense deck should prefer Kunai as a longer-fight scaling/defense payoff."
+    },
+    {
+      "id": "early_consistency_ring",
+      "path": "tests/fixtures/relic_choice/early_consistency_ring.json",
+      "expected_top_choice": "ring_of_the_snake",
+      "expected_reason_keywords": [
+        "consistency",
+        "elite_prep"
+      ],
+      "source": "Installed STS2 v0.106.1 pck localization plus v0.2.16 relic ID diagnostic",
+      "review_status": "accepted",
+      "notes": "Early Silent deck with elite pressure should prefer Ring of the Snake as a simple card-access consistency relic."
+    },
+    {
+      "id": "colorless_deck_quality",
+      "path": "tests/fixtures/relic_choice/colorless_deck_quality.json",
+      "expected_top_choice": "lead_paperweight",
+      "expected_reason_keywords": [
+        "consistency"
+      ],
+      "source": "Installed STS2 v0.106.1 pck localization plus v0.2.16 relic ID diagnostic",
+      "review_status": "accepted",
+      "notes": "Healthy early deck with no urgent sustain pressure may prefer Lead Paperweight's conservative colorless-card quality pickup over Burning Blood."
+    },
+    {
+      "id": "skill_dense_letter_opener",
+      "path": "tests/fixtures/relic_choice/skill_dense_letter_opener.json",
+      "expected_top_choice": "letter_opener",
+      "expected_reason_keywords": [
+        "frontload",
+        "skill_dense"
+      ],
+      "source": "Installed STS2 v0.106.1 pck localization plus v0.4.3 treasure relic ID diagnostic",
+      "review_status": "accepted",
+      "notes": "Skill-dense early Silent deck with elite pressure should prefer Letter Opener as a conservative AoE/frontload payoff over generic quality or sustain relics."
     }
   ]
 }

@@ -69,7 +69,9 @@ Start each autonomous run by reading:
 - `AGENTS.md`
 - `README.md`
 - `docs/PROJECT_STATUS.md`
+- `docs/CONTEXT.md`
 - `docs/EXECUTION_LOOP.md`
+- relevant ADRs under `docs/adr/`
 - exporter docs under `docs/EXPORTER_*`
 - `docs/ACCURACY_REVIEW.md`
 - `docs/EMPIRICAL_REVIEW.md`
@@ -150,15 +152,21 @@ Use the bundled Python runtime if plain `python` is not on PATH.
 ```bash
 python -m deckseer.cli inspect-export tests/fixtures/exporter_status_state.json
 python -m deckseer.cli recommend-export tests/fixtures/exporter_card_reward_state.json --confirmed --format text
+python -m deckseer.cli recommend-export tests/fixtures/exporter_relic_reward_state.json --confirmed --format text
+python -m deckseer.cli exporter-toolchain-preflight --format text
+python -m deckseer.cli recommend-relic tests/fixtures/relic_choice/elite_frontload.json --format text
 python -m deckseer.cli qa --check-recommendation-baseline --check-accuracy --check-empirical-triage
 python -m deckseer.cli empirical-coverage --format text
 python -m deckseer.cli accuracy-report --format text
+python -m deckseer.cli relic-accuracy-report --format text
 python -m pytest
 ```
 
 Expected healthy state:
 
 - triage-aware QA: `PASS`
+- exporter toolchain preflight: `READY_FOR_STATIC_SPIKE` or equivalent ready status when local toolchain remains visible
 - empirical coverage: `REVIEW`, 18 rows, 14 `patch_mismatch` warnings unless intentionally changed
-- accuracy report: `PASS`, 9/9 unless intentionally expanded
+- accuracy report: `PASS`, 10/10 unless intentionally expanded
+- relic accuracy report: `PASS`, 6/6 unless intentionally expanded
 - pytest: green

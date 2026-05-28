@@ -1,0 +1,76 @@
+{
+  "game": "slay_the_spire_2",
+  "screen_type": "card_reward",
+  "character": "silent",
+  "act": 1,
+  "floor": 7,
+  "ascension": 0,
+  "gold": 123,
+  "hp": {
+    "current": 52,
+    "max": 80
+  },
+  "deck": [
+    {
+      "id": "defend",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "dramatic_entrance",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "neutralize",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "slice",
+      "upgraded": false,
+      "count": 1
+    },
+    {
+      "id": "strike",
+      "upgraded": false,
+      "count": 5
+    },
+    {
+      "id": "survivor",
+      "upgraded": false,
+      "count": 1
+    }
+  ],
+  "relics": [
+    "lead_paperweight",
+    "ring_of_the_snake"
+  ],
+  "potions": [],
+  "card_reward": [
+    "cloak_and_dagger",
+    "bouncing_flask",
+    "infinite_blades"
+  ],
+  "run_context": {
+    "next_node_type": "unknown",
+    "path_pressure": "unknown",
+    "notes": [
+      "Live exporter did not infer map/path context."
+    ]
+  },
+  "export_metadata": {
+    "source": "deckseer_exporter_mod",
+    "exporter_version": "0.3.0",
+    "game_build": null,
+    "game_patch": null,
+    "exported_at": "2026-05-24T00:00:00Z",
+    "requires_user_confirmation": true,
+    "confidence": "medium",
+    "caveats": [
+      "Run inspect-export and confirm this live state before using recommend-export.",
+      "Confirm the visible card reward, deck, HP, gold, relics, and potions before using this state.",
+      "Live exporter map/path context is unknown/defaulted."
+    ]
+  }
+}

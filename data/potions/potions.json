@@ -1,5 +1,10 @@
 [
   {
+    "id": "attack_potion",
+    "name": "Attack Potion",
+    "tags": ["card_generation", "attack"]
+  },
+  {
     "id": "fire_potion",
     "name": "Fire Potion",
     "tags": ["damage"]
@@ -8,5 +13,20 @@
     "id": "block_potion",
     "name": "Block Potion",
     "tags": ["block"]
+  },
+  {
+    "id": "colorless_potion",
+    "name": "Colorless Potion",
+    "tags": ["card_generation"]
+  },
+  {
+    "id": "heart_of_iron",
+    "name": "Heart of Iron",
+    "tags": ["block", "plating"]
+  },
+  {
+    "id": "blessing_of_the_forge",
+    "name": "Blessing of the Forge",
+    "tags": ["upgrade", "combat"]
   }
 ]

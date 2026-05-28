@@ -78,6 +78,33 @@
     }
   },
   {
+    "id": "armaments",
+    "name": "Armaments",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["block", "upgrade"],
+    "roles": ["block", "deck_quality"],
+    "quality_prior": 0.0,
+    "pick_context": ["defense", "upgrade"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: ARMAMENTS title is Armaments; description says it gains Block and upgrades a card in hand.",
+      "Installed v0.4.7 local-MVP alert revealed ARMAMENTS as an unmapped visible Ironclad reward card; seed metadata only, not exact in-combat upgrade simulation."
+    ],
+    "upgrades_to": "armaments_plus",
+    "effects": {
+      "damage": 0,
+      "block": 5,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "upgrade_card_in_hand": 1
+      }
+    }
+  },
+  {
     "id": "battle_trance",
     "name": "Battle Trance",
     "character": "ironclad",
@@ -430,6 +457,89 @@
     }
   },
   {
+    "id": "perfected_strike",
+    "name": "Perfected Strike",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 2,
+    "tags": ["damage", "strike_payoff"],
+    "roles": ["frontload", "strike_payoff"],
+    "quality_prior": 0.0,
+    "pick_context": ["strike_dense", "early", "frontload"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: PERFECTED_STRIKE title is Perfected Strike; description says it deals damage and additional damage for all cards containing Strike.",
+      "Installed v0.4.7 local-MVP alert revealed PERFECTED_STRIKE as an unmapped visible Ironclad reward card; seed metadata only, not exact dynamic damage simulation."
+    ],
+    "upgrades_to": "perfected_strike_plus",
+    "effects": {
+      "damage": 6,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "strike_bonus_damage": 2
+      }
+    }
+  },
+  {
+    "id": "thunderclap",
+    "name": "Thunderclap",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "aoe", "vulnerable"],
+    "roles": ["frontload", "aoe", "debuff"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload", "aoe", "elite_prep"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: THUNDERCLAP title is Thunderclap; description says it deals damage and applies Vulnerable to all enemies.",
+      "Installed v0.4.7 local-MVP alert revealed THUNDERCLAP as an unmapped visible Ironclad reward card; seed metadata only, not exact debuff simulation."
+    ],
+    "upgrades_to": "thunderclap_plus",
+    "effects": {
+      "damage": 4,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "vulnerable": 1
+      }
+    }
+  },
+  {
+    "id": "dominate",
+    "name": "Dominate",
+    "character": "ironclad",
+    "type": "skill",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["vulnerable", "strength", "exhaust"],
+    "roles": ["debuff", "scaling", "strength"],
+    "quality_prior": 0.0,
+    "pick_context": ["vulnerable", "scaling", "strength"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: DOMINATE title is Dominate; description says it applies Vulnerable and gains Strength for each Vulnerable on the enemy.",
+      "Local STS2 v0.106.1 release notes identify Dominate as Skill - Cost 1 - Uncommon; installed v0.4.7 local-MVP alert revealed DOMINATE as an unmapped visible Ironclad reward card.",
+      "Seed metadata only; not exact dynamic Strength simulation."
+    ],
+    "upgrades_to": "dominate_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "vulnerable": 1,
+        "strength_per_vulnerable": 1
+      }
+    }
+  },
+  {
     "id": "clothesline",
     "name": "Clothesline",
     "character": "ironclad",
@@ -448,6 +558,35 @@
       "block": 0,
       "draw": 0,
       "energy": 0
+    }
+  },
+  {
+    "id": "setup_strike",
+    "name": "Setup Strike",
+    "character": "ironclad",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "strength"],
+    "roles": ["frontload", "strength", "burst"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload", "strength"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: SETUP_STRIKE title is Setup Strike; description says it deals damage and gains Strength this turn.",
+      "Local STS2 v0.106.1 release notes say Setup Strike was buffed to 8(11) damage; installed v0.4.7 local-MVP alert revealed SETUP_STRIKE as an unmapped visible Ironclad reward card.",
+      "Seed metadata only; temporary Strength is simplified and not exact combat simulation."
+    ],
+    "upgrades_to": "setup_strike_plus",
+    "effects": {
+      "damage": 8,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "temporary_strength": 1,
+        "upgraded_temporary_strength": 2
+      }
     }
   },
   {

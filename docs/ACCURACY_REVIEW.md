@@ -4,12 +4,12 @@ Deckseer is currently focused on calibration quality, not new input surfaces. Th
 
 ## Current QA Snapshot
 
-- `pytest` passes across the current suite (`301 passed` at the latest verification).
+- `pytest` passes across the current suite (`395 passed` at the latest verification).
 - `deckseer data-health` reports `PASS`.
 - `deckseer qa --check-recommendation-baseline --check-accuracy` reports `REVIEW` because active empirical rows intentionally surface audit flags while recommendation baseline and accuracy checks pass.
 - `deckseer qa --check-recommendation-baseline --check-accuracy --check-empirical-triage` reports `PASS` because all active empirical flags are triaged as non-blocking context.
-- Current card coverage is 174 hand-curated records across Ironclad, Silent, Defect, Necrobinder, and Regent.
-- `deckseer accuracy-report` checks the reviewed scenario manifest and currently passes all nine scenarios.
+- Current card coverage is 180 hand-curated records across Ironclad, Silent, Defect, Necrobinder, Regent, and Neutral.
+- `deckseer accuracy-report` checks the reviewed scenario manifest and currently passes all ten scenarios.
 - Active empirical coverage has 18 traceable rows across all five classes, with 14 audit flags: all patch-context warnings.
 
 ## Accuracy Boundaries
@@ -44,7 +44,8 @@ Deckseer is currently focused on calibration quality, not new input surfaces. Th
 1. Grow scenario fixtures from hand-authored cases into reviewed examples from actual runs.
 2. Keep `qa --check-recommendation-baseline` stable while intentional scoring changes are reviewed through `qa-baseline`.
 3. Defer live STS2.fun ingestion until manual evidence review remains stable across more calibration passes.
-4. Begin read-only/export-only Deckseer Exporter Mod design before any live-state implementation.
+4. Keep exporter-derived scenarios human-confirmed and review-only until their expected choices are accepted.
+5. Watch the accepted `silent_v047_envenom_attack_payoff_guard` scenario for future drift. It guards a narrow attack/Shiv payoff calibration where Envenom should beat duplicate Predator and low-fit Memento Mori in the reviewed late Act 1 Silent state.
 
 ## Scenario Review Workflow
 

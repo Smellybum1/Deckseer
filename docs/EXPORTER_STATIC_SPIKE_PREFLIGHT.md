@@ -4,6 +4,7 @@ This preflight checks whether the next Deckseer Exporter packet can safely attem
 
 See `docs/EXPORTER_TOOLCHAIN_SETUP.md` for the repo-only setup checklist that must pass before adding static mod source.
 Use `deckseer exporter-toolchain-preflight --format text` to refresh the read-only readiness report without creating folders, installing tools, or touching game files.
+The preflight checks `PATH` first and also recognizes the local `D:\Codex\Godot` executable paths used by the exporter build.
 
 ## Readiness Result
 
@@ -60,7 +61,7 @@ The install root contains `SlayTheSpire2.exe`, `SlayTheSpire2.pck`, `release_inf
 Expected mod target:
 
 - `D:\Games\Steam\steamapps\common\Slay the Spire 2\mods`
-- Current state: not present.
+- Current state: present.
 
 Expected Deckseer export target:
 
@@ -72,7 +73,7 @@ Expected log target:
 - `C:\Users\moxhe\AppData\Roaming\SlayTheSpire2\logs`
 - Current state: path exists according to `Test-Path`, but listing the app data root returned access denied and direct log enumeration did not produce readable log entries in this preflight.
 
-The static spike created its own local mod package and export directory during the accepted implementation packet. The preflight command itself remains read-only and does not create either folder.
+The static spike created its own local mod package during the accepted implementation packet. The Deckseer export folder can be absent after cleanup or before the installed mod writes again; the preflight command itself remains read-only and does not create either folder.
 
 ## Public Reference Snapshot
 
@@ -88,7 +89,7 @@ Reviewed on 2026-05-24. Treat these details as volatile while STS2 is in Early A
 
 1. Keep `.NET SDK 9`, the STS2 template, and Godot/Megadot visibility checked with `deckseer exporter-toolchain-preflight --format text`.
 2. Keep the static status mod dependency-free unless a later reviewed packet proves a dependency is necessary.
-3. For the next exporter packet, either install-check the `v0.2.0` diagnostic status build with explicit approval, or design how to prove public reward model data corresponds to the visible card reward screen before exporting any live decision state.
+3. Current exporter work has advanced past the static spike to installed `v0.4.7`: card reward and relic reward exports are live-proven under the human-confirmed boundary, while watch mode and broader decision exports remain unimplemented.
 
 The accepted `DeckseerExporter` static spike writes:
 

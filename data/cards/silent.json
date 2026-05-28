@@ -104,6 +104,60 @@
     }
   },
   {
+    "id": "accuracy",
+    "name": "Accuracy",
+    "character": "silent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["shiv", "damage", "scaling", "power"],
+    "roles": ["scaling", "shiv", "power"],
+    "quality_prior": 0.0,
+    "pick_context": ["shiv", "scaling"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: ACCURACY.title is Accuracy; description says Shivs deal additional damage.",
+      "Installed v0.4.5 treasure proof revealed ACCURACY as an unmapped deck card; seed metadata only."
+    ],
+    "upgrades_to": "accuracy_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "shiv_damage_bonus": 1
+      }
+    }
+  },
+  {
+    "id": "envenom",
+    "name": "Envenom",
+    "character": "silent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 2,
+    "tags": ["poison", "attack_payoff", "scaling", "power"],
+    "roles": ["scaling", "poison", "power"],
+    "quality_prior": 0.0,
+    "pick_context": ["poison", "shiv", "scaling"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: ENVENOM title is Envenom; description says unblocked Attack damage applies Poison.",
+      "Installed v0.4.6 card reward proof revealed ENVENOM as an unmapped reward card; user intended to pick it for a Shiv/attack-heavy Silent run before a question-mark room into an elite; seed metadata only."
+    ],
+    "upgrades_to": "envenom_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "poison_on_unblocked_attack": 1
+      }
+    }
+  },
+  {
     "id": "malaise",
     "name": "Malaise",
     "character": "silent",
@@ -460,6 +514,141 @@
     }
   },
   {
+    "id": "finisher",
+    "name": "Finisher",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["damage", "attack_payoff"],
+    "roles": ["frontload", "burst"],
+    "quality_prior": 0.0,
+    "pick_context": ["frontload", "attack_dense"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: FINISHER title is Finisher; description says it deals damage for each Attack already played this turn.",
+      "Installed v0.4.7 card reward proof revealed FINISHER as an unmapped reward card; user took Finisher after tooltip review; seed metadata only."
+    ],
+    "upgrades_to": "finisher_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "attack_played_damage_payoff": 1
+      }
+    }
+  },
+  {
+    "id": "fasten",
+    "name": "Fasten",
+    "character": "silent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["block", "defend_payoff", "defense", "power"],
+    "roles": ["block", "defense", "power"],
+    "quality_prior": 0.0,
+    "pick_context": ["defense", "block"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: FASTEN title is Fasten; description says Defend cards gain additional Block.",
+      "Installed v0.4.6 card reward proof revealed FASTEN as an unmapped deck card; seed metadata only."
+    ],
+    "upgrades_to": "fasten_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "defend_block_bonus": 4
+      }
+    }
+  },
+  {
+    "id": "tools_of_the_trade",
+    "name": "Tools of the Trade",
+    "character": "silent",
+    "type": "power",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["draw", "discard", "power"],
+    "roles": ["draw", "discard", "consistency", "deck_control", "power"],
+    "quality_prior": 0.0,
+    "pick_context": ["consistency", "discard", "deck_control"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: TOOLS_OF_THE_TRADE title is Tools of the Trade; description says to draw 1 card and discard 1 card at the start of your turn.",
+      "Installed v0.4.7 card reward proof revealed TOOLS_OF_THE_TRADE as an unmapped deck card; seed metadata only."
+    ],
+    "upgrades_to": "tools_of_the_trade_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 1,
+      "energy": 0,
+      "extra": {
+        "discard_per_turn": 1
+      }
+    }
+  },
+  {
+    "id": "infinite_blades",
+    "name": "Infinite Blades",
+    "character": "silent",
+    "type": "power",
+    "rarity": "uncommon",
+    "cost": 1,
+    "tags": ["shiv", "scaling", "power"],
+    "roles": ["scaling", "shiv", "power"],
+    "quality_prior": 3.5,
+    "pick_context": ["shiv", "scaling", "boss_prep"],
+    "source_patch": "v0.102.0",
+    "source_notes": [
+      "Silent local tier list: A tier.",
+      "Spire Codex card database: cost 1 uncommon power; adds 1 Shiv at the start of your turn."
+    ],
+    "upgrades_to": "infinite_blades_plus",
+    "effects": {
+      "damage": 0,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "shiv_per_turn": 1
+      }
+    }
+  },
+  {
+    "id": "pinpoint",
+    "name": "Pinpoint",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "uncommon",
+    "cost": 2,
+    "tags": ["damage", "skill_payoff", "cost_reduction"],
+    "roles": ["frontload", "burst", "skill_payoff"],
+    "quality_prior": 0.0,
+    "pick_context": ["frontload", "skill_dense"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: PINPOINT title is Pinpoint; description says it deals damage and costs 1 less energy for each Skill played this turn.",
+      "Installed v0.4.7 card reward proof revealed PINPOINT as an unmapped deck card; seed metadata only."
+    ],
+    "upgrades_to": "pinpoint_plus",
+    "effects": {
+      "damage": 15,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "skill_played_cost_reduction": 1
+      }
+    }
+  },
+  {
     "id": "dagger_spray",
     "name": "Dagger Spray",
     "character": "silent",
@@ -628,6 +817,33 @@
     }
   },
   {
+    "id": "memento_mori",
+    "name": "Memento Mori",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 1,
+    "tags": ["damage", "discard", "discard_payoff"],
+    "roles": ["frontload", "discard", "burst"],
+    "quality_prior": 0.0,
+    "pick_context": ["discard", "frontload"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: MEMENTO_MORI title is Memento Mori; description says it deals damage plus additional damage for each card discarded this turn.",
+      "Installed v0.4.6 card reward proof revealed MEMENTO_MORI as an unmapped reward card; user review considered it weak in the observed Envenom/Predator/Memento Mori reward; seed metadata only."
+    ],
+    "upgrades_to": "memento_mori_plus",
+    "effects": {
+      "damage": 9,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "discard_damage_bonus": 4
+      }
+    }
+  },
+  {
     "id": "dash",
     "name": "Dash",
     "character": "silent",
@@ -646,6 +862,33 @@
       "block": 10,
       "draw": 0,
       "energy": 0
+    }
+  },
+  {
+    "id": "murder",
+    "name": "Murder",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "rare",
+    "cost": 3,
+    "tags": ["damage", "draw_payoff"],
+    "roles": ["frontload", "burst", "draw"],
+    "quality_prior": 0.0,
+    "pick_context": ["draw", "burst"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: MURDER title is Murder; description says it deals damage plus additional damage for each card drawn this combat.",
+      "Installed v0.4.7 card reward proof revealed MURDER as an unmapped reward card; user tooltip review observed a 3-cost attack that deals 1 plus 1 per card drawn this combat; seed metadata only."
+    ],
+    "upgrades_to": "murder_plus",
+    "effects": {
+      "damage": 1,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "drawn_card_damage_bonus": 1
+      }
     }
   },
   {
@@ -669,6 +912,34 @@
       "energy": 0,
       "extra": {
         "poison": 5
+      }
+    }
+  },
+  {
+    "id": "ricochet",
+    "name": "Ricochet",
+    "character": "silent",
+    "type": "attack",
+    "rarity": "common",
+    "cost": 1,
+    "tags": ["damage", "random_target"],
+    "roles": ["frontload"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "frontload"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: RICOCHET title is Ricochet; description says it deals damage to a random enemy multiple times.",
+      "Installed v0.4.7 card reward proof revealed RICOCHET as an unmapped upgraded reward card; local pck changelog notes current damage as 3 x 4(5); seed metadata only."
+    ],
+    "upgrades_to": "ricochet_plus",
+    "effects": {
+      "damage": 12,
+      "block": 0,
+      "draw": 0,
+      "energy": 0,
+      "extra": {
+        "random_hits": 4,
+        "upgraded_random_hits": 5
       }
     }
   },

@@ -19,10 +19,10 @@ def test_data_summary_reports_class_coverage() -> None:
     assert summary["totals"]["cards"] >= 170
     expected_counts = {
         "defect": 34,
-        "ironclad": 25,
+        "ironclad": 30,
         "necrobinder": 40,
         "regent": 42,
-        "silent": 33,
+        "silent": 43,
     }
     for character, count in expected_counts.items():
         assert summary["cards_by_character"][character] >= count
@@ -33,7 +33,25 @@ def test_data_summary_reports_class_coverage() -> None:
     assert summary["review_flags"]["attack_skill_cards_with_empty_direct_effects"]["count"] == 0
     assert summary["review_flags"]["power_cards_with_empty_direct_effects"]["count"] == 0
     assert summary["review_flags"]["starter_cards_with_neutral_quality_prior"]["count"] == 7
-    assert summary["review_flags"]["seed_only_cards_with_neutral_quality_prior"]["ids"] == ["clothesline"]
+    assert summary["review_flags"]["seed_only_cards_with_neutral_quality_prior"]["ids"] == [
+        "armaments",
+        "clothesline",
+        "dominate",
+        "perfected_strike",
+        "setup_strike",
+        "thunderclap",
+        "dramatic_entrance",
+        "ultimate_defend",
+        "accuracy",
+        "envenom",
+        "fasten",
+        "finisher",
+        "memento_mori",
+        "murder",
+        "pinpoint",
+        "ricochet",
+        "tools_of_the_trade",
+    ]
     assert summary["review_flags"]["uncategorized_cards_with_neutral_quality_prior"]["count"] == 0
     assert summary["source_patches"]
 
@@ -42,9 +60,9 @@ def test_data_summary_can_filter_by_character() -> None:
     summary = build_data_summary(_data(), character="silent")
 
     assert summary["filters"] == {"character": "silent"}
-    assert summary["totals"]["cards"] == 33
+    assert summary["totals"]["cards"] == 43
     assert summary["totals"]["characters"] == 1
-    assert summary["cards_by_character"] == {"silent": 33}
+    assert summary["cards_by_character"] == {"silent": 43}
     assert "v0.102.0" in summary["source_patches"]
     assert summary["review_flags"]["attack_skill_cards_with_empty_direct_effects"]["count"] == 0
     assert summary["review_flags"]["power_cards_with_empty_direct_effects"]["count"] == 0
@@ -112,7 +130,7 @@ def test_data_summary_cli_text_filter_smoke(capsys) -> None:
 
     assert status == 0
     assert "Filter: character=ironclad" in captured.out
-    assert "   ironclad: 25" in captured.out
+    assert "   ironclad: 30" in captured.out
 
 
 def test_data_summary_cli_text_can_show_limited_gap_ids(capsys) -> None:
@@ -176,8 +194,29 @@ def test_data_review_lists_cards_for_selected_flag() -> None:
     assert review["review_type"] == "data_review"
     assert review["filters"] == {"character": None, "flag": "seed_only_cards_with_neutral_quality_prior"}
     assert review["totals"]["flags"] == 1
-    assert [card["id"] for card in review["review_flags"]["seed_only_cards_with_neutral_quality_prior"]] == ["clothesline"]
-    assert review["review_flags"]["seed_only_cards_with_neutral_quality_prior"][0]["source_patch"] == "v0.102.0"
+    assert [card["id"] for card in review["review_flags"]["seed_only_cards_with_neutral_quality_prior"]] == [
+        "armaments",
+        "clothesline",
+        "dominate",
+        "perfected_strike",
+        "setup_strike",
+        "thunderclap",
+        "dramatic_entrance",
+        "ultimate_defend",
+        "accuracy",
+        "envenom",
+        "fasten",
+        "finisher",
+        "memento_mori",
+        "murder",
+        "pinpoint",
+        "ricochet",
+        "tools_of_the_trade",
+    ]
+    clothesline = next(
+        card for card in review["review_flags"]["seed_only_cards_with_neutral_quality_prior"] if card["id"] == "clothesline"
+    )
+    assert clothesline["source_patch"] == "v0.102.0"
 
 
 def test_data_review_cli_text_smoke(capsys) -> None:
@@ -188,7 +227,19 @@ def test_data_review_cli_text_smoke(capsys) -> None:
     assert status == 0
     assert "Data Review" in captured.out
     assert "seed_only_cards_with_neutral_quality_prior" in captured.out
+    assert "accuracy - Accuracy" in captured.out
+    assert "envenom - Envenom" in captured.out
+    assert "fasten - Fasten" in captured.out
+    assert "memento_mori - Memento Mori" in captured.out
+    assert "finisher - Finisher" in captured.out
+    assert "armaments - Armaments" in captured.out
+    assert "perfected_strike - Perfected Strike" in captured.out
+    assert "setup_strike - Setup Strike" in captured.out
+    assert "thunderclap - Thunderclap" in captured.out
+    assert "ultimate_defend - Ultimate Defend" in captured.out
     assert "clothesline - Clothesline" in captured.out
+    assert "dominate - Dominate" in captured.out
+    assert "dramatic_entrance - Dramatic Entrance" in captured.out
     assert "Patch: v0.102.0" in captured.out
 
 

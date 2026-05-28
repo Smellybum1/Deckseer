@@ -1,5 +1,7 @@
 # Deckseer Relic Metadata Seed Plan
 
+Status: `completed`
+
 This packet expands only the existing three seed relic records so Relic Choice V1 has enough reviewed metadata to support a private scorer. It does not add a relic advice engine, public CLI, fixtures, exporter support, card reward scoring changes, or baselines.
 
 ## Seed Scope
@@ -53,4 +55,4 @@ Expected behavior remains unchanged for card reward advice.
 
 ## Next Packet
 
-The next packet should implement a private relic choice scorer and tests against small fixtures. It should stay private until output wording, confidence, and caveats are stable.
+Completed: the private relic choice scorer, public `recommend-relic` CLI, exporter relic adapter support, and relic accuracy report now exist. Future relic metadata packets should stay tiny, reviewed, and guarded by relic accuracy scenarios.

@@ -3,9 +3,16 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import time
 
 from deckseer.data_loader import DeckseerData
 from deckseer.diagnostics import diagnose_run_state
+from deckseer.export_alerts import (
+    DEFAULT_EXPORT_STATE,
+    evaluate_export_alerts,
+    load_export_alert_catalog,
+    render_export_alert_report,
+)
 from deckseer.exporter_toolchain import build_exporter_toolchain_preflight
 from deckseer.importers.exporter_state import ExportedRelicState, inspect_exporter_state, load_exporter_recommendation_state
 from deckseer.models import ValidationError
@@ -19,6 +26,28 @@ def handle_exporter_command(args: argparse.Namespace) -> int | None:
         exported = inspect_exporter_state(Path(args.export_json))
         print(json.dumps(exported.to_summary_dict(), indent=2))
         return 0
+    if args.command == "export-alert":
+        export_path = Path(args.export_json)
+        if args.once and args.watch:
+            raise ValidationError("--once and --watch cannot be used together")
+        if args.interval <= 0:
+            raise ValidationError("--interval must be greater than 0")
+        catalog = load_export_alert_catalog(Path(args.data_dir))
+        if args.once:
+            report = evaluate_export_alerts(export_path, catalog=catalog)
+            print(render_export_alert_report(report, loud=not args.quiet))
+            return 10 if report.has_alerts else 0
+
+        last_fingerprint = None
+        while True:
+            report = evaluate_export_alerts(export_path, catalog=catalog)
+            fingerprint = report.fingerprint()
+            if fingerprint != last_fingerprint:
+                rendered = render_export_alert_report(report, loud=not args.quiet)
+                if report.has_alerts or args.show_idle:
+                    print(rendered, flush=True)
+                last_fingerprint = fingerprint
+            time.sleep(args.interval)
     if args.command == "exporter-toolchain-preflight":
         report = build_exporter_toolchain_preflight(
             sts2_install_path=Path(args.sts2_install),
@@ -50,6 +79,35 @@ def handle_exporter_command(args: argparse.Namespace) -> int | None:
 def register_exporter_inspection_commands(subparsers: argparse._SubParsersAction) -> None:
     inspect_export = subparsers.add_parser("inspect-export", help="Summarize a Deckseer Exporter JSON state file.")
     inspect_export.add_argument("export_json", help="Path to a Deckseer Exporter latest_state.json file.")
+
+    export_alert = subparsers.add_parser(
+        "export-alert",
+        help="Read-only alert for important or unexpected Deckseer Exporter states.",
+    )
+    export_alert.add_argument(
+        "export_json",
+        nargs="?",
+        default=str(DEFAULT_EXPORT_STATE),
+        help="Path to latest_state.json. Defaults to %%LOCALAPPDATA%%\\Deckseer\\exports\\latest_state.json.",
+    )
+    export_alert.add_argument("--once", action="store_true", help="Check the exporter file once and exit. Default is to watch.")
+    export_alert.add_argument(
+        "--watch",
+        action="store_true",
+        help="Poll the exporter file until interrupted. This is the default and is kept for explicitness.",
+    )
+    export_alert.add_argument("--interval", type=float, default=2.0, help="Polling interval in seconds while watching. Defaults to 2.")
+    export_alert.add_argument("--quiet", action="store_true", help="Do not ring the terminal bell when an alert fires.")
+    export_alert.add_argument(
+        "--data-dir",
+        default="data",
+        help="Path to Deckseer data files used to suppress mapping alerts already known locally. Defaults to ./data.",
+    )
+    export_alert.add_argument(
+        "--show-idle",
+        action="store_true",
+        help="While watching, also print state changes that do not produce an alert.",
+    )
 
     exporter_preflight = subparsers.add_parser(
         "exporter-toolchain-preflight",

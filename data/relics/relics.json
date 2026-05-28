@@ -24,6 +24,32 @@
     ]
   },
   {
+    "id": "blood_vial",
+    "name": "Blood Vial",
+    "tags": ["sustain", "hp", "healing"],
+    "roles": ["sustain"],
+    "quality_prior": 0.0,
+    "pick_context": ["low_hp", "long_act"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: BLOOD_VIAL title is Blood Vial; description says it heals HP at the start of each combat.",
+      "Installed v0.4.6 card reward proof revealed BLOOD_VIAL as an unmapped owned relic; simplified metadata for planning only, not exact heal timing simulation."
+    ]
+  },
+  {
+    "id": "centennial_puzzle",
+    "name": "Centennial Puzzle",
+    "tags": ["draw", "hp_loss", "consistency"],
+    "roles": ["draw", "consistency"],
+    "quality_prior": 0.0,
+    "pick_context": ["long_act", "draw"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: CENTENNIAL_PUZZLE title is Centennial Puzzle; description says the first HP loss each combat draws cards.",
+      "Installed v0.4.7 card reward proof revealed CENTENNIAL_PUZZLE as an unmapped owned relic; simplified metadata for planning only, not exact trigger simulation."
+    ]
+  },
+  {
     "id": "kunai",
     "name": "Kunai",
     "tags": ["attack", "dexterity", "block"],
@@ -33,6 +59,136 @@
     "source_patch": "deckseer_relic_seed_v1",
     "source_notes": [
       "Deckseer Relic Choice V1 seed: attack-density payoff that can improve block over longer fights; simplified metadata for planning only, not exact trigger simulation."
+    ]
+  },
+  {
+    "id": "mr_struggles",
+    "name": "Mr. Struggles",
+    "tags": ["damage", "aoe", "turn_scaling"],
+    "roles": ["frontload", "aoe", "scaling"],
+    "quality_prior": 1.5,
+    "pick_context": ["long_act", "aoe"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: MR_STRUGGLES title is Mr. Struggles; description says at the start of your turn it deals damage equal to the turn number to all enemies.",
+      "Installed v0.4.7 card reward proof revealed MR_STRUGGLES as an unmapped owned relic; simplified metadata for planning only, not exact trigger simulation."
+    ]
+  },
+  {
+    "id": "orichalcum",
+    "name": "Orichalcum",
+    "tags": ["block", "defense"],
+    "roles": ["defense", "block"],
+    "quality_prior": 0.0,
+    "pick_context": ["defense", "low_block"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: ORICHALCUM title is Orichalcum; description says if you end your turn without Block, gain Block.",
+      "Installed v0.4.7 card reward proof revealed ORICHALCUM as an unmapped owned relic; simplified metadata for planning only, not exact trigger simulation."
+    ]
+  },
+  {
+    "id": "paels_eye",
+    "name": "Pael's Eye",
+    "tags": ["extra_turn", "exhaust", "setup"],
+    "roles": ["scaling", "deck_control"],
+    "quality_prior": 0.0,
+    "pick_context": ["setup", "long_act"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: PAELS_EYE title is Pael's Eye; description says the first time each combat you end your turn without playing cards, exhaust your hand and take an extra turn.",
+      "Installed v0.4.7 card reward proof revealed PAELS_EYE as an unmapped owned relic; simplified metadata for planning only, not exact extra-turn simulation."
+    ]
+  },
+  {
+    "id": "shuriken",
+    "name": "Shuriken",
+    "tags": ["attack", "strength", "scaling"],
+    "roles": ["scaling", "frontload"],
+    "quality_prior": 0.0,
+    "pick_context": ["attack_dense", "long_act"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: SHURIKEN title is Shuriken; description says playing a threshold number of Attacks in one turn grants Strength.",
+      "Installed v0.4.7 card reward proof revealed SHURIKEN as an unmapped owned relic; simplified metadata for planning only, not exact trigger count simulation."
+    ]
+  },
+  {
+    "id": "strike_dummy",
+    "name": "Strike Dummy",
+    "tags": ["damage", "strike_payoff"],
+    "roles": ["frontload"],
+    "quality_prior": 0.0,
+    "pick_context": ["strike_dense", "early"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: STRIKE_DUMMY title is Strike Dummy; description says cards containing Strike deal additional damage.",
+      "Installed v0.4.7 card reward proof revealed STRIKE_DUMMY as an unmapped owned relic; simplified metadata for planning only, not exact damage simulation."
+    ]
+  },
+  {
+    "id": "tea_of_discourtesy",
+    "name": "Tea of Discourtesy",
+    "tags": ["status", "dazed", "drawback", "event_relic"],
+    "roles": [],
+    "quality_prior": 0.0,
+    "pick_context": ["event_route_review"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: TEA_OF_DISCOURTESY title is Tea of Discourtesy; description says at the start of the next combat it shuffles Dazed into the draw pile.",
+      "Installed v0.4.7 card reward proof revealed TEA_OF_DISCOURTESY as an unmapped owned relic during the Tea Master/event route handoff; mapped as sparse metadata only, not route approval or exact Dazed-count simulation."
+    ]
+  },
+  {
+    "id": "letter_opener",
+    "name": "Letter Opener",
+    "tags": ["damage", "aoe", "skill_payoff"],
+    "roles": ["frontload", "aoe"],
+    "quality_prior": 2.5,
+    "pick_context": ["skill_dense", "long_act"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Installed STS2 v0.106.1 pck localization: LETTER_OPENER title/description; playing a threshold number of Skills in one turn deals damage to all enemies.",
+      "Reviewed after installed v0.4.3 treasure relic diagnostic revealed LETTER_OPENER; simplified metadata for planning only, not exact trigger count or damage simulation."
+    ]
+  },
+  {
+    "id": "lost_coffer",
+    "name": "Lost Coffer",
+    "tags": ["card_reward", "potion", "pickup"],
+    "roles": ["deck_quality", "consumable"],
+    "quality_prior": 0.0,
+    "pick_context": ["early", "deck_quality", "potion"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Local STS2 pck localization: LOST_COFFER title is Lost Coffer; description says upon pickup it gives one card reward and procures one random potion.",
+      "Installed v0.4.7 local-MVP alert revealed LOST_COFFER as an unmapped owned relic; simplified metadata for planning only, not exact card-reward or potion EV simulation."
+    ]
+  },
+  {
+    "id": "lead_paperweight",
+    "name": "Lead Paperweight",
+    "tags": ["colorless", "deck_quality", "card_add"],
+    "roles": ["deck_quality", "consistency"],
+    "quality_prior": 1.5,
+    "pick_context": ["early", "consistency"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Installed STS2 v0.106.1 pck localization: LEAD_PAPERWEIGHT title/description; pickup adds one of two Colorless cards to the deck.",
+      "Reviewed after v0.2.16 relic ID diagnostic revealed LEAD_PAPERWEIGHT; simplified metadata for planning only, not exact card-pool EV."
+    ]
+  },
+  {
+    "id": "ring_of_the_snake",
+    "name": "Ring of the Snake",
+    "tags": ["draw", "consistency", "starter_relic"],
+    "roles": ["draw", "consistency"],
+    "quality_prior": 3.0,
+    "pick_context": ["early", "elite_prep", "consistency"],
+    "source_patch": "v0.106.1",
+    "source_notes": [
+      "Installed STS2 v0.106.1 pck localization: RING_OF_THE_SNAKE title/description; starts each combat with additional draw.",
+      "Reviewed after v0.2.16 relic ID diagnostic revealed RING_OF_THE_SNAKE; simplified metadata for planning only, not exact draw count simulation."
     ]
   }
 ]

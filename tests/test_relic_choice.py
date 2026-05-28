@@ -51,6 +51,29 @@ def test_relic_choice_prefers_kunai_for_attack_dense_long_fight() -> None:
     assert any("attack_dense" in reason for reason in result.ranked_choices[0].reasoning)
 
 
+def test_relic_choice_prefers_ring_for_early_consistency_pressure() -> None:
+    result = recommend_relic_choice(_state("early_consistency_ring.json"), _data())
+
+    assert result.ranked_choices[0].choice == "ring_of_the_snake"
+    assert any("consistency" in reason for reason in result.ranked_choices[0].reasoning)
+    assert any("elite_prep" in reason for reason in result.ranked_choices[0].reasoning)
+
+
+def test_relic_choice_can_prefer_lead_paperweight_for_healthy_early_quality() -> None:
+    result = recommend_relic_choice(_state("colorless_deck_quality.json"), _data())
+
+    assert result.ranked_choices[0].choice == "lead_paperweight"
+    assert any("consistency" in reason for reason in result.ranked_choices[0].reasoning)
+
+
+def test_relic_choice_can_prefer_letter_opener_for_skill_dense_frontload() -> None:
+    result = recommend_relic_choice(_state("skill_dense_letter_opener.json"), _data())
+
+    assert result.ranked_choices[0].choice == "letter_opener"
+    assert any("frontload" in reason for reason in result.ranked_choices[0].reasoning)
+    assert any("skill_dense" in reason for reason in result.ranked_choices[0].reasoning)
+
+
 def test_relic_choice_rejects_unknown_reward_relic() -> None:
     raw = _raw_state("elite_frontload.json")
     raw["relic_reward"] = ["akabeko", "unknown_relic"]
